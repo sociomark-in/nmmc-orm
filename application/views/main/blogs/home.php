@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-12 col-xl-12 stretch-card">
 			<div class="row flex-grow-1">
-				<div class="col-xl-2 col-lg-3 col-md-4 grid-margin stretch-card">
+				<div class="col-xl-2 col-lg-3 col-md-4 grid-margin stretch-card d-none">
 					<div class="card">
 						<div class="card-body">
 							<div class="d-flex justify-content-between align-items-baseline">
@@ -47,7 +47,7 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="d-flex justify-content-between align-items-baseline">
-								<h6 class="card-title mb-0">All Categories</h6>
+								<h6 class="card-title mb-0">All Complaints</h6>
 								<div class="dropdown mb-2">
 									<a type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -75,7 +75,7 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="d-flex justify-content-between align-items-baseline">
-								<h6 class="card-title mb-0">All Comments</h6>
+								<h6 class="card-title mb-0">Department Complaints</h6>
 								<div class="dropdown mb-2">
 									<a type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -103,7 +103,7 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="d-flex justify-content-between align-items-baseline">
-								<h6 class="card-title mb-0">All Tags</h6>
+								<h6 class="card-title mb-0">Ward Complaints</h6>
 								<div class="dropdown mb-2">
 									<a type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -150,13 +150,13 @@
 						<table class="table table-hover mb-0" id="leadsDataTable">
 							<thead>
 								<tr>
-									<th class="pt-0">#</th>
-									<th class="pt-0">Title</th>
-									<th class="pt-0">Author</th>
-									<th class="pt-0">Category</th>
-									<th class="pt-0">Tags</th>
 									<th class="pt-0">Date</th>
-									<th class="pt-0">Views Count</th>
+									<th class="pt-0">Source</th>
+									<th class="pt-0">Department</th>
+									<th class="pt-0">Ward</th>
+									<th class="pt-0">Type of Complaint</th>
+									<th class="pt-0">Message</th>
+									<th class="pt-0">Post Link</th>
 									<th class="pt-0">Status</th>
 								</tr>
 							</thead>

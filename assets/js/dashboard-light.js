@@ -485,8 +485,6 @@ $(function() {
 
 
 
-
-
   // Monthly Sales Chart
   if($('#monthlySalesChart').length) {
     var options = {
@@ -537,7 +535,7 @@ $(function() {
       },
       yaxis: {
         title: {
-          text: 'Number of Sales',
+          text: 'Number of Complaints',
           style:{
             size: 9,
             color: colors.muted
