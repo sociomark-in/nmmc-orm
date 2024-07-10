@@ -1,6 +1,6 @@
 <?php
 require_once APPPATH . "controllers/base/RBAController.php";
-class BlogsController extends RBAController
+class ComplaintsController extends RBAController
 {
 	public $data;
 
@@ -12,17 +12,6 @@ class BlogsController extends RBAController
 		$this->load->model('blogposts/CategoryModel');
 		$this->data['session'] = $this->session->get_userdata($this->APP_ID . "_appuser");
 	}
-
-	/*
-	$route["api/v2/blogs/category/add"] = "BlogsController/api_category_insert";
-$route["api/v2/blogs/category/get"] = "BlogsController/api_category_get";
-$route["api/v2/blogs/category/edit"] = "BlogsController/api_category_edit";
-$route["api/v2/blogs/category/delete"] = "BlogsController/api_category_delete";
-
-$route["api/v2/blogs/tag/add"] = "BlogsController/api_tag_insert";
-$route["api/v2/blogs/tag/edit"] = "BlogsController/api_tag_edit";
-$route["api/v2/blogs/tag/delete"] = "BlogsController/api_tag_delete"; 
-	*/
 
 	/* Get All Categories */
 	public function api_category_get()
@@ -125,7 +114,7 @@ $route["api/v2/blogs/tag/delete"] = "BlogsController/api_tag_delete";
 	}
 
 
-	public function new_post()
+	public function new_ticket()
 	{
 		$this->load->model('blogposts/CategoryModel');
 		$this->load->model('blogposts/TagModel');
