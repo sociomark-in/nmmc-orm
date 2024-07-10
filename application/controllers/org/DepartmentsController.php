@@ -11,7 +11,7 @@ class DepartmentsController extends RBAController
     public function api_dept_get_single()
     {
         $request = $this->input->post('department');
-        $this->output->set_content_type('application/json')
+        return $this->output->set_content_type('application/json')
             ->set_output(json_encode(array('slug' => slugify($request))));
     }
 }

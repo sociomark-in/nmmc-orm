@@ -11,22 +11,24 @@ for ($i=1; $i <= 32; $i++) {
     } from "<?= base_url("assets") ?>/js/apexchart-options.js";
     if ($('#<?= $id ?>').length) {
         var options = barChartOptions
-        options.chart.events = {
-            dataPointSelection: function(event, chartContext, opts) {
-                var dept = chartContext.w.globals.labels[opts.dataPointIndex];
-                console.log(dept);
-                $.ajax( {
-                    data: {
-                        department: dept
-                    },
-                    method:"POST",
-                    url: "<?= base_url('api/v2/department/get') ?>",
-                    success: function(data){
-                        window.location.replace("<?= base_url('department/') ?>" + slugify(data.slug))
-                    }
-                })
-            }
-        };
+        if(<?= array_key_exists("dataPointSelection", $events) ?>){
+            options.chart.events = {
+                dataPointSelection: function(event, chartContext, opts) {
+                    var dept = chartContext.w.globals.labels[opts.dataPointIndex];
+                    console.log(dept);
+                    $.ajax( {
+                        data: {
+                            department: dept
+                        },
+                        method:"POST",
+                        url: "<?= base_url($events['dataPointSelection']['url']) ?>",
+                        success: function(data){
+                            window.location.replace("<?= base_url($events['dataPointSelection']['redirect']) ?>".replace("(:any)", slugify(data.slug)))
+                        }
+                    })
+                }
+            };
+        }
         options.xaxis = {
             categories: <?= json_encode($xaxis) ?>,
         };

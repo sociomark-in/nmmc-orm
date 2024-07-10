@@ -1,5 +1,5 @@
 <div class="page-content">
-    <div class="row">
+    <div class="row flex-grow-1">
         <div class="col-12 col-xl-12 stretch-card">
             <div class="row flex-grow-1">
                 <div class="col-xl-2 col-lg-3 col-md-4 grid-margin stretch-card">
@@ -216,8 +216,12 @@
                             $data = [
                                 'id' => "apexBarChart",
                                 'data' => [
-                                    'source' => ""
-                                ]
+                                    'source' => "",
+                                ],
+                                'events' => ['dataPointSelection' => [
+                                    'url' => "api/v2/department/get",
+                                    'redirect' => "department/(:any)"
+                                ]]
                             ];
                             $this->load->view('components/theme/widgets/charts/barchart', $data); ?>
                         </div>
