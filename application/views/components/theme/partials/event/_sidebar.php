@@ -17,22 +17,6 @@
 					<span class="link-title">Dashboard</span>
 				</a>
 			</li>
-			
-			<!-- Nominations -->
-			<li class="nav-item nav-category">Events Management</li>
-			<!-- Access Level: jury -->
-			<li class="nav-item">
-				<a href="<?= base_url('nominations') ?>" class="nav-link">
-					<i class="link-icon" data-feather="database"></i>
-					<span class="link-title">All Events</span>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="<?= base_url('nominations') ?>" class="nav-link">
-					<i class="link-icon" data-feather="book"></i>
-					<span class="link-title">New Event</span>
-				</a>
-			</li>
 
 			<!-- Nominations -->
 			<li class="nav-item nav-category">Nominations Management</li>

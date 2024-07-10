@@ -17,11 +17,11 @@ License: For each use you must have a valid license purchased only from above li
 	<div class="main-wrapper">
 
 		<!-- partial:partials/_sidebar.html -->
-		<?php $this->load->view('components/theme/partials/event/_sidebar'); ?>
+		<?php $this->load->view('components/theme/partials/_sidebar'); ?>
 		<!-- partial -->
 
 		<div class="page-wrapper">
 
 			<!-- partial:partials/_navbar.html -->
-			<?php $this->load->view('components/theme/partials/event/_navbar'); ?>
+			<?php $this->load->view('components/theme/partials/_navbar'); ?>
 			<!-- partial -->

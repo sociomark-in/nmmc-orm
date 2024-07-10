@@ -57,10 +57,16 @@ $route['logout'] = 'auth/logout';
 $route['api-auth-login'] = 'auth/login';
 $route['api-auth-register'] = 'auth/register';
 
+$route['api-event-register'] = 'EventsController/api_event_register';
+$route['event/(:any)/check-in/(:any)'] = 'EventsController/check_in_verify/$1/$2';
 
 $route['register'] = 'dashboard/register';
 
-$route['entry/(:any)'] = "EntriesController/single_detail/$1";
+$route[''] = 'dashboard/index';
+$route['menu'] = 'dashboard/menu_master';
+$route['menu/categories'] = 'dashboard/categories_all';
+$route['menu/category/(:any)/menu-items'] = 'dashboard/menu_items/$1';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
