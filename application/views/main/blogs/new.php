@@ -1,6 +1,30 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
 
+<!-- Plugin: Froala  -->
+<link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
+<link rel="stylesheet" href="<?= base_url('assets/css/') ?>froala-custom.min.css">
+
+<script>
+	$(document).ready(function() {
+		var editor1 = new FroalaEditor('textarea.full-editor', {
+			height: 300
+		});
+		var editor2 = new FroalaEditor('textarea.mini-editor', {
+			height: 100,
+			wordCounterMax: 100,
+			toolbarButtons: {
+				moreMisc: {
+					buttons: ['undo', 'redo', 'html', 'help'],
+					align: 'right',
+				}
+			}
+		});
+	});
+</script>
+<!-- Plugin: Froala  -->
+
 <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/jquery.inputmask.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js"></script>
