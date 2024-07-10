@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
-class Dashboard extends CI_Controller
+require_once APPPATH . "controllers/base/RBAController.php";
+class Dashboard extends RBAController
 {
 	public $error;
 
@@ -12,15 +12,7 @@ class Dashboard extends CI_Controller
 	}
 	public function index()
 	{
-		switch ($this->input->get('type')) {
-			case 'nominations':
-				$this->load->admin_dashboard('dashboard/nominations/index');
-				break;
-
-			default:
-				$this->load->admin_dashboard('dashboard/basic/index');
-				break;
-		}
+		$this->load->admin_dashboard('dashboard/basic/index');
 	}
 
 	public function login()

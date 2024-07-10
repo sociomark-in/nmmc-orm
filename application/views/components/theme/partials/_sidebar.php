@@ -17,42 +17,42 @@
 					<span class="link-title">Dashboard</span>
 				</a>
 			</li>
-			
-			<!-- Nominations -->
-			<li class="nav-item nav-category">Events Management</li>
-			<!-- Access Level: jury -->
 			<li class="nav-item">
-				<a href="<?= base_url('nominations') ?>" class="nav-link">
+				<a href="<?= base_url('complaints') ?>" class="nav-link">
 					<i class="link-icon" data-feather="database"></i>
-					<span class="link-title">All Events</span>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="<?= base_url('nominations') ?>" class="nav-link">
-					<i class="link-icon" data-feather="book"></i>
-					<span class="link-title">New Event</span>
+					<span class="link-title">All Complaints</span>
 				</a>
 			</li>
 
 			<!-- Nominations -->
-			<li class="nav-item nav-category">Nominations Management</li>
+			<li class="nav-item nav-category">Ticket Management</li>
 			<!-- Access Level: jury -->
 			<li class="nav-item">
-				<a href="<?= base_url('nominations') ?>" class="nav-link">
+				<a href="<?= base_url('complaints') ?>" class="nav-link">
 					<i class="link-icon" data-feather="database"></i>
-					<span class="link-title">Nominations</span>
+					<span class="link-title">Complaint Tickets</span>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="<?= base_url('categories') ?>" class="nav-link">
+				<a href="<?= base_url('complaint/new') ?>" class="nav-link">
 					<i class="link-icon" data-feather="book"></i>
-					<span class="link-title">Categories</span>
+					<span class="link-title">Ticket Reports</span>
+				</a>
+			</li>
+
+			<!-- Nominations -->
+			<li class="nav-item nav-category">Organization Management</li>
+			<!-- Access Level: jury -->
+			<li class="nav-item">
+				<a href="<?= base_url('departments') ?>" class="nav-link">
+					<i class="link-icon" data-feather="map-pin"></i>
+					<span class="link-title">Dapartments</span>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="<?= base_url('all-cities') ?>" class="nav-link">
+				<a href="<?= base_url('wards') ?>" class="nav-link">
 					<i class="link-icon" data-feather="map-pin"></i>
-					<span class="link-title">Cities</span>
+					<span class="link-title">Wards</span>
 				</a>
 			</li>
 

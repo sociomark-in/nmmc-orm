@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/sociomark-products/socioengage/';
+$config['base_url'] = 'http://localhost/nmmc/nmmc-orm/';
 
 /*
 |--------------------------------------------------------------------------
@@ -462,7 +462,7 @@ $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = TRUE;
-$config['csrf_exclude_uris'] = array('api-event-register');
+$config['csrf_exclude_uris'] = array('api-event-register', 'api/v2/blogs/category/get');
 
 /*
 |--------------------------------------------------------------------------
