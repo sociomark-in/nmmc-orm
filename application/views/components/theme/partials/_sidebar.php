@@ -18,26 +18,48 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="<?= base_url('complaints') ?>" class="nav-link">
+				<a href="<?= base_url('complaints/all-tickets') ?>" class="nav-link">
 					<i class="link-icon" data-feather="database"></i>
 					<span class="link-title">All Complaints</span>
 				</a>
 			</li>
 
-			<!-- Nominations -->
+			<!-- Tickets -->
 			<li class="nav-item nav-category">Ticket Management</li>
-			<!-- Access Level: jury -->
+			<!-- Access Level: admin -->
 			<li class="nav-item">
-				<a href="<?= base_url('complaints') ?>" class="nav-link">
+				<a class="nav-link" data-bs-toggle="collapse" href="#tickets" role="button" aria-expanded="false" aria-controls="tickets">
 					<i class="link-icon" data-feather="database"></i>
 					<span class="link-title">Complaint Tickets</span>
+					<i class="link-arrow" data-feather="chevron-down"></i>
 				</a>
+				<div class="collapse" id="tickets">
+					<ul class="nav sub-menu">
+						<li class="nav-item">
+							<a href="<?= base_url('complaints/all-tickets') ?>" class="nav-link">All Tickets</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= base_url('complaints/tickets/new') ?>" class="nav-link">New Ticket</a>
+						</li>
+					</ul>
+				</div>
 			</li>
 			<li class="nav-item">
-				<a href="<?= base_url('complaint/new') ?>" class="nav-link">
+				<a class="nav-link" data-bs-toggle="collapse" href="#reports" role="button" aria-expanded="false" aria-controls="reports">
 					<i class="link-icon" data-feather="book"></i>
 					<span class="link-title">Ticket Reports</span>
+					<i class="link-arrow" data-feather="chevron-down"></i>
 				</a>
+				<div class="collapse" id="reports">
+					<ul class="nav sub-menu">
+						<li class="nav-item">
+							<a href="<?= base_url('complaints/all-tickets') ?>" class="nav-link">Ward Wise</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?= base_url('complaints/tickets/new') ?>" class="nav-link">Department Wise</a>
+						</li>
+					</ul>
+				</div>
 			</li>
 
 			<!-- Nominations -->
