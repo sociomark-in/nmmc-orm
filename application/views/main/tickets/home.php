@@ -133,13 +133,8 @@
 								<div class="col-xl-3 col-lg-4 col-md-6">
 									<div class="">
 										<select name="dept" id="" class="form-select">
-<<<<<<< HEAD
-											<?php for ($i = 0; $i < 20; $i++) : ?>
-												<option value="">Select A Department</option>
-=======
 											<option value="">Select A Department</option>
 											<?php for ($i = 0; $i < 20; $i++) : ?>
->>>>>>> f0bb369b63149036d18866f6b75be85e797a1bb9
 												<option value="<?= "department-" . $i  ?>"><?= "Department " . $i  ?></option>
 											<?php endfor ?>
 										</select>

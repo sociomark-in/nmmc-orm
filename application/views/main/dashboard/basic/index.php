@@ -131,12 +131,11 @@
               'data' => [
                 'source' => "",
               ],
-              'events' => ['dataPointSelection' => [
-                'url' => "api/v2/department/get",
-                'redirect' => "department/(:any)"
-              ]]
+              'events' => null
             ];
-            $this->load->view('components/theme/widgets/charts/barstackchart', $data); ?>
+            
+            $this->load->view('components/theme/widgets/charts/barstackchart', $data); 
+            ?>
           </div>
         </div>
       </div>

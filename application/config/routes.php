@@ -60,6 +60,7 @@ $route['api-auth-register'] = 'auth/register';
 $route['api-event-register'] = 'EventsController/api_event_register';
 $route['event/(:any)/check-in/(:any)'] = 'EventsController/check_in_verify/$1/$2';
 
+$route["api/v2/tickets/count"] = "api/ComplaintsAPIController/api_complaints_count";
 $route["api/v2/complaints/category/add"] = "api/ComplaintsAPIController/api_category_insert";
 $route["api/v2/complaints/category/get"] = "api/ComplaintsAPIController/api_category_get";
 $route["api/v2/complaints/category/edit"] = "api/ComplaintsAPIController/api_category_update";

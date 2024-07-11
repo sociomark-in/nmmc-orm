@@ -2,8 +2,6 @@
 require_once APPPATH . "controllers/base/RBAController.php";
 class ComplaintsController extends RBAController
 {
-	public $data;
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -11,7 +9,6 @@ class ComplaintsController extends RBAController
 		$this->load->model('data/AuthorsModel');
 		$this->load->model('complaints/WardModel');
 		$this->load->model('complaints/DepartmentModel');
-		$this->data['session'] = $this->session->get_userdata($this->APP_ID . "_appuser");
 	}
 
 	public function home()

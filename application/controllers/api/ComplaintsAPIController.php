@@ -1,19 +1,39 @@
-<?php 
+<?php
 require_once APPPATH . "controllers/base/RBAController.php";
 final class ComplaintsAPIController extends RBAController
 {
-    public $data;
+	public $data;
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('data/TicketsModel');
+		$this->load->model('complaints/TicketsModel');
 		$this->load->model('data/AuthorsModel');
-		$this->load->model('blogposts/CategoryModel');
+		$this->load->model('complaints/WardModel');
+		$this->load->model('complaints/DepartmentModel');
 		$this->data['session'] = $this->session->get_userdata($this->APP_ID . "_appuser");
 	}
 
-    public function api_complaints_add(){
+	public function api_complaints_count()
+	{
+		$get_data = $this->input->get();
+		$post_data = $this->input->post();
+		$output = [];
+		if($get_data['by'] == 'status'){
+			if($get_data['months'] == 12){
+				$output = $this->TicketsModel->count_status(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]);
+			} else {
+				$output = $this->TicketsModel->count_status(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"]);
+			}
+			// SELECT `status`, COUNT(*) FROM `app_complaint_tickets` GROUP BY `status`;
+			$count = $output;
+		}
+		return $this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('output' => [$post_data, $count])));
+	}
+	public function api_complaints_add()
+	{
 		$data = $this->input->post();
 		print_r($data);
 	}
