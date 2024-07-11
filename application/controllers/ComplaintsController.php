@@ -14,6 +14,7 @@ class ComplaintsController extends RBAController
 	public function home()
 	{
 		$rows = json_decode($this->TicketsModel->get_all([
+			"id",
 			"source",
 			"department_id",
 			"ward_id",
@@ -36,10 +37,10 @@ class ComplaintsController extends RBAController
 
 	public function new_ticket()
 	{
-		$this->load->model('blogposts/CategoryModel');
-		$this->load->model('blogposts/TagModel');
-		$this->data['categories'] = $this->CategoryModel->get();
-		$this->data['tags'] = $this->TagModel->get();
+		$this->load->model('complaints/DepartmentModel');
+		$this->load->model('complaints/WardModel');
+		$this->data['page']['department'] = $this->DepartmentModel->get();
+		$this->data['page']['ward'] = $this->WardModel->get();
 		$this->load->admin_dashboard('tickets/new', $this->data);
 	}
 
@@ -47,10 +48,12 @@ class ComplaintsController extends RBAController
 
 	public function edit($slug)
 	{
-		$this->load->model('blogposts/CategoryModel');
-		$this->load->model('blogposts/TagModel');
-		$this->data['categories'] = $this->CategoryModel->get();
-		$this->data['tags'] = $this->TagModel->get();
+		$this->load->model('complaints/DepartmentModel');
+		$this->load->model('complaints/TicketsModel');
+		$this->load->model('complaints/WardModel');
+		$this->data['page']['ticket'] = $this->TicketsModel->get();
+		$this->data['page']['department'] = $this->DepartmentModel->get();
+		$this->data['page']['ward'] = $this->WardModel->get();
 		$this->load->admin_dashboard('tickets/edit', $this->data);
 	}
 
