@@ -103,12 +103,13 @@
 		</div>
 	</div>
 
+
 	<div class="row">
-		<div class="col-12 grid-margin stretch-card">
+		<div class="col-lg-12 col-xl-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
 					<div class="d-flex justify-content-between align-items-baseline mb-2">
-						<h6 class="card-title mb-0">Blog Posts</h6>
+						<h6 class="card-title mb-0">Complaints List</h6>
 						<div class="dropdown mb-2">
 							<a type="button" id="dropdownMenuButton7" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -118,6 +119,55 @@
 							</div>
 						</div>
 					</div>
+					<form action="" method="get">
+						<div class="mb-3">
+							<div class="row justify-content-between">
+								<div class="col-xl-3 col-lg-4 col-md-6">
+									<div class="">
+										<div class="input-group">
+											<input type="search" name="k" class="form-control" placeholder="Search Through Complaint Message" data-input>
+											<span class="input-group-text input-group-addon" data-toggle><i data-feather="search"></i></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-4 col-md-6">
+									<div class="">
+										<select name="dept" id="" class="form-select">
+											<?php for ($i=0; $i < 20; $i++) :?>
+												<option value="">Select A Department</option>
+											<option value="<?= "department-" . $i  ?>"><?= "Department " . $i  ?></option>
+											<?php endfor ?>
+										</select>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-4 col-md-6">
+									<div class="">
+										<select name="ward" id="" class="form-select">
+											<option value="">Select A Ward</option>
+											<?php for ($i=0; $i < 20; $i++) :?>
+											<option value="<?= "ward-" . $i  ?>"><?= "Ward " . $i  ?></option>
+											<?php endfor ?>
+										</select>
+									</div>
+								</div>
+								<div class="col-xl-3 col-lg-4 col-md-6">
+									<div class="row">
+										<div class="col-xl col-lg-6">
+											<div class="">
+												<div class="input-group flatpickr">
+													<input type="text" name="daterange" class="form-control flatpickr-daterange" id="daterange" placeholder="Select Date Range" data-input>
+													<span class="input-group-text input-group-addon" data-toggle><i data-feather="calendar"></i></span>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-auto col-lg-6">
+											<button class="btn btn-primary" type="submit">Update&nbsp;Filter</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
 					<div class="table-responsive">
 						<table class="table table-hover mb-0" id="leadsDataTable">
 							<thead>
@@ -133,29 +183,36 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php
-								$i = 1;
-								foreach ($blogs_all as $key => $blog) : ?>
+								<?php for ($i = 0; $i < 20; $i++) : ?>
 									<tr>
-										<td><?= $i++ ?></td>
-										<td><a href="<?= base_url("posts/blog/" . $blog['uslug'] . "/edit") ?>"><?= $blog['title'] ?></a></td>
-										<td><?= $blog['author_id'] ?></td>
-										<td><?= $blog['category'] ?></td>
-										<td><?= $blog['tags'] ?></td>
-										<td><?= $blog['created_at'] ?></td>
-										<td><?= $blog['views'] ?></td>
-										<td><?= status_badge($blog['status']) ?></td>
+										<td><?= $i + 1 ?></td>
+										<td><a href="">Facebook</a></td>
+										<td>Water Department</td>
+										<td>Ghansoli</td>
+										<td>XYZ</td>
+										<td>ABCD</td>
+										<td>Link</td>
+										<td><span class="badge bg-danger">Released</span></td>
 									</tr>
-								<?php endforeach ?>
+								<?php endfor ?>
 							</tbody>
 						</table>
 						<script>
-							new DataTable('#leadsDataTable');
+							let table = new DataTable('#leadsDataTable');
 						</script>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div> <!-- row -->
-
+	</div>
 </div>
+<script>
+	$(".flatpickr-daterange").each((index, elem) => {
+		$(elem).flatpickr({
+			maxDate: "<?= date("Y-m-d") ?>",
+			mode: 'range',
+			dateFormat: "Y-m-d",
+			conjunction: " :: ",
+		});
+	})
+</script>

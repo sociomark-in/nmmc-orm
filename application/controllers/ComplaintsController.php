@@ -115,7 +115,7 @@ class ComplaintsController extends RBAController
 			}
 		}
 		$this->data['blogs_all'] = $blogs;
-		$this->load->admin_dashboard('blogs/home', $this->data);
+		$this->load->admin_dashboard('tickets/home', $this->data);
 	}
 
 
@@ -125,7 +125,7 @@ class ComplaintsController extends RBAController
 		$this->load->model('blogposts/TagModel');
 		$this->data['categories'] = $this->CategoryModel->get();
 		$this->data['tags'] = $this->TagModel->get();
-		$this->load->admin_dashboard('blogs/new', $this->data);
+		$this->load->admin_dashboard('tickets/new', $this->data);
 	}
 
 	// INSERT INTO `cms_posts`(`id`, `title`, `content`, `excerpt`, `image_url`, `category`, `tags`, `seo_title`, `seo_desc`, `seo_thumb`, `author_id`, `created_at`, `updated_at`, `uslug`, `views`, `status`)
@@ -136,7 +136,7 @@ class ComplaintsController extends RBAController
 		$this->load->model('blogposts/TagModel');
 		$this->data['categories'] = $this->CategoryModel->get();
 		$this->data['tags'] = $this->TagModel->get();
-		$this->load->admin_dashboard('blogs/edit', $this->data);
+		$this->load->admin_dashboard('tickets/edit', $this->data);
 	}
 
 	public function categories()
@@ -146,6 +146,6 @@ class ComplaintsController extends RBAController
 		$this->data['categories'] = $this->CategoryModel->get();
 		$this->data['tags'] = $this->TagModel->get();
 		// print_r($this->data['tags']);die;
-		$this->load->admin_dashboard('blogs/categories', $this->data);
+		$this->load->admin_dashboard('tickets/categories', $this->data);
 	}
 }
