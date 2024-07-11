@@ -133,9 +133,9 @@
 								<div class="col-xl-3 col-lg-4 col-md-6">
 									<div class="">
 										<select name="dept" id="" class="form-select">
-											<?php for ($i=0; $i < 20; $i++) :?>
+											<?php for ($i = 0; $i < 20; $i++) : ?>
 												<option value="">Select A Department</option>
-											<option value="<?= "department-" . $i  ?>"><?= "Department " . $i  ?></option>
+												<option value="<?= "department-" . $i  ?>"><?= "Department " . $i  ?></option>
 											<?php endfor ?>
 										</select>
 									</div>
@@ -144,8 +144,8 @@
 									<div class="">
 										<select name="ward" id="" class="form-select">
 											<option value="">Select A Ward</option>
-											<?php for ($i=0; $i < 20; $i++) :?>
-											<option value="<?= "ward-" . $i  ?>"><?= "Ward " . $i  ?></option>
+											<?php for ($i = 0; $i < 20; $i++) : ?>
+												<option value="<?= "ward-" . $i  ?>"><?= "Ward " . $i  ?></option>
 											<?php endfor ?>
 										</select>
 									</div>
