@@ -3,7 +3,6 @@
 <!-- endinject -->
 
 <!-- Plugin js for this page -->
-<script src="<?= base_url("assets") ?>/vendors/flatpickr/flatpickr.min.js"></script>
 <!-- End plugin js for this page -->
 
 <!-- inject:js -->

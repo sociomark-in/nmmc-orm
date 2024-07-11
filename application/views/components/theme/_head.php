@@ -24,8 +24,11 @@
 <link rel="stylesheet" href="<?= base_url("assets") ?>/vendors/core/core.css">
 <!-- endinject -->
 
-<!-- Plugin css for this page -->
+<!-- Plugin : Flatpickr -->
 <link rel="stylesheet" href="<?= base_url("assets") ?>/vendors/flatpickr/flatpickr.min.css">
+<script src="<?= base_url("assets") ?>/vendors/flatpickr/flatpickr.min.js"></script>
+<!-- Plugin : Flatpickr -->
+
 
 <link href="https://cdn.datatables.net/v/bs5/dt-2.0.0/datatables.min.css" rel="stylesheet"> 
 <script src="https://cdn.datatables.net/v/bs5/dt-2.0.0/datatables.min.js"></script>
