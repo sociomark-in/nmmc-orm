@@ -45,13 +45,13 @@ class TicketsModel extends CI_Model
 			$this->db->where($where);
 		}
 		$this->db->order_by('created_at', 'DESC');
-		$result = $this->db->get($this->table['blogs'])->result_array();
+		$result = $this->db->get($this->table['tickets'])->result_array();
 
 		return json_encode($result);
 	}
 	public function insert($data)
 	{
-		if ($this->db->insert($this->table['blogs'], $data)) {
+		if ($this->db->insert($this->table['tickets'], $data)) {
 			return true;
 		} else {
 			return false;
@@ -60,7 +60,7 @@ class TicketsModel extends CI_Model
 	public function update($where, $data)
 	{
 		if (!is_null($where) && !is_null($data)) {
-			return $this->db->update($this->table['blogs'], $data, $where);
+			return $this->db->update($this->table['tickets'], $data, $where);
 		}
 	}
 	public function delete($where)
