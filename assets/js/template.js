@@ -46,9 +46,9 @@
 
 
     // Applying perfect-scrollbar 
-    // if ($('.sidebar .sidebar-body').length) {
-    //   const sidebarBodyScroll = new PerfectScrollbar('.sidebar-body');
-    // }
+    if ($('.sidebar .sidebar-body').length) {
+      const sidebarBodyScroll = new PerfectScrollbar('.sidebar-body');
+    }
     // commented beacuse of hang (scroll from  dropdown.html with small height)
     // if ($('.content-nav-wrapper').length) {
     //   const contentNavWrapper = new PerfectScrollbar('.content-nav-wrapper');

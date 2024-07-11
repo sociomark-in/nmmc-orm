@@ -51,8 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'Dashboard';
 
-$route['login'] = 'pages/login';
-$route['logout'] = 'auth/logout';
+$route['login'] = 'auth/SSOController/login';
+$route['logout'] = 'auth/SSOController/logout';
 
 $route['api-auth-login'] = 'auth/login';
 $route['api-auth-register'] = 'auth/register';
@@ -65,6 +65,7 @@ $route["api/v2/complaints/category/get"] = "ComplaintsController/api_category_ge
 $route["api/v2/complaints/category/edit"] = "ComplaintsController/api_category_update";
 $route["api/v2/complaints/category/delete"] = "ComplaintsController/api_category_delete";
 
+$route["api/v2/complaints/add"] = "ComplaintsController/api_complaints_add";
 $route["api/v2/complaints/tag/get"] = "ComplaintsController/api_tag_get";
 $route["api/v2/complaints/tag/add"] = "ComplaintsController/api_tag_insert";
 $route["api/v2/complaints/tag/edit"] = "ComplaintsController/api_tag_update";

@@ -32,11 +32,11 @@
 <link rel="stylesheet" href="<?= base_url("assets/css/") ?>dropify-custom.min.css">
 <link rel="stylesheet" href="<?= base_url("assets/css/") ?>select2-custom.min.css">
 <div class="page-content">
-	<form action="" method="post">
+	<?= form_open("api/v2/complaints/add") ?>
 		<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
 			<div class="d-flex gap-2">
 				<div class="nav-item">
-					<a href="<?= base_url("posts/all-blogs") ?>" class="nav-link"><i class="link-arrow" data-feather="chevron-left"></i></a>
+					<a href="<?= base_url("complaints/all-tickets") ?>" class="nav-link"><i class="link-arrow" data-feather="chevron-left"></i></a>
 				</div>
 				<div>
 					<h4 class="mb-3 mb-md-0">New Complaint</h4>
@@ -53,77 +53,31 @@
 					<div class="col-12 grid-margin stretch-card">
 						<div class="card">
 							<div class="card-body">
-								<div class="mb-3">
-									<label for="inputTitle" class="form-label">Source</label>
-									<select class="js-example-basic-single form-select" data-width="100%">
-										<option value="facebook">Facebook</option>
-										<option value="instagram">Instagram</option>
-										<option value="twitter">Twitter</option>
-									</select>
+								<div class="">
+									<div class="row">
+										<div class="col-xl-3 col-lg-4 col-6">
+											<label for="inputTitle" class="form-label">Complaint Source</label>
+											<select class="js-example-basic-single form-select" data-width="100%">
+												<option value="facebook">Facebook</option>
+												<option value="instagram">Instagram</option>
+												<option value="twitter">Twitter</option>
+											</select>
+										</div>
+										<div class="col">
+											<label for="url" class="form-label">Source Link</label>
+											<input id="url" class="form-control" name="url" type="text">
+										</div>
+									</div>
 								</div>
-								<div class="mb-3">
-									<label for="inputTitle" class="form-label">Type of Complaint</label>
-									<select class="js-example-basic-single form-select" data-width="100%">
-										<?php for ($i = 1; $i <= 12; $i++) { ?>
-											<option value="facebook">Complaint <?= $i ?></option>
-										<?php } ?>
-									</select>
-								</div>
-								<div class="mb-3">
-									<label for="url" class="form-label">Post Links</label>
-									<input id="url" class="form-control" name="url" type="text">
-								</div>
-								<div class="mb-3">
-									<label for="inputTitle" class="form-label">Status</label>
-									<select class="js-example-basic-single form-select" data-width="100%">
-										<?php for ($i = 1; $i <= 4; $i++) { ?>
-											<option value="facebook">Status <?= $i ?></option>
-										<?php } ?>
-									</select>
-								</div>
-
+							</div>
+						</div>
+					</div>
+					<div class="col-12 grid-margin stretch-card">
+						<div class="card">
+							<div class="card-body">
 								<div class="mb-3">
 									<label for="inputPostContent" class="form-label">Message</label>
-									<textarea class="form-control" id="inputPostContent" rows="10"></textarea>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 grid-margin stretch-card d-none">
-						<div class="card">
-							<div class="card-body">
-								<div class="d-flex justify-content-between align-items-baseline mb-3">
-									<div class="">
-										<h6 class="card-title mb-0">Exerpt</h6>
-										<p>Add a summary of the post to appear on your home page or blog.</p>
-									</div>
-								</div>
-								<div class="mb-3">
-									<textarea class="form-control mini-editor" id="inputExerpt"></textarea>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 grid-margin stretch-card d-none">
-						<div class="card">
-							<div class="card-body">
-								<div class="d-flex justify-content-between align-items-baseline mb-3">
-									<div class="">
-										<h6 class="card-title mb-0">Search engine listing preview</h6>
-										<p>Add a title and description to see how this Blog post might appear in a search engine listing</p>
-									</div>
-								</div>
-								<div class="mb-3">
-									<label for="inputSEOPageTitle" class="form-label">Page Title</label>
-									<input type="text" class="form-control" id="inputSEOPageTitle" />
-								</div>
-								<div class="mb-3">
-									<label for="inputSEOPageDesc" class="form-label">Description</label>
-									<textarea class="form-control mini-editor" maxlength="300" id="inputSEOPageDesc"></textarea>
-								</div>
-								<div class="mb-3">
-									<label for="inputSEOPageURL" class="form-label">Page URL</label>
-									<input type="text" class="form-control" id="inputSEOPageURL" />
+									<textarea name="message" class="form-control full-editor" id="inputPostContent" rows="10"></textarea>
 								</div>
 							</div>
 						</div>
@@ -132,43 +86,32 @@
 			</div>
 			<div class="col-xl-3 col-lg-4 col-12 grid-margin">
 				<div class="row">
-					<div class="col-12 grid-margin stretch-card d-none">
+					<div class="col-12 grid-margin stretch-card">
 						<div class="card">
 							<div class="card-body">
 								<div class="d-flex justify-content-between align-items-baseline mb-3">
 									<h6 class="card-title mb-0">Visibility</h6>
 								</div>
 								<div class="mb-3">
-									<div class="form-check">
-										<input class="form-check-input" type="radio" name="status" value="2" id="flexCheckDefault">
-										<label class="form-check-label" for="flexCheckDefault">
-											Draft
-										</label>
-									</div>
+									<label for="inputTitle" class="form-label">Type of Complaint</label>
+									<select name="complaint_type" class="js-example-basic-single form-select" data-width="100%">
+										<?php for ($i = 1; $i <= 12; $i++) { ?>
+											<option value="Complaint <?= $i ?>">Complaint <?= $i ?></option>
+										<?php } ?>
+									</select>
 								</div>
 								<div class="mb-3">
-									<div class="form-check">
-										<input class="form-check-input" type="radio" name="status" value="1" id="flexCheckChecked" checked>
-										<label class="form-check-label" for="flexCheckChecked">
-											Published
-										</label>
-									</div>
+									<label for="inputTitle" class="form-label">Status</label>
+									<select name="complaint_status"  class="js-example-basic-single form-select" data-width="100%">
+										<?php for ($i = 1; $i <= 4; $i++) { ?>
+											<option value="Status <?= $i ?>">Status <?= $i ?></option>
+										<?php } ?>
+									</select>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-12 grid-margin stretch-card d-none">
-						<div class="card">
-							<div class="card-body">
-								<div class="d-flex justify-content-between align-items-baseline mb-3">
-									<h6 class="card-title mb-0">Featured Image</h6>
-								</div>
-								<div class="mb-3">
-									<input type="file" class="dropify" data-default-file="" data-max-file-size="5M" data-allowed-file-extensions="jpg" />
-								</div>
-							</div>
-						</div>
-					</div>
+
 					<div class="col-12 grid-margin stretch-card">
 						<div class="card">
 							<div class="card-body">
@@ -177,46 +120,20 @@
 								</div>
 								<div class="mb-3">
 									<label for="inputTitle" class="form-label">Department</label>
-									<select class="js-example-basic-single form-select" data-width="100%">
+									<select name="department_name"  class="js-example-basic-single form-select" data-width="100%">
 										<?php for ($i = 1; $i <= 12; $i++) { ?>
-											<option value="facebook">Department <?= $i ?></option>
+											<option value="Department <?= $i ?>">Department <?= $i ?></option>
 										<?php } ?>
 									</select>
 								</div>
 								<div class="mb-3">
 									<label for="inputTitle" class="form-label">Ward</label>
-									<select class="js-example-basic-single form-select" data-width="100%">
+									<select name="ward_name" class="js-example-basic-single form-select" data-width="100%">
 										<?php for ($i = 1; $i <= 8; $i++) { ?>
 											<option value="facebook">Ward <?= $i ?></option>
 										<?php } ?>
 									</select>
 								</div>
-								<!-- <div class="mb-3">
-									<label for="blogCategorySelect" class="form-label">Blog Category</label>
-									<select name="" class="" id="blogCategorySelect">
-										<?php for ($i = 0; $i < 10; $i++) : ?>
-											<option value="">Select <?= $i ?></option>
-										<?php endfor ?>
-									</select>
-									<script>
-										$("#blogCategorySelect").select2({
-											theme: "bootstrap-5",
-										});
-									</script>
-								</div>
-								<div class="mb-3">
-									<label for="inputBlogTags" class="form-label">Tags</label>
-									<select name="" class="" id="inputBlogTags" multiple>
-										<?php for ($i = 0; $i < 10; $i++) : ?>
-											<option value="">Select <?= $i ?></option>
-										<?php endfor ?>
-									</select>
-									<script>
-										$("#inputBlogTags").select2({
-											theme: "bootstrap-5",
-										});
-									</script>
-								</div> -->
 							</div>
 						</div>
 					</div>
@@ -227,7 +144,7 @@
 				<button type="reset" class="btn btn-outline-secondary">Cancel</button>
 			</div>
 		</div>
-	</form>
+	<?= form_close()?>
 </div>
 <script>
 	$('.dropify').dropify({

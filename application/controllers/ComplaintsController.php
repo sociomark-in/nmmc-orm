@@ -13,6 +13,11 @@ class ComplaintsController extends RBAController
 		$this->data['session'] = $this->session->get_userdata($this->APP_ID . "_appuser");
 	}
 
+	public function api_complaints_add(){
+		$data = $this->input->post();
+		print_r($data);
+	}
+
 	/* Get All Categories */
 	public function api_category_get()
 	{

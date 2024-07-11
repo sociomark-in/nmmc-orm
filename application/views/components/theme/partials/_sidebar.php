@@ -53,10 +53,10 @@
 				<div class="collapse" id="reports">
 					<ul class="nav sub-menu">
 						<li class="nav-item">
-							<a href="<?= base_url('complaints/all-tickets') ?>" class="nav-link">Ward Wise</a>
+							<a href="<?= base_url('reports?filter=all_wards') ?>" class="nav-link">Ward Wise</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?= base_url('complaints/tickets/new') ?>" class="nav-link">Department Wise</a>
+							<a href="<?= base_url('reports?filter=all_departments') ?>" class="nav-link">Department Wise</a>
 						</li>
 					</ul>
 				</div>

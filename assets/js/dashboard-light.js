@@ -485,6 +485,8 @@ $(function() {
 
 
 
+
+
   // Monthly Sales Chart
   if($('#monthlySalesChart').length) {
     var options = {
@@ -504,9 +506,7 @@ $(function() {
       tooltip: {
         theme: 'light'
       },
-      colors: [
-        colors.primary
-      ],  
+      colors: [colors.primary],  
       fill: {
         opacity: .9
       } , 
@@ -537,7 +537,7 @@ $(function() {
       },
       yaxis: {
         title: {
-          text: 'Number of Complaints',
+          text: 'Number of Sales',
           style:{
             size: 9,
             color: colors.muted
