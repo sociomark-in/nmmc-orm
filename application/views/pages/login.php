@@ -11,7 +11,9 @@
                         </div>
                         <div class="col-md-8 ps-md-0">
                             <div class="auth-form-wrapper px-4 py-5">
-                                <a href="#" class="noble-ui-logo d-block mb-2">Noble<span>UI</span></a>
+                                <a href="#" class="noble-ui-logo d-block mb-3">
+                                    <img src="<?php echo base_url('assets/nmmc logo.png')?>" height="50">
+                                </a>
                                 <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
                                 <form class="forms-sample">
                                     <div class="mb-3">
@@ -30,12 +32,8 @@
                                     </div>
                                     <div>
                                         <a href="../../dashboard.html" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">Login</a>
-                                        <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
-                                            <i class="btn-icon-prepend" data-feather="twitter"></i>
-                                            Login with twitter
-                                        </button>
                                     </div>
-                                    <a href="register.html" class="d-block mt-3 text-muted">Not a user? Sign up</a>
+                                    <!-- <a href="register.html" class="d-block mt-3 text-muted">Not a user? Sign up</a> -->
                                 </form>
                             </div>
                         </div>
