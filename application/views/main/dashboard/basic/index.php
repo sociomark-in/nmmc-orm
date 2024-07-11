@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-12 col-xl-12 stretch-card">
       <div class="row flex-grow-1">
-        <div class="col-lg-3 col-md-4 grid-margin stretch-card d-none">
+        <div class="col-xl col-md-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
               <div class="row m-0 h-100 align-items-center">
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-4 grid-margin stretch-card">
+        <div class="col-xl col-lg-4 col-md-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-baseline">
@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-4 col-lg-3 col-md-4 grid-margin stretch-card">
+        <div class="col-xl col-lg-4 col-md-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-baseline">
@@ -65,7 +65,7 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <h3 class="mb-2">3,897</h3>
+                  <h4 class="mb-2">3,897</h4>
                   <div class="d-flex align-items-baseline">
                     <p class="text-success">
                       <span>+3.3%</span>
@@ -77,7 +77,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-4 col-lg-3 col-md-4 grid-margin stretch-card">
+        <div class="col-xl col-lg-4 col-md-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-baseline">
@@ -124,7 +124,20 @@
             </div>
           </div>
           <!-- <p class="text-muted">Sales are activities related to selling or the number of goods or services sold in a given time period.</p> -->
-          <div id="monthlySalesChart"></div>
+          <div class="col-12">
+            <?php
+            $data = [
+              'id' => "yearlyReportChart",
+              'data' => [
+                'source' => "",
+              ],
+              'events' => ['dataPointSelection' => [
+                'url' => "api/v2/department/get",
+                'redirect' => "department/(:any)"
+              ]]
+            ];
+            $this->load->view('components/theme/widgets/charts/barstackchart', $data); ?>
+          </div>
         </div>
       </div>
     </div>

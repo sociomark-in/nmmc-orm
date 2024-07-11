@@ -12,13 +12,13 @@ var colors = {
   bodyColor: "#000",
   cardBg: "#fff",
 };
-const slugify = str =>
-    str
-      .toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/[\s_-]+/g, '-')
-      .replace(/^-+|-+$/g, '');
+const slugify = (str) =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 var fontFamily = "'Roboto', Helvetica, sans-serif";
 
@@ -122,4 +122,66 @@ if ($(".apexchart.bar-chart").length) {
 }
 const barChartOptions = options;
 
-export { slugify, barChartOptions, pieChartOptions };
+if ($(".apexchart.bar-stacked-chart").length) {
+  var options = {
+    chart: {
+      type: "bar",
+      height: 350,
+      stacked: true,
+      toolbar: {
+        show: true,
+      },
+      zoom: {
+        enabled: true,
+      },
+    },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          legend: {
+            position: "bottom",
+            offsetX: -10,
+            offsetY: 0,
+          },
+        },
+      },
+    ],
+    plotOptions: {
+      bar: {
+        horizontal: false,
+        borderRadius: 0,
+        dataLabels: {
+          total: {
+            enabled: true,
+            style: {
+              fontSize: "13px",
+              fontWeight: 900,
+            },
+          },
+        },
+      },
+    },
+    xaxis: {
+      type: "datetime",
+      categories: [
+        "01/01/2011 GMT",
+        "01/02/2011 GMT",
+        "01/03/2011 GMT",
+        "01/04/2011 GMT",
+        "01/05/2011 GMT",
+        "01/06/2011 GMT",
+      ],
+    },
+    legend: {
+      position: "right",
+      offsetY: 40,
+    },
+    fill: {
+      opacity: 1,
+    },
+  };
+}
+const barStackedChartOptions = options;
+
+export { slugify, barStackedChartOptions, barChartOptions, pieChartOptions };
