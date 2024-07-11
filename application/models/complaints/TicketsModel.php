@@ -1,6 +1,6 @@
 <?php
 
-class BlogsModel extends CI_Model
+class TicketsModel extends CI_Model
 {
 	public $data;
 	public $table;
@@ -8,7 +8,7 @@ class BlogsModel extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
-		$this->table['blogs'] = 'app_application_posts';
+		$this->table['blogs'] = 'app_complaint_tickets';
 	}
 
 	public function get_all($columns = null, $where = null)

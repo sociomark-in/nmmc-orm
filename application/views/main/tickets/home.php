@@ -133,9 +133,9 @@
 								<div class="col-xl-3 col-lg-4 col-md-6">
 									<div class="">
 										<select name="dept" id="" class="form-select">
-											<?php for ($i=0; $i < 20; $i++) :?>
-												<option value="">Select A Department</option>
-											<option value="<?= "department-" . $i  ?>"><?= "Department " . $i  ?></option>
+											<option value="">Select A Department</option>
+											<?php for ($i = 0; $i < 20; $i++) : ?>
+												<option value="<?= "department-" . $i  ?>"><?= "Department " . $i  ?></option>
 											<?php endfor ?>
 										</select>
 									</div>
@@ -144,8 +144,8 @@
 									<div class="">
 										<select name="ward" id="" class="form-select">
 											<option value="">Select A Ward</option>
-											<?php for ($i=0; $i < 20; $i++) :?>
-											<option value="<?= "ward-" . $i  ?>"><?= "Ward " . $i  ?></option>
+											<?php for ($i = 0; $i < 20; $i++) : ?>
+												<option value="<?= "ward-" . $i  ?>"><?= "Ward " . $i  ?></option>
 											<?php endfor ?>
 										</select>
 									</div>
@@ -173,7 +173,7 @@
 							<thead>
 								<tr>
 									<th class="pt-0">Date</th>
-									<th class="pt-0">Source</th>
+									<th class="pt-0">Title</th>
 									<th class="pt-0">Department</th>
 									<th class="pt-0">Ward</th>
 									<th class="pt-0">Type of Complaint</th>
@@ -183,18 +183,18 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php for ($i = 0; $i < 20; $i++) : ?>
+								<?php foreach ($tickets_all as $key => $ticket) : ?>
 									<tr>
-										<td><?= $i + 1 ?></td>
-										<td><a href="">Facebook</a></td>
-										<td>Water Department</td>
-										<td>Ghansoli</td>
-										<td>XYZ</td>
-										<td>ABCD</td>
-										<td>Link</td>
-										<td><span class="badge bg-danger">Released</span></td>
+										<td><?= date("Y-m-d h:i:s", strtotime($ticket['created_at'])) ?></td>
+										<td><a href="<?= $ticket['source_link'] ?>">Complaint Name</a></td>
+										<td><?= $ticket['department_id'] ?></td>
+										<td><?= $ticket['ward_id'] ?></td>
+										<td><?= $ticket['type_of_complaint'] ?></td>
+										<td><?= $ticket['message'] ?></td>
+										<td><a href="<?= $ticket['source_link'] ?>"><?= $ticket['source'] ?></a></td>
+										<td><span class="badge bg-danger"><?= $ticket['status'] ?></span></td>
 									</tr>
-								<?php endfor ?>
+								<?php endforeach ?>
 							</tbody>
 						</table>
 						<script>
