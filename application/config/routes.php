@@ -60,16 +60,16 @@ $route['api-auth-register'] = 'auth/register';
 $route['api-event-register'] = 'EventsController/api_event_register';
 $route['event/(:any)/check-in/(:any)'] = 'EventsController/check_in_verify/$1/$2';
 
-$route["api/v2/complaints/category/add"] = "ComplaintsController/api_category_insert";
-$route["api/v2/complaints/category/get"] = "ComplaintsController/api_category_get";
-$route["api/v2/complaints/category/edit"] = "ComplaintsController/api_category_update";
-$route["api/v2/complaints/category/delete"] = "ComplaintsController/api_category_delete";
+$route["api/v2/complaints/category/add"] = "api/ComplaintsAPIController/api_category_insert";
+$route["api/v2/complaints/category/get"] = "api/ComplaintsAPIController/api_category_get";
+$route["api/v2/complaints/category/edit"] = "api/ComplaintsAPIController/api_category_update";
+$route["api/v2/complaints/category/delete"] = "api/ComplaintsAPIController/api_category_delete";
 
-$route["api/v2/complaints/add"] = "ComplaintsController/api_complaints_add";
-$route["api/v2/complaints/tag/get"] = "ComplaintsController/api_tag_get";
-$route["api/v2/complaints/tag/add"] = "ComplaintsController/api_tag_insert";
-$route["api/v2/complaints/tag/edit"] = "ComplaintsController/api_tag_update";
-$route["api/v2/complaints/tag/delete"] = "ComplaintsController/api_tag_delete";
+$route["api/v2/complaints/add"] = "api/ComplaintsAPIController/api_complaints_add";
+$route["api/v2/complaints/tag/get"] = "api/ComplaintsAPIController/api_tag_get";
+$route["api/v2/complaints/tag/add"] = "api/ComplaintsAPIController/api_tag_insert";
+$route["api/v2/complaints/tag/edit"] = "api/ComplaintsAPIController/api_tag_update";
+$route["api/v2/complaints/tag/delete"] = "api/ComplaintsAPIController/api_tag_delete";
 
 $route["api/v2/department/get"] = "org/DepartmentsController/api_dept_get_single";
 

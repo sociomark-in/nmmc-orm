@@ -1,12 +1,12 @@
 <?php
 
-class CategoryModel extends CI_Model
+class DepartmentModel extends CI_Model
 {
     public $table;
     public function __construct()
     {
         parent::__construct();
-        $this->table['categories'] = "app_post_categories";
+        $this->table['tags'] = "app_application_departments"; 
     }
 
     public function get($select = null, $where = null)
@@ -19,11 +19,11 @@ class CategoryModel extends CI_Model
             $this->db->where($where);
         }
 
-        return $this->db->get($this->table['categories'])->result_array();
+        return $this->db->get($this->table['tags'])->result_array();
     }
     public function insert($data)
     {
-        if ($this->db->insert($this->table['categories'], $data)) {
+        if ($this->db->insert($this->table['tags'], $data)) {
             return true;
         } else {
             return false;
@@ -33,7 +33,7 @@ class CategoryModel extends CI_Model
     public function update($where, $data)
     {
         if (!is_null($where) && !is_null($data)) {
-            return $this->db->update($this->table['categories'], $data, $where);
+            return $this->db->update($this->table['tags'], $data, $where);
         }
     }
 
@@ -41,7 +41,7 @@ class CategoryModel extends CI_Model
     {
 
         $this->db->where($where);
-        if ($this->db->delete($this->table['categories'])) {
+        if ($this->db->delete($this->table['tags'])) {
             return true;
         } else{
             return false;
