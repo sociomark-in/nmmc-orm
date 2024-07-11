@@ -30,10 +30,7 @@ for ($i = 1; $i <= 12; $i++) {
                 }
             };
         <?php endif ?>
-        options.xaxis = {
-            categories: <?= json_encode($xaxis) ?>,
-        };
-
+        
         $.ajax({
             url: "<?= base_url('api/v2/tickets/count?by=status&months=12') ?>",
             method: "POST",
@@ -42,6 +39,9 @@ for ($i = 1; $i <= 12; $i++) {
             },
             success: function(data) {
                 console.log(data.output[1]);
+                options.xaxis = {
+                    categories: <?= json_encode($xaxis) ?>,
+                };
                 options.series = [{
                     name: 'New Unresolved',
                     data: [44, 55, 41, 67, 22, 43, 44, 55, 41, 67, 22, 43]

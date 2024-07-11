@@ -14,6 +14,25 @@ final class ComplaintsAPIController extends RBAController
 		$this->data['session'] = $this->session->get_userdata($this->APP_ID . "_appuser");
 	}
 
+	public function api_complaints_count()
+	{
+		$get_data = $this->input->get();
+		$post_data = $this->input->post();
+		$output = [];
+		if($get_data['by'] == 'status'){
+			if($get_data['months'] == 12){
+				$output = $this->TicketsModel->count_status(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]);
+			} else {
+				$output = $this->TicketsModel->count_status(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"]);
+			}
+			// SELECT `status`, COUNT(*) FROM `app_complaint_tickets` GROUP BY `status`;
+			$count = $output;
+		}
+		return $this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('output' => [$post_data, $count])));
+	}
+	
     public function api_complaints_add(){
 		$form_data = $this->input->post();
 		$data = $form_data;
