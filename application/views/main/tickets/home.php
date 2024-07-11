@@ -133,13 +133,8 @@
 								<div class="col-xl-3 col-lg-4 col-md-6">
 									<div class="">
 										<select name="dept" id="" class="form-select">
-<<<<<<< HEAD
-											<?php for ($i = 0; $i < 20; $i++) : ?>
-												<option value="">Select A Department</option>
-=======
 											<option value="">Select A Department</option>
 											<?php for ($i = 0; $i < 20; $i++) : ?>
->>>>>>> f0bb369b63149036d18866f6b75be85e797a1bb9
 												<option value="<?= "department-" . $i  ?>"><?= "Department " . $i  ?></option>
 											<?php endfor ?>
 										</select>
@@ -191,13 +186,20 @@
 								<?php foreach ($tickets_all as $key => $ticket) : ?>
 									<tr>
 										<td><?= date("Y-m-d h:i:s", strtotime($ticket['created_at'])) ?></td>
-										<td><a href="<?= $ticket['source_link'] ?>">Complaint Name</a></td>
+										<td><a href="<?= base_url('complaints/ticket/'.$ticket['id'].'/edit') ?>">Complaint Name</a></td>
 										<td><?= $ticket['department_id'] ?></td>
 										<td><?= $ticket['ward_id'] ?></td>
 										<td><?= $ticket['type_of_complaint'] ?></td>
 										<td><?= $ticket['message'] ?></td>
 										<td><a href="<?= $ticket['source_link'] ?>"><?= $ticket['source'] ?></a></td>
-										<td><span class="badge bg-danger"><?= $ticket['status'] ?></span></td>
+										<!-- <td><span class="badge bg-danger"><?= $ticket['status'] ?></span></td> -->
+										<?php  if ($ticket['status'] == "unresolved") { ?>
+											<td><span class="badge bg-danger"><?= $ticket['status'] ?></span></td>
+										<?php } elseif ($ticket['status'] == "resolved") { ?>
+											<td><span class="badge bg-success"><?= $ticket['status'] ?></span></td>
+										<?php } else { ?>
+											<td><span class="badge bg-warning"><?= $ticket['status'] ?></span></td>
+										<?php } ?>
 									</tr>
 								<?php endforeach ?>
 							</tbody>

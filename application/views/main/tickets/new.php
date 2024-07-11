@@ -57,7 +57,7 @@
 									<div class="row">
 										<div class="col-xl-3 col-lg-4 col-6">
 											<label for="inputTitle" class="form-label">Complaint Source</label>
-											<select class="js-example-basic-single form-select" data-width="100%">
+											<select name="source" class="js-example-basic-single form-select" data-width="100%">
 												<option value="facebook">Facebook</option>
 												<option value="instagram">Instagram</option>
 												<option value="twitter">Twitter</option>
@@ -65,7 +65,7 @@
 										</div>
 										<div class="col">
 											<label for="url" class="form-label">Source Link</label>
-											<input id="url" class="form-control" name="url" type="text">
+											<input id="source_link" class="form-control" name="source_link" type="text">
 										</div>
 									</div>
 								</div>
@@ -94,7 +94,7 @@
 								</div>
 								<div class="mb-3">
 									<label for="inputTitle" class="form-label">Type of Complaint</label>
-									<select name="complaint_type" class="js-example-basic-single form-select" data-width="100%">
+									<select name="type_of_complaint" class="js-example-basic-single form-select" data-width="100%">
 										<?php for ($i = 1; $i <= 12; $i++) { ?>
 											<option value="Complaint <?= $i ?>">Complaint <?= $i ?></option>
 										<?php } ?>
@@ -102,10 +102,11 @@
 								</div>
 								<div class="mb-3">
 									<label for="inputTitle" class="form-label">Status</label>
-									<select name="complaint_status"  class="js-example-basic-single form-select" data-width="100%">
-										<?php for ($i = 1; $i <= 4; $i++) { ?>
-											<option value="Status <?= $i ?>">Status <?= $i ?></option>
-										<?php } ?>
+									<select name="status"  class="js-example-basic-single form-select" data-width="100%">
+											<option value="New">New</option>
+											<option value="In_progress">In Progress</option>
+											<option value="resolved">Resolved</option>
+											<option value="unresolved">Unresolved</option>
 									</select>
 								</div>
 							</div>
@@ -120,17 +121,17 @@
 								</div>
 								<div class="mb-3">
 									<label for="inputTitle" class="form-label">Department</label>
-									<select name="department_name"  class="js-example-basic-single form-select" data-width="100%">
-										<?php for ($i = 1; $i <= 12; $i++) { ?>
-											<option value="Department <?= $i ?>">Department <?= $i ?></option>
+									<select name="department_id"  class="js-example-basic-single form-select" data-width="100%">
+										<?php for ($i = 0; $i < count($this->data['page']['department']); $i++) { ?>
+											<option value="<?= $this->data['page']['department'][$i]['id'] ?>"><?= $this->data['page']['department'][$i]['name'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
 								<div class="mb-3">
 									<label for="inputTitle" class="form-label">Ward</label>
-									<select name="ward_name" class="js-example-basic-single form-select" data-width="100%">
-										<?php for ($i = 1; $i <= 8; $i++) { ?>
-											<option value="facebook">Ward <?= $i ?></option>
+									<select name="ward_id" class="js-example-basic-single form-select" data-width="100%">
+										<?php for ($i = 0; $i < count($this->data['page']['ward']); $i++) { ?>
+											<option value="<?= $this->data['page']['ward'][$i]['id'] ?>"><?= $this->data['page']['ward'][$i]['name'] ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -139,10 +140,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12">
+			<!-- <div class="col-12">
 				<button type="submit" class="btn me-2 btn-primary">Save Complaint</button>
 				<button type="reset" class="btn btn-outline-secondary">Cancel</button>
-			</div>
+			</div> -->
 		</div>
 	<?= form_close()?>
 </div>

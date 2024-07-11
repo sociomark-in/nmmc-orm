@@ -7,15 +7,22 @@ final class ComplaintsAPIController extends RBAController
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('data/TicketsModel');
+		$this->load->model('complaints/TicketsModel');
 		$this->load->model('data/AuthorsModel');
-		$this->load->model('blogposts/CategoryModel');
+		$this->load->model('complaints/WardModel');
+		$this->load->model('complaints/DepartmentModel');
 		$this->data['session'] = $this->session->get_userdata($this->APP_ID . "_appuser");
 	}
 
     public function api_complaints_add(){
-		$data = $this->input->post();
-		print_r($data);
+		$form_data = $this->input->post();
+		$data = $form_data;
+		// print_r($data);exit;
+		$this->load->model('complaints/TicketsModel');
+		if ($this->TicketsModel->insert($data)) {
+			redirect($this->input->get_request_header('Referer'));
+		}
+		
 	}
 
 	/* Get All Categories */
