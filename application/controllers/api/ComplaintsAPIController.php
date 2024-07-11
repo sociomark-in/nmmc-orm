@@ -14,7 +14,6 @@ final class ComplaintsAPIController extends RBAController
 		$this->data['session'] = $this->session->get_userdata($this->APP_ID . "_appuser");
 	}
 
-<<<<<<< HEAD
 	public function api_complaints_count()
 	{
 		$get_data = $this->input->get();
@@ -33,11 +32,7 @@ final class ComplaintsAPIController extends RBAController
 			->set_content_type('application/json')
 			->set_output(json_encode(array('output' => [$post_data, $count])));
 	}
-	public function api_complaints_add()
-	{
-		$data = $this->input->post();
-		print_r($data);
-=======
+	
     public function api_complaints_add(){
 		$form_data = $this->input->post();
 		$data = $form_data;
@@ -47,7 +42,6 @@ final class ComplaintsAPIController extends RBAController
 			redirect($this->input->get_request_header('Referer'));
 		}
 		
->>>>>>> 0961b153499811bcae2107ab05f7b31fb74bd415
 	}
 
 	/* Get All Categories */
