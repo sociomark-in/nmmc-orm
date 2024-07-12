@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2024 at 12:08 PM
+-- Generation Time: Jul 12, 2024 at 10:59 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -86,6 +86,50 @@ CREATE TABLE `app_application_roles` (
 INSERT INTO `app_application_roles` (`id`, `role`, `description`, `created_at`) VALUES
 (1, 'superadmin', '', '2024-07-02 10:02:47'),
 (2, 'admin', '', '2024-07-02 10:02:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_application_source`
+--
+
+CREATE TABLE `app_application_source` (
+  `id` int(11) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `slug` varchar(200) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `app_application_source`
+--
+
+INSERT INTO `app_application_source` (`id`, `name`, `slug`, `created_at`) VALUES
+(1, 'Facebook', 'facebook', '2024-07-12 08:58:06'),
+(2, 'Instagram', 'instagram', '2024-07-12 08:58:06'),
+(3, 'Twitter', 'twitter', '2024-07-12 08:58:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app_application_status`
+--
+
+CREATE TABLE `app_application_status` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(200) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `app_application_status`
+--
+
+INSERT INTO `app_application_status` (`id`, `name`, `slug`, `created_at`) VALUES
+(1, 'Resolved', 'resolved', '2024-07-12 08:56:50'),
+(2, 'In process', 'in_process', '2024-07-12 08:56:50'),
+(3, 'Unresolved', 'unresolved', '2024-07-12 08:56:50');
 
 -- --------------------------------------------------------
 
@@ -180,97 +224,98 @@ INSERT INTO `app_complaint_tickets` (`id`, `source`, `department_id`, `ward_id`,
 (18, 'instagram', 4, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=18', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
 (19, 'instagram', 4, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=19', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
 (20, 'instagram', 4, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=20', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(21, 'instagram', 4, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=21', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(22, 'instagram', 5, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=22', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(23, 'instagram', 5, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=23', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(24, 'instagram', 5, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=24', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(25, 'instagram', 5, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=25', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(26, 'instagram', 5, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=26', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(27, 'instagram', 6, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=27', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(28, 'instagram', 6, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=28', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(29, 'instagram', 6, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=29', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(30, 'instagram', 6, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=30', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(31, 'instagram', 6, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=31', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(32, 'twitter', 7, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=32', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(33, 'twitter', 7, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=33', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(34, 'twitter', 7, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=34', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(35, 'twitter', 7, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=35', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(36, 'twitter', 7, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=36', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(37, 'twitter', 8, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=37', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(38, 'twitter', 8, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=38', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(39, 'twitter', 8, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=39', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(40, 'twitter', 8, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=40', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(41, 'twitter', 9, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=41', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(42, 'twitter', 9, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=42', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(43, 'twitter', 9, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=43', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(44, 'twitter', 9, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=44', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(45, 'twitter', 10, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=45', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(46, 'twitter', 10, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=46', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(47, 'twitter', 10, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=47', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(48, 'twitter', 10, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=48', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(49, 'twitter', 11, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=49', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(50, 'instagram', 11, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=50', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(51, 'instagram', 11, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=51', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(52, 'instagram', 12, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=52', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(53, 'instagram', 13, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=53', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(54, 'instagram', 13, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=54', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(55, 'instagram', 13, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=55', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(56, 'instagram', 13, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=56', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(57, 'instagram', 13, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=57', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(58, 'instagram', 14, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=58', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(59, 'instagram', 14, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=59', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(60, 'instagram', 14, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=60', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(61, 'facebook', 14, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=61', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(62, 'facebook', 14, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=62', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(63, 'facebook', 15, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=63', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(64, 'facebook', 15, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=64', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(65, 'facebook', 15, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=65', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(66, 'facebook', 15, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=66', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(67, 'facebook', 16, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=67', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(68, 'facebook', 16, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=68', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(69, 'facebook', 17, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=69', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(70, 'facebook', 17, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=70', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(71, 'facebook', 17, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=71', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(72, 'facebook', 17, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=72', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(73, 'facebook', 17, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=73', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(74, 'facebook', 18, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=74', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(75, 'facebook', 18, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=75', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(76, 'facebook', 18, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=76', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(77, 'facebook', 18, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=77', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(78, 'instagram', 19, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=78', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(79, 'instagram', 19, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=79', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(80, 'instagram', 19, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=80', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(81, 'instagram', 20, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=81', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(82, 'instagram', 20, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=82', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(83, 'instagram', 20, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=83', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(84, 'instagram', 20, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=84', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(85, 'instagram', 20, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=85', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(86, 'instagram', 20, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=86', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(87, 'instagram', 21, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=87', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(88, 'instagram', 21, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=88', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(89, 'instagram', 21, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=89', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(90, 'instagram', 21, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=90', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(91, 'instagram', 22, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=91', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(92, 'instagram', 22, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=92', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(93, 'instagram', 22, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=93', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(94, 'instagram', 22, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=94', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(95, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=95', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(96, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=96', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(97, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=97', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(98, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=98', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(99, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=99', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(100, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=100', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(101, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=101', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(102, 'instagram', 14, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=102', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(103, 'instagram', 14, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=103', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(104, 'instagram', 14, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=104', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(105, 'facebook', 25, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=105', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(106, 'facebook', 25, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=106', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(107, 'facebook', 25, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=107', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(108, 'facebook', 25, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=108', 'unresolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(109, 'facebook', 16, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=109', 'new', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(110, 'facebook', 16, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=110', 'resolved', '2024-07-11 09:19:12', '2024-07-11 09:19:12'),
-(111, 'facebook', 16, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=111', 'in_process', '2024-07-11 09:19:12', '2024-07-11 09:19:12');
+(21, 'instagram', 4, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=21', 'new', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(22, 'instagram', 5, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=22', 'resolved', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(23, 'instagram', 5, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=23', 'in_process', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(24, 'instagram', 5, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=24', 'unresolved', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(25, 'instagram', 5, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=25', 'new', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(26, 'instagram', 5, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=26', 'resolved', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(27, 'instagram', 6, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=27', 'in_process', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(28, 'instagram', 6, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=28', 'unresolved', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(29, 'instagram', 6, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=29', 'new', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(30, 'instagram', 6, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=30', 'resolved', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(31, 'instagram', 6, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=31', 'in_process', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(32, 'twitter', 7, 4, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=32', 'unresolved', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(33, 'twitter', 7, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=33', 'new', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(34, 'twitter', 7, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=34', 'resolved', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(35, 'twitter', 7, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=35', 'in_process', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(36, 'twitter', 7, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=36', 'unresolved', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(37, 'twitter', 8, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=37', 'new', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(38, 'twitter', 8, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=38', 'resolved', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(39, 'twitter', 8, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=39', 'in_process', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(40, 'twitter', 8, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=40', 'unresolved', '2024-06-11 09:19:12', '2024-06-11 09:19:12'),
+(41, 'twitter', 9, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=41', 'new', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(42, 'twitter', 9, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=42', 'resolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(43, 'twitter', 9, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=43', 'in_process', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(44, 'twitter', 9, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=44', 'unresolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(45, 'twitter', 10, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=45', 'new', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(46, 'twitter', 10, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=46', 'resolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(47, 'twitter', 10, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=47', 'in_process', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(48, 'twitter', 10, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=48', 'unresolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(49, 'twitter', 11, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=49', 'new', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(50, 'instagram', 11, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=50', 'resolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(51, 'instagram', 11, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=51', 'in_process', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(52, 'instagram', 12, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=52', 'unresolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(53, 'instagram', 13, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=53', 'new', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(54, 'instagram', 13, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=54', 'resolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(55, 'instagram', 13, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=55', 'in_process', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(56, 'instagram', 13, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=56', 'unresolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(57, 'instagram', 13, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=57', 'new', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(58, 'instagram', 14, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=58', 'resolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(59, 'instagram', 14, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=59', 'in_process', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(60, 'instagram', 14, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=60', 'unresolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(61, 'facebook', 14, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=61', 'new', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(62, 'facebook', 14, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=62', 'resolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(63, 'facebook', 15, 7, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=63', 'in_process', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(64, 'facebook', 15, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=64', 'unresolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(65, 'facebook', 15, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=65', 'new', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(66, 'facebook', 15, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=66', 'resolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(67, 'facebook', 16, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=67', 'in_process', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(68, 'facebook', 16, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=68', 'unresolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(69, 'facebook', 17, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=69', 'new', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(70, 'facebook', 17, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=70', 'resolved', '2024-05-11 09:19:12', '2024-05-11 09:19:12'),
+(71, 'facebook', 17, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=71', 'in_process', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(72, 'facebook', 17, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=72', 'unresolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(73, 'facebook', 17, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=73', 'new', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(74, 'facebook', 18, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=74', 'resolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(75, 'facebook', 18, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=75', 'in_process', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(76, 'facebook', 18, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=76', 'unresolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(77, 'facebook', 18, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=77', 'new', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(78, 'instagram', 19, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=78', 'resolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(79, 'instagram', 19, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=79', 'in_process', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(80, 'instagram', 19, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=80', 'unresolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(81, 'instagram', 20, 3, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=81', 'new', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(82, 'instagram', 20, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=82', 'resolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(83, 'instagram', 20, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=83', 'in_process', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(84, 'instagram', 20, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=84', 'unresolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(85, 'instagram', 20, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=85', 'new', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(86, 'instagram', 20, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=86', 'resolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(87, 'instagram', 21, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=87', 'in_process', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(88, 'instagram', 21, 5, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=88', 'unresolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(89, 'instagram', 21, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=89', 'new', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(90, 'instagram', 21, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=90', 'resolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(91, 'instagram', 22, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=91', 'in_process', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(92, 'instagram', 22, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=92', 'unresolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(93, 'instagram', 22, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=93', 'new', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(94, 'instagram', 22, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=94', 'resolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(95, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=95', 'in_process', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(96, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=96', 'unresolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(97, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=97', 'new', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(98, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=98', 'resolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(99, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=99', 'in_process', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(100, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=100', 'unresolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(101, 'instagram', 23, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=101', 'new', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(102, 'instagram', 14, 6, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=102', 'resolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(103, 'instagram', 14, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=103', 'in_process', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(104, 'instagram', 14, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=104', 'unresolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(105, 'facebook', 25, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=105', 'new', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(106, 'facebook', 25, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=106', 'resolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(107, 'facebook', 25, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=107', 'in_process', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(108, 'facebook', 25, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=108', 'unresolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(109, 'facebook', 16, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=109', 'new', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(110, 'facebook', 16, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=110', 'resolved', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(111, 'facebook', 16, 8, 'other', 'lorum ipsum', 'https://www.instagram.com/p/C9PmXQFPenA/?img_index=111', 'in_process', '2024-04-11 09:19:12', '2024-04-11 09:19:12'),
+(112, 'facebook', 3, 4, 'Complaint 1', '<p>Test</p>', 'http://localhost/nmmc/nmmc-orm/complaints/tickets/new', 'unresolved', '2024-07-12 08:52:41', '2024-07-12 08:59:04');
 
 --
 -- Indexes for dumped tables
@@ -286,6 +331,18 @@ ALTER TABLE `app_application_departments`
 -- Indexes for table `app_application_roles`
 --
 ALTER TABLE `app_application_roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `app_application_source`
+--
+ALTER TABLE `app_application_source`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `app_application_status`
+--
+ALTER TABLE `app_application_status`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -324,6 +381,18 @@ ALTER TABLE `app_application_roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `app_application_source`
+--
+ALTER TABLE `app_application_source`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `app_application_status`
+--
+ALTER TABLE `app_application_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `app_application_users`
 --
 ALTER TABLE `app_application_users`
@@ -339,7 +408,7 @@ ALTER TABLE `app_application_wards`
 -- AUTO_INCREMENT for table `app_complaint_tickets`
 --
 ALTER TABLE `app_complaint_tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

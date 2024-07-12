@@ -46,11 +46,7 @@
 			</div>
 		</div>
 		<div class="">
-<<<<<<< HEAD
-			<button type="submit" class="btn me-2 btn-primary btn-icon-text"><i class="link-arrow btn-icon-prepend" data-feather="save"></i>Save Complaint</button>
-=======
 			<button type="submit" class="btn me-2 btn-primary btn-icon-text"><i class="link-arrow btn-icon-prepend" data-feather="save"></i>Save Changes</button>
->>>>>>> 347bad104979bf8dd7e890127b55259211c66437
 			<button type="reset" class="btn btn-outline-secondary">Cancel</button>
 		</div>
 	</div>
@@ -65,24 +61,14 @@
 									<div class="col-xl-3 col-lg-4 col-6">
 										<label for="inputTitle" class="form-label">Complaint Source</label>
 										<select name="source" class="js-example-basic-single form-select" data-width="100%">
-<<<<<<< HEAD
 											<?php for ($i = 0; $i < count($this->data['page']['source']); $i++) { ?>
 												<option value="<?= $this->data['page']['source'][$i]['id'] ?>"><?= $this->data['page']['source'][$i]['name'] ?></option>
 											<?php } ?>
-=======
-											<option value="facebook">Facebook</option>
-											<option value="instagram">Instagram</option>
-											<option value="twitter">Twitter</option>
->>>>>>> 347bad104979bf8dd7e890127b55259211c66437
 										</select>
 									</div>
 									<div class="col">
 										<label for="url" class="form-label">Source Link</label>
-<<<<<<< HEAD
-										<input id="source_link" class="form-control" name="source_link" value="" type="text">
-=======
 										<input id="source_link" class="form-control" name="source_link" value="<?= $page['ticket']['source_link'] ?>" type="text">
->>>>>>> 347bad104979bf8dd7e890127b55259211c66437
 									</div>
 								</div>
 							</div>
