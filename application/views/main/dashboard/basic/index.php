@@ -129,9 +129,8 @@
             $data = [
               'id' => "yearlyReportChart",
               'data' => [
-                'source' => "",
+                'source' => "api/v2/department/get",
               ],
-              'events' => null
             ];
             
             $this->load->view('components/theme/widgets/charts/barstackchart', $data); 

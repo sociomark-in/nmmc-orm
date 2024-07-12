@@ -12,7 +12,7 @@ for ($i = 1; $i <= 12; $i++) {
     } from "<?= base_url("assets") ?>/js/apexchart-options.js";
     if ($('#<?= $id ?>').length) {
         var options = barStackedChartOptions
-        <?php if (!is_null($events) && array_key_exists("dataPointSelection", $events) || isset($events) ) : ?>
+        <?php if (isset($events) ) : ?>
             options.chart.events = {
                 dataPointSelection: function(event, chartContext, opts) {
                     var dept = chartContext.w.globals.labels[opts.dataPointIndex];
@@ -22,7 +22,7 @@ for ($i = 1; $i <= 12; $i++) {
                             department: dept
                         },
                         method: "POST",
-                        url: "<?= base_url($events['dataPointSelection']['url']) ?>",
+                        url: "<?= base_url($data['source']) ?>",
                         success: function(data) {
                             window.location.replace("<?= base_url($events['dataPointSelection']['redirect']) ?>".replace("(:any)", slugify(data.slug)))
                         }
@@ -38,23 +38,11 @@ for ($i = 1; $i <= 12; $i++) {
                 output: ['name', 'data']
             },
             success: function(data) {
-                console.log(data.output[1]);
+                console.log(data.output[0].data);
                 options.xaxis = {
-                    categories: <?= json_encode($xaxis) ?>,
+                    categories: data.output[0].months,
                 };
-                options.series = [{
-                    name: 'New Unresolved',
-                    data: [44, 55, 41, 67, 22, 43, 44, 55, 41, 67, 22, 43]
-                }, {
-                    name: 'Resolved',
-                    data: [13, 23, 20, 8, 13, 27, 13, 23, 20, 8, 13, 27]
-                }, {
-                    name: 'In Process',
-                    data: [11, 17, 15, 15, 21, 14, 11, 17, 15, 15, 21, 14]
-                }, {
-                    name: 'Dissolved',
-                    data: [21, 7, 25, 13, 22, 8, 21, 7, 25, 13, 22, 8]
-                }, ];
+                options.series = data.output[0].data;
                 var chart<?= $id ?> = new ApexCharts(document.querySelector("#<?= $id ?>"), options);
                 chart<?= $id ?>.render();
             }

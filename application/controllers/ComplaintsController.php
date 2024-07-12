@@ -3,6 +3,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 require_once APPPATH . "controllers/base/RBAController.php";
 class ComplaintsController extends RBAController
 {
+	/* 
+	$output = [
+		[
+			"name" => "in_process",
+			"data" => 11,
+		]
+	]; 
+	*/
 	public function __construct()
 	{
 		parent::__construct();
@@ -46,6 +54,10 @@ class ComplaintsController extends RBAController
 	// 		$final['name'] = 
 	// 	}
 	// }
+	public function test_complaint()
+	{
+		$output = json_encode($this->TicketsModel->count_status(['status as ' . 'name', 'COUNT(*) as '  . 'data', "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]));
+	}
 
 
 	public function new_ticket()
@@ -66,7 +78,7 @@ class ComplaintsController extends RBAController
 		$this->load->model('complaints/DepartmentModel');
 		$this->load->model('complaints/TicketsModel');
 		$this->load->model('complaints/WardModel');
-		$this->data['page']['ticket'] = $this->TicketsModel->get();
+		$this->data['page']['ticket'] = json_decode($this->TicketsModel->get(null, ['id' => $slug]), true)[0];
 		$this->data['page']['department'] = $this->DepartmentModel->get();
 		$this->data['page']['source'] = $this->DepartmentModel->get_source();
 		$this->data['page']['status'] = $this->DepartmentModel->get_status();

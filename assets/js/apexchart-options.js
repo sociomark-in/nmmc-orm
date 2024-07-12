@@ -128,9 +128,6 @@ if ($(".apexchart.bar-stacked-chart").length) {
       type: "bar",
       height: 350,
       stacked: true,
-      toolbar: {
-        show: true,
-      },
       zoom: {
         enabled: true,
       },

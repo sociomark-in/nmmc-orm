@@ -19,21 +19,50 @@ final class ComplaintsAPIController extends RBAController
 		$get_data = $this->input->get();
 		$post_data = $this->input->post();
 		$output = [];
+		$newArray = [];
+		$final['data'] = [];
+		$final['months'] = [];
+		$final['duration'] = [];
 		if ($get_data['by'] == 'status') {
 			if ($get_data['months'] == 12) {
 				$output = $this->TicketsModel->count_status(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]);
 			} else {
 				$output = $this->TicketsModel->count_status(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"]);
 			}
-			$output =json_decode($output);
-			// for ($i=0; $i < count($output); $i++) { 
-			// 	array_push($c[$output[$i]['month']], $output[$i]['data'])
-			// }
-			$count = $output;
+					
+			$c = $output;
+
+	
+			// Loop through the original array
+			foreach ($c as $item) {
+				$name = $item["name"];
+				$data = $item["data"];
+				$month = $item["month"]; // You can remove this if not needed in the new structure
+	
+				// Check if the name already exists in the new array
+				if (isset($newArray[$name])) {
+					// If it exists, append the data to its existing data array
+					$newArray[$name]["data"][] = $data;
+				} else {
+					// If it doesn't exist, create a new entry with name and data array
+					$newArray[$name] = [
+						"name" => $name,
+						"data" => [$data],
+					];
+				}
+				array_push($final['duration'], $month);
+			}
+			$final['duration'] = array_unique($final['duration']);
+			foreach ($newArray as $key => $value) {
+				array_push($final['data'], $value);
+			}
+			foreach ($final['duration'] as $key => $m) {
+				array_push($final['months'], $m);
+			}
 		}
 		return $this->output
 			->set_content_type('application/json')
-			->set_output(json_encode(array('output' => [$post_data, $count])));
+			->set_output(json_encode(array('output' => [$final])));
 	}
 
 	public function api_complaints_add()
