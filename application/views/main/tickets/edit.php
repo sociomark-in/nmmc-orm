@@ -31,7 +31,6 @@
 <link href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css" rel="stylesheet">
 <link rel="stylesheet" href="<?= base_url("assets/css/") ?>dropify-custom.min.css">
 <link rel="stylesheet" href="<?= base_url("assets/css/") ?>select2-custom.min.css">
-<?php echo"test<pre>";print_r($this->data['page']['ticket']);exit;?>
 <div class="page-content">
 	<?= form_open("api/v2/complaints/add") ?>
 		<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
