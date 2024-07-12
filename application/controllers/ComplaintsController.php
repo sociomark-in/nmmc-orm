@@ -58,6 +58,8 @@ class ComplaintsController extends RBAController
 		$this->data['page']['ward'] = $this->WardModel->get();
 		$this->data['page']['source'] = $this->DepartmentModel->get_source();
 		$this->data['page']['status'] = $this->DepartmentModel->get_status();
+		$this->data['page']['sentiment'] = $this->DepartmentModel->get_sentiment();
+		$this->data['page']['complaint'] = $this->DepartmentModel->get_complaint();
 		$this->load->admin_dashboard('tickets/new', $this->data);
 	}
 
@@ -72,6 +74,8 @@ class ComplaintsController extends RBAController
 		$this->data['page']['department'] = $this->DepartmentModel->get();
 		$this->data['page']['source'] = $this->DepartmentModel->get_source();
 		$this->data['page']['status'] = $this->DepartmentModel->get_status();
+		$this->data['page']['sentiment'] = $this->DepartmentModel->get_sentiment();
+		$this->data['page']['complaint'] = $this->DepartmentModel->get_complaint();
 		$this->data['page']['ward'] = $this->WardModel->get();
 		$this->load->admin_dashboard('tickets/edit', $this->data);
 	}
