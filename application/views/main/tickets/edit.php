@@ -80,11 +80,7 @@
 						<div class="card-body">
 							<div class="mb-3">
 								<label for="inputPostContent" class="form-label">Message</label>
-<<<<<<< HEAD
-								<textarea name="message" class="form-control full-editor" id="inputPostContent" rows="10"></textarea>
-=======
 								<textarea name="message" class="form-control full-editor" id="inputPostContent" rows="10"><?= $page['ticket']['message'] ?></textarea>
->>>>>>> 347bad104979bf8dd7e890127b55259211c66437
 							</div>
 						</div>
 					</div>
@@ -110,16 +106,9 @@
 							<div class="mb-3">
 								<label for="inputTitle" class="form-label">Status</label>
 								<select name="status" class="js-example-basic-single form-select" data-width="100%">
-<<<<<<< HEAD
 									<?php for ($i = 0; $i < count($this->data['page']['status']); $i++) { ?>
 										<option value="<?= $this->data['page']['status'][$i]['id'] ?>"><?= $this->data['page']['status'][$i]['name'] ?></option>
 									<?php } ?>
-=======
-									<option value="New">New</option>
-									<option value="In_progress">In Progress</option>
-									<option value="resolved">Resolved</option>
-									<option value="unresolved">Unresolved</option>
->>>>>>> 347bad104979bf8dd7e890127b55259211c66437
 								</select>
 							</div>
 						</div>
@@ -136,32 +125,23 @@
 								<label for="inputTitle" class="form-label">Department</label>
 								<select name="department_id" class="js-example-basic-single form-select" data-width="100%">
 									<?php for ($i = 0; $i < count($this->data['page']['department']); $i++) { ?>
-<<<<<<< HEAD
-										<option value="<?= $this->data['page']['department'][$i]['id'] ?>"><?= $this->data['page']['department'][$i]['name'] ?></option>
-=======
 										<?php if ($page['ticket']['department_id'] == $this->data['page']['department'][$i]['id']) : ?>
 											<option value="<?= $this->data['page']['department'][$i]['id'] ?>" selected><?= $this->data['page']['department'][$i]['name'] ?></option>
 										<?php else : ?>
 											<option value="<?= $this->data['page']['department'][$i]['id'] ?>"><?= $this->data['page']['department'][$i]['name'] ?></option>
 										<?php endif ?>
->>>>>>> 347bad104979bf8dd7e890127b55259211c66437
 									<?php } ?>
 								</select>
 							</div>
 							<div class="mb-3">
 								<label for="inputTitle" class="form-label">Ward</label>
 								<select name="ward_id" class="js-example-basic-single form-select" data-width="100%">
-<<<<<<< HEAD
-									<?php for ($i = 0; $i < count($this->data['page']['ward']); $i++) { ?>
-										<option value="<?= $this->data['page']['ward'][$i]['id'] ?>"><?= $this->data['page']['ward'][$i]['name'] ?></option>
-=======
 								<?php for ($i = 0; $i < count($this->data['page']['ward']); $i++) { ?>
 										<?php if ($page['ticket']['ward_id'] == $this->data['page']['ward'][$i]['id']) : ?>
 											<option value="<?= $this->data['page']['ward'][$i]['id'] ?>" selected><?= $this->data['page']['ward'][$i]['name'] ?></option>
 										<?php else : ?>
 											<option value="<?= $this->data['page']['ward'][$i]['id'] ?>"><?= $this->data['page']['ward'][$i]['name'] ?></option>
 										<?php endif ?>
->>>>>>> 347bad104979bf8dd7e890127b55259211c66437
 									<?php } ?>
 								</select>
 							</div>
