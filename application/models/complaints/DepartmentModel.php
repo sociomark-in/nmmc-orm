@@ -9,6 +9,8 @@ class DepartmentModel extends CI_Model
         $this->table['tags'] = "app_application_departments"; 
         $this->table['source'] = "app_application_source"; 
         $this->table['status'] = "app_application_status"; 
+        $this->table['sentiment'] = "app_sentiment_analysis"; 
+        $this->table['complaint'] = "app_application_complaint"; 
         
     }
 
@@ -21,8 +23,32 @@ class DepartmentModel extends CI_Model
         if (!is_null($where)) {
             $this->db->where($where);
         }
-
+        $this->db->order_by('name',"ASC");
         return $this->db->get($this->table['tags'])->result_array();
+    }
+    public function get_sentiment($select = null, $where = null)
+    {
+        if (!is_null($select)) {
+            $this->db->select($select);
+        }
+
+        if (!is_null($where)) {
+            $this->db->where($where);
+        }
+
+        return $this->db->get($this->table['sentiment'])->result_array();
+    }
+    public function get_complaint($select = null, $where = null)
+    {
+        if (!is_null($select)) {
+            $this->db->select($select);
+        }
+
+        if (!is_null($where)) {
+            $this->db->where($where);
+        }
+        $this->db->order_by('name',"ASC");
+        return $this->db->get($this->table['complaint'])->result_array();
     }
     public function get_source($select = null, $where = null)
     {

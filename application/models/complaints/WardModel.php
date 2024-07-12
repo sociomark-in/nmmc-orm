@@ -18,7 +18,7 @@ class WardModel extends CI_Model
         if (!is_null($where)) {
             $this->db->where($where);
         }
-
+        $this->db->order_by('name',"ASC");
         return $this->db->get($this->table['categories'])->result_array();
     }
     public function insert($data)
