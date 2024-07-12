@@ -35,17 +35,17 @@ class ComplaintsController extends RBAController
 		$this->load->admin_dashboard('tickets/home', $this->data);
 	}
 
-	public function test_complaint()
-	{
-		$output = json_encode($this->TicketsModel->count_status(['status as ' . 'name', 'COUNT(*) as '  . 'data', "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]));
-		print_r(json_decode($output, true));
-		echo " <br><br>";
-		$c = json_decode($output, true);
-		$final = [];
-		for ($i=0; $i < count($c); $i++) { 
-			$final['name'] = 
-		}
-	}
+	// public function test_complaint()
+	// {
+	// 	$output = json_encode($this->TicketsModel->count_status(['status as ' . 'name', 'COUNT(*) as '  . 'data', "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]));
+	// 	print_r(json_decode($output, true));
+	// 	echo " <br><br>";
+	// 	$c = json_decode($output, true);
+	// 	$final = [];
+	// 	for ($i=0; $i < count($c); $i++) { 
+	// 		$final['name'] = 
+	// 	}
+	// }
 
 
 	public function new_ticket()
@@ -54,6 +54,8 @@ class ComplaintsController extends RBAController
 		$this->load->model('complaints/WardModel');
 		$this->data['page']['department'] = $this->DepartmentModel->get();
 		$this->data['page']['ward'] = $this->WardModel->get();
+		$this->data['page']['source'] = $this->DepartmentModel->get_source();
+		$this->data['page']['status'] = $this->DepartmentModel->get_status();
 		$this->load->admin_dashboard('tickets/new', $this->data);
 	}
 
