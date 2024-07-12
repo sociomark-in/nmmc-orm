@@ -16,7 +16,7 @@
 				<div class="actions w-100">
 					<form action="" class="nav-link">
 						<select name="" id="clientsSelect" class="form-control">
-							<option value="N1kpK954srINrkcp" data-origin="StemRx">Times Now 01</option>
+							<option value="N1kpK954srINrkcp" data-origin="NMMC">NMMC Grievance Department</option>
 							<!-- <option value="wyj496iThHwgfU6w" data-origin="Sociomark">Sociomark - Digital Marketing Agency</option> -->
 						</select>
 					</form>
@@ -36,8 +36,8 @@
 							// Use .text() instead of HTML string concatenation to avoid script injection issues
 							$state.find("span").text(state.text);
 							switch (state.element.getAttribute('data-origin').toLowerCase()) {
-								case 'stemrx':
-									$state.find("img").attr("src", "https://www.timesnowsummit.com/assets/favicons/favicon-32x32.png");
+								case 'nmmc':
+									$state.find("img").attr("src", "https://www.nmmc.gov.in/navimumbai/assets/251/2018/11/mediafiles/index.jpg");
 									break;
 								default:
 									$state.find("img").attr("src", "https://www.newhorizonschools.org/assets/media/nhss_logo.png");

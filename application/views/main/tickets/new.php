@@ -104,7 +104,7 @@
 								<label for="inputTitle" class="form-label">Status</label>
 								<select name="status" class="js-example-basic-single form-select" data-width="100%">
 									<?php for ($i = 0; $i < count($this->data['page']['status']); $i++) { ?>
-										<option value="<?= $this->data['page']['department'][$i]['slug'] ?>"><?= $this->data['page']['status'][$i]['name'] ?></option>
+										<option value="<?= $this->data['page']['status'][$i]['slug'] ?>"><?= $this->data['page']['status'][$i]['name'] ?></option>
 									<?php } ?>
 								</select>
 							</div>

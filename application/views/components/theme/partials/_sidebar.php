@@ -17,7 +17,7 @@
 					<span class="link-title">Dashboard</span>
 				</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item <?= link_is_active("complaints/all-tickets") ?>">
 				<a href="<?= base_url('complaints/all-tickets') ?>" class="nav-link">
 					<i class="link-icon" data-feather="database"></i>
 					<span class="link-title">All Complaints</span>
@@ -27,7 +27,7 @@
 			<!-- Tickets -->
 			<li class="nav-item nav-category">Ticket Management</li>
 			<!-- Access Level: admin -->
-			<li class="nav-item">
+			<li class="nav-item <?= link_is_active("complaints/all-tickets") ?>">
 				<a class="nav-link" data-bs-toggle="collapse" href="#tickets" role="button" aria-expanded="false" aria-controls="tickets">
 					<i class="link-icon" data-feather="database"></i>
 					<span class="link-title">Complaint Tickets</span>
@@ -35,10 +35,10 @@
 				</a>
 				<div class="collapse" id="tickets">
 					<ul class="nav sub-menu">
-						<li class="nav-item">
+						<li class="nav-item <?= link_is_active("complaints/all-tickets") ?>">
 							<a href="<?= base_url('complaints/all-tickets') ?>" class="nav-link">All Tickets</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item <?= link_is_active("complaints/all-tickets/new") ?>">
 							<a href="<?= base_url('complaints/tickets/new') ?>" class="nav-link">New Ticket</a>
 						</li>
 					</ul>
@@ -65,13 +65,13 @@
 			<!-- Nominations -->
 			<li class="nav-item nav-category">Organization Management</li>
 			<!-- Access Level: jury -->
-			<li class="nav-item">
+			<li class="nav-item <?= link_is_active("departments") ?>">
 				<a href="<?= base_url('departments') ?>" class="nav-link">
 					<i class="link-icon" data-feather="map-pin"></i>
 					<span class="link-title">Dapartments</span>
 				</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item <?= link_is_active("wards") ?>">
 				<a href="<?= base_url('wards') ?>" class="nav-link">
 					<i class="link-icon" data-feather="map-pin"></i>
 					<span class="link-title">Wards</span>
@@ -79,7 +79,6 @@
 			</li>
 
 			<!-- Access Level: admin -->
-
 			<li class="nav-item nav-category">User Management</li>
 			<!-- <li class="nav-item">
 				<a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">

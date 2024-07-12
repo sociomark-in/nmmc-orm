@@ -35,7 +35,7 @@
 <!-- Array ( [id] => 71 [source] => facebook [department_id] => 17 [ward_id] => 8 [type_of_complaint] => other [message] => lorum ipsum [source_link] => https://www.instagram.com/p/C9PmXQFPenA/?img_index=71 [status] => in_process [created_at] => 2024-04-11 14:49:12 [updated_at] => 2024-04-11 14:49:12 ) -->
 
 <div class="page-content">
-	<?= form_open("api/v2/complaints/add") ?>
+	<?= form_open("api/v2/complaints/edit") ?>
 	<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
 		<div class="d-flex gap-2">
 			<div class="nav-item">
@@ -62,7 +62,11 @@
 										<label for="inputTitle" class="form-label">Complaint Source</label>
 										<select name="source" class="js-example-basic-single form-select" data-width="100%">
 											<?php for ($i = 0; $i < count($this->data['page']['source']); $i++) { ?>
-												<option value="<?= $this->data['page']['source'][$i]['id'] ?>"><?= $this->data['page']['source'][$i]['name'] ?></option>
+												<?php if ($page['ticket']['source'] == $this->data['page']['source'][$i]['slug']) : ?>
+													<option value="<?= $this->data['page']['source'][$i]['name'] ?>" selected><?= $this->data['page']['source'][$i]['name'] ?></option>
+												<?php else : ?>
+													<option value="<?= $this->data['page']['source'][$i]['name'] ?>"><?= $this->data['page']['source'][$i]['name'] ?></option>
+												<?php endif ?>
 											<?php } ?>
 										</select>
 									</div>
@@ -107,7 +111,11 @@
 								<label for="inputTitle" class="form-label">Status</label>
 								<select name="status" class="js-example-basic-single form-select" data-width="100%">
 									<?php for ($i = 0; $i < count($this->data['page']['status']); $i++) { ?>
-										<option value="<?= $this->data['page']['status'][$i]['id'] ?>"><?= $this->data['page']['status'][$i]['name'] ?></option>
+										<?php if ($page['ticket']['status'] == $this->data['page']['status'][$i]['slug']) : ?>
+											<option value="<?= $this->data['page']['status'][$i]['name'] ?>" selected><?= $this->data['page']['status'][$i]['name'] ?></option>
+										<?php else : ?>
+											<option value="<?= $this->data['page']['status'][$i]['name'] ?>"><?= $this->data['page']['status'][$i]['name'] ?></option>
+										<?php endif ?>
 									<?php } ?>
 								</select>
 							</div>
@@ -136,7 +144,7 @@
 							<div class="mb-3">
 								<label for="inputTitle" class="form-label">Ward</label>
 								<select name="ward_id" class="js-example-basic-single form-select" data-width="100%">
-								<?php for ($i = 0; $i < count($this->data['page']['ward']); $i++) { ?>
+									<?php for ($i = 0; $i < count($this->data['page']['ward']); $i++) { ?>
 										<?php if ($page['ticket']['ward_id'] == $this->data['page']['ward'][$i]['id']) : ?>
 											<option value="<?= $this->data['page']['ward'][$i]['id'] ?>" selected><?= $this->data['page']['ward'][$i]['name'] ?></option>
 										<?php else : ?>

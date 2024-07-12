@@ -4,6 +4,6 @@ require_once APPPATH . "controllers/base/RBAController.php";
 class WardsController extends RBAController
 {
     public function index(){
-        $this->load->admin_dashboard('wards/index');
+        $this->load->admin_dashboard('wards/single');
     }       
 }

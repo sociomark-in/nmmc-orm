@@ -99,6 +99,9 @@ final class ComplaintsAPIController extends RBAController
 	public function api_category_update()
 	{
 		$form_data = $this->input->post();
+
+		print_r($form_data); die;
+
 		foreach ($form_data as $key => $field) {
 			if (!empty($field) || is_string($field) && trim($field) !== "") {
 				$data[$key] = $field;

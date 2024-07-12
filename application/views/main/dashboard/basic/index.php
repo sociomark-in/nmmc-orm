@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-12 col-xl-12 stretch-card">
       <div class="row flex-grow-1">
-        <div class="col-xl col-md-4 grid-margin stretch-card">
+        <div class="col-xl-3 col-md-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
               <div class="row m-0 h-100 align-items-center">
@@ -18,7 +18,6 @@
                     <div class="">
                       <div class="mb-3">
                         <h4 class="mb-1">Welcome Back, Hemant!</h4>
-                        <p class="tx-18">You have <a href=""><u>4 meetings</u></a> today,</p>
                       </div>
                       <a href="" class="btn btn-primary btn-icon-text">View Profile<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
                     </div>
@@ -31,22 +30,21 @@
             </div>
           </div>
         </div>
-        <div class="col-xl col-lg-4 col-md-4 grid-margin stretch-card">
+        <div class="col-xl-2 col-lg-4 col-md-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-baseline">
-                <h6 class="card-title mb-0">All Complaints</h6>
+                <h6 class="card-title mb-0">All</h6>
                 <div>
-                  <a class="btn p-0 btn-icon-text text-dark" href="">View All<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
+                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>">View All<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <h3 class="mb-2">3,897</h3>
+                  <h3 class="mb-2"><?= count($page["tickets_all"]) ?></h3>
                   <div class="d-flex align-items-baseline">
-                    <p class="text-success">
-                      <span>+3.3%</span>
-                      <i data-feather="arrow-up" class="icon-sm mb-1"></i>
+                    <p class="text-dark">
+                      Overall Complaints
                     </p>
                   </div>
                 </div>
@@ -54,22 +52,21 @@
             </div>
           </div>
         </div>
-        <div class="col-xl col-lg-4 col-md-4 grid-margin stretch-card">
+        <div class="col-xl-2 col-lg-4 col-md-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-baseline">
-                <h6 class="card-title mb-0">Department Complaints</h6>
+                <h6 class="card-title mb-0">All</h6>
                 <div>
-                  <a class="btn p-0 btn-icon-text text-dark" href="">View All<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
+                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>">View All<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <h4 class="mb-2">3,897</h4>
+                  <h3 class="mb-2"><?= count($page["tickets_all"]) ?></h3>
                   <div class="d-flex align-items-baseline">
-                    <p class="text-success">
-                      <span>+3.3%</span>
-                      <i data-feather="arrow-up" class="icon-sm mb-1"></i>
+                    <p class="text-dark">
+                      Overall Complaints
                     </p>
                   </div>
                 </div>
@@ -77,24 +74,78 @@
             </div>
           </div>
         </div>
-        <div class="col-xl col-lg-4 col-md-4 grid-margin stretch-card">
+        <div class="col-xl-2 col-lg-4 col-md-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-baseline">
-                <h6 class="card-title mb-0">Ward Complaints</h6>
+                <h6 class="card-title mb-0">All</h6>
                 <div>
-                  <a class="btn p-0 btn-icon-text text-dark" href="">View All<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
+                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>">View All<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <h3 class="mb-2">3,897</h3>
+                  <h3 class="mb-2"><?= count($page["tickets_all"]) ?></h3>
                   <div class="d-flex align-items-baseline">
-                    <p class="text-success">
-                      <span>+3.3%</span>
-                      <i data-feather="arrow-up" class="icon-sm mb-1"></i>
+                    <p class="text-dark">
+                      Overall Complaints
                     </p>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-4 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-baseline">
+                <h6 class="card-title mb-0">All</h6>
+                <div>
+                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>">View All<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <h3 class="mb-2"><?= count($page["tickets_all"]) ?></h3>
+                  <div class="d-flex align-items-baseline">
+                    <p class="text-dark">
+                      Overall Complaints
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- row -->
+  <div class="row">
+    <div class="col-xl-4 col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-baseline mb-2">
+            <div class="">
+              <h6 class="card-title mb-0">Source</h6>
+            </div>
+            <div class="">
+              <ul class="nav nav-pills g-1" id="sourceTabOption" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1 active" id="sourceData-tab" data-bs-toggle="tab" data-bs-target="#sourceData-tab-pane" type="button" role="tab" aria-controls="sourceData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1" id="sourceChart-tab" data-bs-toggle="tab" data-bs-target="#sourceChart-tab-pane" type="button" role="tab" aria-controls="sourceChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                </li>
+            </div>
+          </div>
+          <div class="">
+            <div class="row">
+              <div class="col-12">
+                <div class="tab-content" id="sourceTabOptionContent">
+                  <div class="tab-pane fade show active" id="sourceData-tab-pane" role="tabpanel" aria-labelledby="sourceData-tab" tabindex="0">...</div>
+                  <div class="tab-pane fade" id="sourceChart-tab-pane" role="tabpanel" aria-labelledby="sourceChart-tab" tabindex="0">...</div>
                 </div>
               </div>
             </div>
@@ -132,8 +183,8 @@
                 'source' => "api/v2/department/get",
               ],
             ];
-            
-            $this->load->view('components/theme/widgets/charts/barstackchart', $data); 
+
+            $this->load->view('components/theme/widgets/charts/barstackchart', $data);
             ?>
           </div>
         </div>

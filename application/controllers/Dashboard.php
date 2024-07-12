@@ -8,11 +8,32 @@ class Dashboard extends RBAController
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('complaints/TicketsModel');
+		$this->load->model('data/AuthorsModel');
+		$this->load->model('complaints/WardModel');
+		$this->load->model('complaints/DepartmentModel');
 		$this->error = [];
 	}
 	public function index()
 	{
-		$this->load->admin_dashboard('dashboard/basic/index');
+		$rows = json_decode($this->TicketsModel->get_all([
+			"source",
+			"department_id",
+			"ward_id",
+			"type_of_complaint",
+			"message",
+			"source_link",
+			"status",
+			"created_at",
+			"updated_at",
+		]), true);
+		for ($i = 0; $i < count($rows); $i++) {
+			$rows[$i]['ward_id'] = $this->WardModel->get(['name'], ['id' => $rows[$i]['ward_id']])[0]['name'];
+			$rows[$i]['department_id'] = $this->DepartmentModel->get(['name'], ['id' => $rows[$i]['department_id']])[0]['name'];
+		}
+		$this->data['page']['tickets_all'] = $rows;
+
+		$this->load->admin_dashboard('dashboard/basic/index', $this->data);
 	}
 
 	public function login()
