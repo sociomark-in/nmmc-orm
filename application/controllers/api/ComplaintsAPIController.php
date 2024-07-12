@@ -11,6 +11,7 @@ final class ComplaintsAPIController extends RBAController
 		$this->load->model('data/AuthorsModel');
 		$this->load->model('complaints/WardModel');
 		$this->load->model('complaints/DepartmentModel');
+		$this->load->model('complaints/ComplaintTypeModel');
 		$this->data['session'] = $this->session->get_userdata($this->APP_ID . "_appuser");
 	}
 
@@ -29,16 +30,16 @@ final class ComplaintsAPIController extends RBAController
 			} else {
 				$output = $this->TicketsModel->count_status(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"]);
 			}
-					
+
 			$c = $output;
 
-	
+
 			// Loop through the original array
 			foreach ($c as $item) {
 				$name = $item["name"];
 				$data = $item["data"];
 				$month = $item["month"]; // You can remove this if not needed in the new structure
-	
+
 				// Check if the name already exists in the new array
 				if (isset($newArray[$name])) {
 					// If it exists, append the data to its existing data array
@@ -69,11 +70,28 @@ final class ComplaintsAPIController extends RBAController
 	{
 		$form_data = $this->input->post();
 		$data = $form_data;
-		// print_r($data);exit;
-		$this->load->model('complaints/TicketsModel');
 		if ($this->TicketsModel->insert($data)) {
 			redirect($this->input->get_request_header('Referer'));
 		}
+	}
+	public function api_complaints_update()
+	{
+		$form_data = $this->input->post();
+		$data = [
+			"name" => $form_data['name'],
+			"source" => $form_data['source'],
+			"department_id" => $form_data['department_id'],
+			"ward_id" => $form_data['ward_id'],
+			"type_of_complaint" => $this->ComplaintTypeModel->get(['name'], ['id' => $form_data['type_of_complaint']])[0]['name'],
+			"message" => $form_data['message'],
+			"source_link" => $form_data['source_link'],
+			"sentiment" => $form_data['sentiment'],
+			"comments" => $form_data['comment'],
+			"status" => $form_data['status'],
+		];
+		if ($this->TicketsModel->update(['id' => $form_data['ticket_id']], $data))
+			redirect($this->input->get_request_header('Referer'));
+		die;
 	}
 
 	/* Get All Categories */
@@ -100,7 +118,8 @@ final class ComplaintsAPIController extends RBAController
 	{
 		$form_data = $this->input->post();
 
-		print_r($form_data); die;
+		print_r($form_data);
+		die;
 
 		foreach ($form_data as $key => $field) {
 			if (!empty($field) || is_string($field) && trim($field) !== "") {

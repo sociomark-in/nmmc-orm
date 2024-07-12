@@ -6,7 +6,7 @@ class ComplaintTypeModel extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        $this->table['complaint'] = "app_application_complaints";
+        $this->table['complaint'] = "app_application_complaint";
     }
 
     public function get($select = null, $where = null)

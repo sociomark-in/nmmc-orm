@@ -15,14 +15,14 @@
                                     <img src="<?php echo base_url('assets/nmmc logo.png')?>" height="50">
                                 </a>
                                 <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
-                                <form class="forms-sample">
+                                <?= form_open('api/v2/auth/login') ?>
                                     <div class="mb-3">
                                         <label for="userEmail" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="userEmail" placeholder="Email">
+                                        <input type="email" class="form-control" id="userEmail" name="useremail" placeholder="Email">
                                     </div>
                                     <div class="mb-3">
                                         <label for="userPassword" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="Password">
+                                        <input type="password" name="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="Password">
                                     </div>
                                     <div class="form-check mb-3">
                                         <input type="checkbox" class="form-check-input" id="authCheck">
@@ -31,7 +31,7 @@
                                         </label>
                                     </div>
                                     <div>
-                                        <a href="../../dashboard.html" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">Login</a>
+                                        <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">Login</button>
                                     </div>
                                     <!-- <a href="register.html" class="d-block mt-3 text-muted">Not a user? Sign up</a> -->
                                 </form>

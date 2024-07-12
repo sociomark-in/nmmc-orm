@@ -39,7 +39,6 @@ if ($(".apexchart.pie-chart").length) {
     tooltip: {
       theme: "light",
     },
-    colors: [colors.primary, colors.warning, colors.danger, colors.info],
     legend: {
       show: true,
       position: "bottom",

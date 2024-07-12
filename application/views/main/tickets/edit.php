@@ -36,6 +36,7 @@
 
 <div class="page-content">
 	<?= form_open("api/v2/complaints/edit") ?>
+	<input type="hidden" name="ticket_id" value="<?= $page['slug'] ?>">
 	<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
 		<div class="d-flex gap-2">
 			<div class="nav-item">
@@ -60,7 +61,7 @@
 								<div class="row">
 									<div class="col">
 										<label for="name" class="form-label">Name of Complaint</label>
-										<input id="name" class="form-control" name="name" type="text">
+										<input id="name" class="form-control" name="name" value="<?= $page['ticket']['name'] ?>" type="text">
 									</div>
 									<div class="col-xl-3 col-lg-4 col-6">
 										<label for="inputTitle" class="form-label">Complaint Source</label>
@@ -132,7 +133,11 @@
 								<select name="type_of_complaint" class="js-example-basic-single form-select" data-width="100%">
 									<option value="complaint" selected>Select Complaint</option>
 									<?php for ($i = 0; $i < count($this->data['page']['complaint']); $i++) { ?>
-										<option value="<?= $this->data['page']['complaint'][$i]['name'] ?>"><?= $this->data['page']['complaint'][$i]['name'] ?></option>
+										<?php if ($page['ticket']['complaint'] == $this->data['page']['complaint'][$i]['name']) : ?>
+											<option value="<?= $this->data['page']['complaint'][$i]['id'] ?>" selected><?= $this->data['page']['complaint'][$i]['name'] ?></option>
+										<?php else : ?>
+											<option value="<?= $this->data['page']['complaint'][$i]['id'] ?>"><?= $this->data['page']['complaint'][$i]['name'] ?></option>
+										<?php endif ?>
 									<?php } ?>
 								</select>
 							</div>
@@ -145,7 +150,7 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="d-flex justify-content-between align-items-baseline mb-3">
-								<h6 class="card-title mb-0">Choose Department & Ward</h6>
+								<h6 class="card-title mb-0">Complaint Status</h6>
 							</div>
 							<div class="mb-3">
 								<label for="inputTitle" class="form-label">Status</label>
@@ -169,7 +174,7 @@
 							</div>
 							<div class="col">
 								<label for="comment" class="form-label">Comments</label>
-								<input id="comment" class="form-control" name="comment" type="text">
+								<input id="comment" class="form-control" name="comment" value="<?= $page['ticket']['comments'] ?>" type="text">
 							</div>
 
 						</div>

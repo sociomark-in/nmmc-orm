@@ -67,6 +67,7 @@ $route["api/v2/complaints/category/edit"] = "api/ComplaintsAPIController/api_cat
 $route["api/v2/complaints/category/delete"] = "api/ComplaintsAPIController/api_category_delete";
 
 $route["api/v2/complaints/add"] = "api/ComplaintsAPIController/api_complaints_add";
+$route["api/v2/complaints/edit"] = "api/ComplaintsAPIController/api_complaints_update";
 $route["api/v2/complaints/tag/get"] = "api/ComplaintsAPIController/api_tag_get";
 $route["api/v2/complaints/tag/add"] = "api/ComplaintsAPIController/api_tag_insert";
 $route["api/v2/complaints/tag/edit"] = "api/ComplaintsAPIController/api_tag_update";

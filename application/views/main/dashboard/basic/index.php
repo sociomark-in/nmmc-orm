@@ -128,7 +128,7 @@
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-baseline mb-2">
             <div class="">
-              <h6 class="card-title mb-0">Source</h6>
+              <h6 class="card-title mb-0">Complaints (By Source)</h6>
             </div>
             <div class="">
               <ul class="nav nav-pills g-1" id="sourceTabOption" role="tablist">
@@ -154,7 +154,23 @@
                           </tr>
                           <tr>
                             <td>Facebook</td>
-                            <td>89</td>
+                            <td><?= $page['tickets_count']['facebook'] ?></td>
+                          </tr>
+                          <tr>
+                            <td>Instagram</td>
+                            <td><?= $page['tickets_count']['instagram'] ?></td>
+                          </tr>
+                          <tr>
+                            <td>Twitter</td>
+                            <td><?= $page['tickets_count']['twitter'] ?></td>
+                          </tr>
+                          <tr>
+                            <td>YouTube</td>
+                            <td><?= $page['tickets_count']['youtube']??=0 ?></td>
+                          </tr>
+                          <tr>
+                            <td>LinkedIn</td>
+                            <td><?= $page['tickets_count']['linkedin']??=0 ?></td>
                           </tr>
                         </table>
                       </div>
@@ -166,12 +182,13 @@
                         <?php
                         $data = [
                           'height' => 300,
-                          'id' => "apexDonut",
+                          'id' => "apexSourcePie",
                           'data' => [
                             'source' => "api/v2/tickets/count?by=status&months=12",
+                            'labels' => ['Facebook', 'Instagram', 'Twitter', 'YouTube', 'LinkedIn'],
                             'static' => [
                               [
-                                $page['tickets_count']['unresolved'], $page['tickets_count']['resolved'], $page['tickets_count']['all'], $page['tickets_count']['new'], $page['tickets_count']['in_process'],
+                                $page['tickets_count']['facebook'], $page['tickets_count']['instagram'], $page['tickets_count']['twitter'], $page['tickets_count']['youtube'], $page['tickets_count']['linkedin'],
                               ]
                             ]
                           ],
@@ -261,7 +278,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xl-3 col-lg-6 grid-margin stretch-card">
+    <div class="col-xl-3 col-lg-6 grid-margin stretch-card d-none">
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-baseline mb-2">
@@ -312,6 +329,47 @@
         </div>
       </div>
     </div>
+    <div class="col-xl-3 col-lg-5 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-baseline">
+            <h6 class="card-title mb-0">Complaint Chart (By Status)</h6>
+            <div class="dropdown mb-2">
+              <a type="button" id="dropdownMenuButton5" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">View</span></a>
+                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Edit</span></a>
+                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="trash" class="icon-sm me-2"></i> <span class="">Delete</span></a>
+                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="printer" class="icon-sm me-2"></i> <span class="">Print</span></a>
+                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="download" class="icon-sm me-2"></i> <span class="">Download</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <?php
+              $data = [
+                'height' => 300,
+                'id' => "apexStatusPie",
+                'data' => [
+                  'source' => "api/v2/tickets/count?by=status&months=12",
+                  'labels' => ['Unresolved', 'Resolved', 'In Process', 'New',],
+                  'static' => [
+                    [
+                      $page['tickets_count']['unresolved'], $page['tickets_count']['resolved'], $page['tickets_count']['in_process'], $page['tickets_count']['new'], 
+                    ]
+                  ]
+                ],
+              ];
+              $this->load->view('components/theme/widgets/charts/piechart', $data); ?>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
   <!-- row -->
   <div class="row">
@@ -349,7 +407,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-7 col-xl-9 grid-margin stretch-card">
+    <div class="col-lg-7 d-none col-xl-9 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-baseline mb-2">
@@ -385,7 +443,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-5 col-xl-3 grid-margin stretch-card">
+    <!-- <div class="col-xl-3 col-lg-5grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-baseline">
@@ -408,12 +466,13 @@
               <?php
               $data = [
                 'height' => 300,
-                'id' => "apexPieChart",
+                'id' => "apexStatusPie",
                 'data' => [
                   'source' => "api/v2/tickets/count?by=status&months=12",
+                  'labels' => ['Unresolved', 'Resolved', 'In Process', 'New',],
                   'static' => [
                     [
-                      $page['tickets_count']['unresolved'], $page['tickets_count']['resolved'], $page['tickets_count']['all'], $page['tickets_count']['new'], $page['tickets_count']['in_process'],
+                      $page['tickets_count']['unresolved'], $page['tickets_count']['resolved'], $page['tickets_count']['in_process'], $page['tickets_count']['new'], 
                     ]
                   ]
                 ],
@@ -424,7 +483,7 @@
 
         </div>
       </div>
-    </div>
+    </div> -->
   </div> <!-- row -->
 
   <div class="col-lg-5 col-xl-3 grid-margin stretch-card d-none">

@@ -36,6 +36,11 @@ class Dashboard extends RBAController
 		$this->data['page']['tickets_count']['resolved'] = $this->TicketsModel->count_all(['status' => 'resolved']);
 		$this->data['page']['tickets_count']['unresolved'] = $this->TicketsModel->count_all(['status' => 'unresolved']);
 		$this->data['page']['tickets_count']['in_process'] = $this->TicketsModel->count_all(['status' => 'in_process']);
+		$this->data['page']['tickets_count']['facebook'] = $this->TicketsModel->count_all(['source' => 'facebook']);
+		$this->data['page']['tickets_count']['instagram'] = $this->TicketsModel->count_all(['source' => 'instagram']);
+		$this->data['page']['tickets_count']['twitter'] = $this->TicketsModel->count_all(['source' => 'twitter']);
+		$this->data['page']['tickets_count']['linkedin'] = $this->TicketsModel->count_all(['source' => 'linkedin']);
+		$this->data['page']['tickets_count']['youtube'] = $this->TicketsModel->count_all(['source' => 'youtube']);
 		$this->data['page']['tickets_count']['new'] = $this->TicketsModel->count_all(['status' => 'new']);
 		
 		$this->data['page']['list_factors']['wards'] = $this->WardModel->get(['name']);
