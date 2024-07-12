@@ -16,7 +16,6 @@ for ($i = 1; $i <= 12; $i++) {
             options.chart.events = {
                 dataPointSelection: function(event, chartContext, opts) {
                     var dept = chartContext.w.globals.labels[opts.dataPointIndex];
-                    console.log(dept);
                     $.ajax({
                         data: {
                             department: dept
@@ -32,13 +31,13 @@ for ($i = 1; $i <= 12; $i++) {
         <?php endif ?>
         
         $.ajax({
-            url: "<?= base_url('api/v2/tickets/count?by=status&months=12') ?>",
+            url: "<?= base_url($data['source']) ?>",
             method: "POST",
             data: {
                 output: ['name', 'data']
             },
             success: function(data) {
-                console.log(data.output[0].data);
+                console.log("Bar Stack Chart  Success!");
                 options.xaxis = {
                     categories: data.output[0].months,
                 };

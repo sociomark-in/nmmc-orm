@@ -15,7 +15,6 @@ for ($i=1; $i <= 32; $i++) {
             options.chart.events = {
                 dataPointSelection: function(event, chartContext, opts) {
                     var dept = chartContext.w.globals.labels[opts.dataPointIndex];
-                    console.log(dept);
                     $.ajax( {
                         data: {
                             department: dept
@@ -29,14 +28,25 @@ for ($i=1; $i <= 32; $i++) {
                 }
             };
         }
-        options.xaxis = {
-            categories: <?= json_encode($xaxis) ?>,
-        };
-        options.series = [{
-            name: "sales",
-            data: [30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 78],
-        }, ];
-        var chart<?= $id ?> = new ApexCharts(document.querySelector("#<?= $id ?>"), options);
-        chart<?= $id ?>.render();
+
+        $.ajax({
+            url: "<?= base_url($data['source']) ?>",
+            method: "POST",
+            data: {
+                output: ['name', 'data']
+            },
+            success: function(data) {
+                options.xaxis = {
+                    categories: <?= json_encode($xaxis) ?>,
+                };
+                options.series = [{
+                    name: "sales",
+                    data: [30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 78],
+                }, ];
+                var chart<?= $id ?> = new ApexCharts(document.querySelector("#<?= $id ?>"), options);
+                chart<?= $id ?>.render();
+            }
+        })
+        
     }
 </script>

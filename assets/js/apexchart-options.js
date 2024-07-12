@@ -26,7 +26,6 @@ var fontFamily = "'Roboto', Helvetica, sans-serif";
 if ($(".apexchart.pie-chart").length) {
   var options = {
     chart: {
-      height: 200,
       type: "pie",
       foreColor: colors.bodyColor,
       background: colors.cardBg,
@@ -43,7 +42,7 @@ if ($(".apexchart.pie-chart").length) {
     colors: [colors.primary, colors.warning, colors.danger, colors.info],
     legend: {
       show: true,
-      position: "left",
+      position: "bottom",
       horizontalAlign: "center",
       fontFamily: fontFamily,
       itemMargin: {
@@ -57,7 +56,6 @@ if ($(".apexchart.pie-chart").length) {
     dataLabels: {
       enabled: false,
     },
-    series: [44, 55, 13, 33],
   };
 }
 const pieChartOptions = options;

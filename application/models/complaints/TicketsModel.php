@@ -23,6 +23,9 @@ class TicketsModel extends CI_Model
 		 return $this->db->get($this->table['tickets'])->result_array();
 	}
 	public function count_all($where = null){
+		if (!is_null($where)) {
+			$this->db->where($where);
+		}
 		 return $this->db->count_all_results($this->table['tickets']);
 	}
 
