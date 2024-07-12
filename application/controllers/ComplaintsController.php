@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 require_once APPPATH . "controllers/base/RBAController.php";
 class ComplaintsController extends RBAController
 {
@@ -26,12 +27,24 @@ class ComplaintsController extends RBAController
 			"updated_at",
 		]), true);
 
-		for ($i=0; $i < count($rows) ; $i++) { 
-			$rows[$i]['ward_id'] = $this->WardModel->get(['name'],['id' => $rows[$i]['ward_id']])[0]['name'];
-			$rows[$i]['department_id'] = $this->DepartmentModel->get(['name'],['id' => $rows[$i]['department_id']])[0]['name'];
+		for ($i = 0; $i < count($rows); $i++) {
+			$rows[$i]['ward_id'] = $this->WardModel->get(['name'], ['id' => $rows[$i]['ward_id']])[0]['name'];
+			$rows[$i]['department_id'] = $this->DepartmentModel->get(['name'], ['id' => $rows[$i]['department_id']])[0]['name'];
 		}
 		$this->data['tickets_all'] = $rows;
 		$this->load->admin_dashboard('tickets/home', $this->data);
+	}
+
+	public function test_complaint()
+	{
+		$output = json_encode($this->TicketsModel->count_status(['status as ' . 'name', 'COUNT(*) as '  . 'data', "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]));
+		print_r(json_decode($output, true));
+		echo " <br><br>";
+		$c = json_decode($output, true);
+		$final = [];
+		for ($i=0; $i < count($c); $i++) { 
+			$final['name'] = 
+		}
 	}
 
 
