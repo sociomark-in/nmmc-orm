@@ -11,7 +11,8 @@ class TicketsModel extends CI_Model
 		$this->table['tickets'] = 'app_complaint_tickets';
 	}
 
-	public function count_status($columns = null, $where = null){
+	public function count_status($columns = null, $where = null)
+	{
 		if (!is_null($columns)) {
 			$this->db->select($columns);
 		}
@@ -20,13 +21,28 @@ class TicketsModel extends CI_Model
 		}
 		$this->db->group_by(["DATE_FORMAT(created_at, '%Y-%m')", "status"]);
 
-		 return $this->db->get($this->table['tickets'])->result_array();
+		return $this->db->get($this->table['tickets'])->result_array();
 	}
-	public function count_all($where = null){
+	public function count_all($where = null)
+	{
 		if (!is_null($where)) {
 			$this->db->where($where);
 		}
-		 return $this->db->count_all_results($this->table['tickets']);
+		return $this->db->count_all_results($this->table['tickets']);
+	}
+
+	public function count_group_by($select = null, $where = null, $group_by = null)
+	{
+		if (!is_null($select)) {
+			$this->db->select($select);
+		}
+		if (!is_null($where)) {
+			$this->db->where($where);
+		}
+		if (!is_null($group_by)) {
+			$this->db->group_by($group_by);
+		}
+		return $this->db->get($this->table['tickets'])->result_array();
 	}
 
 	public function get_all($columns = null)
@@ -52,6 +68,7 @@ class TicketsModel extends CI_Model
 
 		return json_encode($result);
 	}
+
 	public function insert($data)
 	{
 		if ($this->db->insert($this->table['tickets'], $data)) {

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2024 at 06:24 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jul 14, 2024 at 08:29 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -225,42 +225,44 @@ INSERT INTO `app_application_complaint` (`id`, `name`, `created_at`) VALUES
 
 CREATE TABLE `app_application_departments` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `slug` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `app_application_departments`
 --
 
-INSERT INTO `app_application_departments` (`id`, `name`) VALUES
-(1, 'Accounts'),
-(2, 'Administration'),
-(3, 'Disaster Management'),
-(4, 'Public Relation Department'),
-(5, 'Education'),
-(6, 'ETC'),
-(7, 'LBT'),
-(8, 'Licenses'),
-(9, 'Social Welfare'),
-(10, 'Sports And Cultural'),
-(11, 'Town Planning'),
-(12, 'Vehicle Department'),
-(13, 'Health'),
-(14, 'Transport (NMMT)'),
-(15, 'Property Tax'),
-(16, 'Encroachment'),
-(17, 'Estate / Property'),
-(18, 'Garden'),
-(19, 'Play Ground'),
-(20, 'Solid Waste Management'),
-(21, 'Road'),
-(22, 'Drainage'),
-(23, 'Footpath'),
-(24, 'Public Toilet'),
-(25, 'Sewerage'),
-(26, 'Storm Water Drain'),
-(27, 'Street Light'),
-(28, 'Water');
+INSERT INTO `app_application_departments` (`id`, `name`, `slug`, `created_at`) VALUES
+(1, 'Accounts', '', '2024-07-14 11:21:11'),
+(2, 'Administration', '', '2024-07-14 11:21:11'),
+(3, 'Disaster Management', '', '2024-07-14 11:21:11'),
+(4, 'Public Relation Department', '', '2024-07-14 11:21:11'),
+(5, 'Education', '', '2024-07-14 11:21:11'),
+(6, 'ETC', '', '2024-07-14 11:21:11'),
+(7, 'LBT', '', '2024-07-14 11:21:11'),
+(8, 'Licenses', '', '2024-07-14 11:21:11'),
+(9, 'Social Welfare', '', '2024-07-14 11:21:11'),
+(10, 'Sports And Cultural', '', '2024-07-14 11:21:11'),
+(11, 'Town Planning', '', '2024-07-14 11:21:11'),
+(12, 'Vehicle Department', '', '2024-07-14 11:21:11'),
+(13, 'Health', '', '2024-07-14 11:21:11'),
+(14, 'Transport (NMMT)', '', '2024-07-14 11:21:11'),
+(15, 'Property Tax', '', '2024-07-14 11:21:11'),
+(16, 'Encroachment', '', '2024-07-14 11:21:11'),
+(17, 'Estate / Property', '', '2024-07-14 11:21:11'),
+(18, 'Garden', '', '2024-07-14 11:21:11'),
+(19, 'Play Ground', '', '2024-07-14 11:21:11'),
+(20, 'Solid Waste Management', '', '2024-07-14 11:21:11'),
+(21, 'Road', '', '2024-07-14 11:21:11'),
+(22, 'Drainage', '', '2024-07-14 11:21:11'),
+(23, 'Footpath', '', '2024-07-14 11:21:11'),
+(24, 'Public Toilet', '', '2024-07-14 11:21:11'),
+(25, 'Sewerage', '', '2024-07-14 11:21:11'),
+(26, 'Storm Water Drain', '', '2024-07-14 11:21:11'),
+(27, 'Street Light', '', '2024-07-14 11:21:11'),
+(28, 'Water', '', '2024-07-14 11:21:11');
 
 -- --------------------------------------------------------
 
@@ -270,7 +272,7 @@ INSERT INTO `app_application_departments` (`id`, `name`) VALUES
 
 CREATE TABLE `app_application_roles` (
   `id` int(11) NOT NULL,
-  `role` varchar(200) NOT NULL,
+  `name` varchar(200) NOT NULL,
   `description` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -279,7 +281,7 @@ CREATE TABLE `app_application_roles` (
 -- Dumping data for table `app_application_roles`
 --
 
-INSERT INTO `app_application_roles` (`id`, `role`, `description`, `created_at`) VALUES
+INSERT INTO `app_application_roles` (`id`, `name`, `description`, `created_at`) VALUES
 (1, 'superadmin', '', '2024-07-02 10:02:47'),
 (2, 'admin', '', '2024-07-02 10:02:51');
 
@@ -348,7 +350,8 @@ CREATE TABLE `app_application_users` (
 --
 
 INSERT INTO `app_application_users` (`id`, `username`, `password`, `role`, `login_status`, `status`, `created_at`) VALUES
-(1, 'hemant@sociomark', '$2y$10$dOeYg9OV7dqTdYIVfkKJh.m0wxkcyIgtfdmeq6obs0h3pzapQfd9O', 2, 0, 1, '2024-07-01 18:45:49');
+(1, 'hemant@sociomark', '$2y$10$dOeYg9OV7dqTdYIVfkKJh.m0wxkcyIgtfdmeq6obs0h3pzapQfd9O', 1, 1, 1, '2024-07-01 18:45:49'),
+(2, 'grievance@nmmc', '$2y$10$H2.p9jq7D5sGoMXgyXe2WuzUhqVzXsjPbBgA3xoZPXzCGWdn1jcA2', 2, 0, 1, '2024-07-14 22:47:59');
 
 -- --------------------------------------------------------
 
@@ -630,7 +633,7 @@ ALTER TABLE `app_application_status`
 -- AUTO_INCREMENT for table `app_application_users`
 --
 ALTER TABLE `app_application_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `app_application_wards`

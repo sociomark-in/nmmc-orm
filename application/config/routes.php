@@ -95,6 +95,9 @@ $route['complaints/ticket/(:any)/comments'] = 'ComplaintsController/ticket_comme
 
 $route['departments'] = "org/DepartmentsController";
 $route['wards'] = "org/WardsController";
+$route['ward/(:any)'] = "org/WardsController/single/$1";
+
+$route['profile'] = "org/ProfileController";
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

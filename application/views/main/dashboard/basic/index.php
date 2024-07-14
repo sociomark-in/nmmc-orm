@@ -17,12 +17,12 @@
                   <div class="d-flex gap-2 justify-content-between">
                     <div class="">
                       <div class="mb-3">
-                        <h4 class="mb-1">Welcome Back, Hemant!</h4>
+                        <h4 class="mb-1">Welcome Back!</h4>
                       </div>
                       <a href="" class="btn btn-primary btn-icon-text">View Profile<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
                     </div>
                     <div class="">
-                      <img class="wd-50 ht-50 rounded-circle" src="https://ui-avatars.com/api/?name=Hemant+Karekar" alt="">
+                      <img class="wd-50 ht-50 rounded-circle" src="https://ui-avatars.com/api/?name=<?= $session['appuser']['username'] ?>" alt="">
                     </div>
                   </div>
                 </div>
