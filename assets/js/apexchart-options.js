@@ -53,7 +53,13 @@ if ($(".apexchart.pie-chart").length) {
       colors: ["rgba(0,0,0,0)"],
     },
     dataLabels: {
-      enabled: false,
+      enabled: true,
+      offsetX: 50,
+      offsetY: 50,
+      textAnchor: 'middle',
+      formatter: function(val, opts) {
+        return opts.w.config.labels[opts.seriesIndex] + ": " + parseFloat(val).toFixed(2) + "%";
+      }
     },
   };
 }
