@@ -166,11 +166,11 @@
                           </tr>
                           <tr>
                             <td>YouTube</td>
-                            <td><?= $page['tickets_count']['youtube']??=0 ?></td>
+                            <td><?= $page['tickets_count']['youtube'] ??= 0 ?></td>
                           </tr>
                           <tr>
                             <td>LinkedIn</td>
-                            <td><?= $page['tickets_count']['linkedin']??=0 ?></td>
+                            <td><?= $page['tickets_count']['linkedin'] ??= 0 ?></td>
                           </tr>
                         </table>
                       </div>
@@ -204,80 +204,85 @@
         </div>
       </div>
     </div>
-    <div class="col-xl-3 col-lg-6 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-baseline mb-2">
-            <div class="">
-              <h6 class="card-title mb-0">All Departments</h6>
-            </div>
-          </div>
-          <div class="">
-            <div class="row">
-              <div class="col-12">
-                <table id="deptDataTable" class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Ward Name</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($page['list_factors']['departments'] as $key => $department) : ?>
-                      <tr>
-                        <td><?= $department['name'] ?></td>
-                      </tr>
-                    <?php endforeach ?>
-                  </tbody>
-                </table>
-                <script>
-                  let table = new DataTable('#deptDataTable', {
-                    dom: 'ftip',
-                    pageLength: 5,
-                  });
-                </script>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-lg-6 grid-margin stretch-card">
+
+    <div class="col-xl-6 col-lg-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-baseline mb-2">
             <div class="">
               <h6 class="card-title mb-0">All Wards</h6>
             </div>
+            <div class="">
+              <ul class="nav nav-pills g-1" id="wardTabOption" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1 active" id="wardData-tab" data-bs-toggle="tab" data-bs-target="#wardData-tab-pane" type="button" role="tab" aria-controls="wardData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1" id="wardChart-tab" data-bs-toggle="tab" data-bs-target="#wardChart-tab-pane" type="button" role="tab" aria-controls="wardChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                </li>
+            </div>
           </div>
           <div class="">
             <div class="row">
               <div class="col-12">
-                <table id="wardsDataTable" class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Ward Name</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($page['list_factors']['wards'] as $key => $ward) : ?>
-                      <tr>
-                        <td><?= $ward['name'] ?></td>
-                      </tr>
-                    <?php endforeach ?>
-                  </tbody>
-                </table>
-                <script>
-                  new DataTable('#wardsDataTable', {
-                    dom: 'ftip',
-                    pageLength: 5,
-                  });
-                </script>
+                <div class="tab-content" id="wardTabOptionContent">
+                  <div class="tab-pane fade show active" id="wardData-tab-pane" role="tabpanel" aria-labelledby="wardData-tab" tabindex="0">
+                    <div class="row">
+                      <div class="col-12">
+                        <table id="wardsDataTable" class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th>Ward Name</th>
+                              <th>Count</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php foreach ($page['list_factors']['wards'] as $key => $ward) : ?>
+                              <tr>
+                                <td><?= $ward['name'] ?></td>
+                                <td><?= $ward['name'] ?></td>
+                              </tr>
+                            <?php endforeach ?>
+                          </tbody>
+                        </table>
+                        <script>
+                          new DataTable('#wardsDataTable', {
+                            dom: 'ftip',
+                            pageLength: 5,
+                          });
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="wardChart-tab-pane" role="tabpanel" aria-labelledby="wardChart-tab" tabindex="0">
+                    <div class="row">
+                      <div class="col-12">
+                        <?php
+                        $data = [
+                          'height' => 300,
+                          'id' => "apexWardPie",
+                          'data' => [
+                            'source' => "api/v2/tickets/count?by=status&months=12",
+                            'labels' => ['Facebook', 'Instagram', 'Twitter', 'YouTube', 'LinkedIn'],
+                            'static' => [
+                              [
+                                $page['tickets_count']['facebook'], $page['tickets_count']['instagram'], $page['tickets_count']['twitter'], $page['tickets_count']['youtube'], $page['tickets_count']['linkedin'],
+                              ]
+                            ]
+                          ],
+                        ];
+                        $this->load->view('components/theme/widgets/charts/piechart', $data); ?>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <div class="col-xl-3 col-lg-6 grid-margin stretch-card d-none">
       <div class="card">
         <div class="card-body">
@@ -329,7 +334,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xl-3 col-lg-5 grid-margin stretch-card">
+    <div class="col-xl-3 col-lg-5 grid-margin stretch-card d-none">
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-baseline">
@@ -358,7 +363,7 @@
                   'labels' => ['Unresolved', 'Resolved', 'In Process', 'New',],
                   'static' => [
                     [
-                      $page['tickets_count']['unresolved'], $page['tickets_count']['resolved'], $page['tickets_count']['in_process'], $page['tickets_count']['new'], 
+                      $page['tickets_count']['unresolved'], $page['tickets_count']['resolved'], $page['tickets_count']['in_process'], $page['tickets_count']['new'],
                     ]
                   ]
                 ],
@@ -370,8 +375,167 @@
         </div>
       </div>
     </div>
+    <div class="col-xl-3 col-lg-5 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-baseline">
+            <h6 class="card-title mb-0">Segement Analysis</h6>
+            <!-- <div class="dropdown mb-2">
+            <a type="button" id="dropdownMenuButton5" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+              <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">View</span></a>
+              <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Edit</span></a>
+              <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="trash" class="icon-sm me-2"></i> <span class="">Delete</span></a>
+              <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="printer" class="icon-sm me-2"></i> <span class="">Print</span></a>
+              <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="download" class="icon-sm me-2"></i> <span class="">Download</span></a>
+            </div>
+          </div> -->
+            <div class="">
+              <ul class="nav nav-pills g-1" id="segmentTabOption" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1 active" id="segmentData-tab" data-bs-toggle="tab" data-bs-target="#segmentData-tab-pane" type="button" role="tab" aria-controls="segmentData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1" id="segmentChart-tab" data-bs-toggle="tab" data-bs-target="#segmentChart-tab-pane" type="button" role="tab" aria-controls="segmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                </li>
+            </div>
+          </div>
+          <div class="">
+            <div class="row">
+              <div class="col-12">
+                <div class="tab-content" id="segmentTabOptionContent">
+                  <div class="tab-pane fade show active" id="segmentData-tab-pane" role="tabpanel" aria-labelledby="segmentData-tab" tabindex="0">
+                    <div class="row">
+                      <div class="col-12">
+                        <table class="table">
+                          <tr>
+                            <th>Source</th>
+                            <th>Counts</th>
+                          </tr>
+                          <tr>
+                            <td>Positive</td>
+                            <td><?= $page['tickets_count']['facebook'] ?></td>
+                          </tr>
+                          <tr>
+                            <td>Negative</td>
+                            <td><?= $page['tickets_count']['instagram'] ?></td>
+                          </tr>
+                          <tr>
+                            <td>Twitter</td>
+                            <td><?= $page['tickets_count']['twitter'] ??= 0 ?></td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="segmentChart-tab-pane" role="tabpanel" aria-labelledby="segmentChart-tab" tabindex="0">
+                    <div class="row">
+                      <div class="col-12">
+                        <?php
+                        $data = [
+                          'height' => 300,
+                          'id' => "apexSegmentPie",
+                          'data' => [
+                            'source' => "api/v2/tickets/count?by=status&months=12",
+                            'labels' => ['Unresolved', 'Resolved', 'In Process', 'New',],
+                            'static' => [
+                              [
+                                $page['tickets_count']['unresolved'], $page['tickets_count']['resolved'], $page['tickets_count']['in_process'], $page['tickets_count']['new'],
+                              ]
+                            ]
+                          ],
+                        ];
+                        $this->load->view('components/theme/widgets/charts/piechart', $data); ?>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-baseline mb-2">
+            <div class="">
+              <h6 class="card-title mb-0">All Departments</h6>
+            </div>
+            <div class="">
+              <ul class="nav nav-pills g-1" id="departmentTabOption" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1 active" id="departmentData-tab" data-bs-toggle="tab" data-bs-target="#departmentData-tab-pane" type="button" role="tab" aria-controls="departmentData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1" id="departmentChart-tab" data-bs-toggle="tab" data-bs-target="#departmentChart-tab-pane" type="button" role="tab" aria-controls="departmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                </li>
+            </div>
+          </div>
+          <div class="tab-content" id="departmentTabOptionContent">
+            <div class="tab-pane fade show active" id="departmentData-tab-pane" role="tabpanel" aria-labelledby="departmentData-tab" tabindex="0">
+              <div class="row">
+                <div class="col-12">
+                  <table id="deptDataTable" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Department Name</th>
+                        <th>Count</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($page['list_factors']['departments'] as $key => $department) : ?>
+                        <tr>
+                          <td><?= $department['name'] ?></td>
+                          <td><?= $department['name'] ?></td>
+                        </tr>
+                      <?php endforeach ?>
+                    </tbody>
+                  </table>
+                  <script>
+                    let table = new DataTable('#deptDataTable', {
+                      dom: 'ftip',
+                      pageLength: 5,
+                    });
+                  </script>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="departmentChart-tab-pane" role="tabpanel" aria-labelledby="departmentChart-tab" tabindex="0">
+              <div class="row">
+                <div class="col-12">
+                  <?php
+                  $data = [
+                    'height' => 300,
+                    'id' => "apexDepartmentPie",
+                    'data' => [
+                      'source' => "api/v2/tickets/count?by=status&months=12",
+                      'labels' => ['Facebook', 'Instagram', 'Twitter', 'YouTube', 'LinkedIn'],
+                      'static' => [
+                        [
+                          $page['tickets_count']['facebook'], $page['tickets_count']['instagram'], $page['tickets_count']['twitter'], $page['tickets_count']['youtube'], $page['tickets_count']['linkedin'],
+                        ]
+                      ]
+                    ],
+                  ];
+                  $this->load->view('components/theme/widgets/charts/piechart', $data); ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- row -->
+
+
   <div class="row">
     <div class="col-12 d-none grid-margin stretch-card">
       <div class="card">
@@ -472,7 +636,7 @@
                   'labels' => ['Unresolved', 'Resolved', 'In Process', 'New',],
                   'static' => [
                     [
-                      $page['tickets_count']['unresolved'], $page['tickets_count']['resolved'], $page['tickets_count']['in_process'], $page['tickets_count']['new'], 
+                      $page['tickets_count']['unresolved'], $page['tickets_count']['resolved'], $page['tickets_count']['in_process'], $page['tickets_count']['new'],
                     ]
                   ]
                 ],

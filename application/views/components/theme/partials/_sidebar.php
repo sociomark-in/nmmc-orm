@@ -71,7 +71,7 @@
 				<li class="nav-item <?= link_is_active("departments") ?>">
 					<a href="<?= base_url('departments') ?>" class="nav-link">
 						<i class="link-icon" data-feather="map-pin"></i>
-						<span class="link-title">Dapartments</span>
+						<span class="link-title">Departments</span>
 					</a>
 				</li>
 				<li class="nav-item <?= link_is_active("wards") ?>">
