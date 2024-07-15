@@ -23,6 +23,7 @@ class DepartmentModel extends CI_Model
         if (!is_null($where)) {
             $this->db->where($where);
         }
+    
         $this->db->order_by('name',"ASC");
         return $this->db->get($this->table['tags'])->result_array();
     }

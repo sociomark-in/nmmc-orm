@@ -40,7 +40,7 @@ for ($i=1; $i <= 32; $i++) {
                     categories: <?= json_encode($xaxis) ?>,
                 };
                 options.series = [{
-                    name: "sales",
+                    name: "Type of Complaints",
                     data: [30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 78],
                 }, ];
                 var chart<?= $id ?> = new ApexCharts(document.querySelector("#<?= $id ?>"), options);

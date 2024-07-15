@@ -42,8 +42,13 @@ class Dashboard extends RBAController
 		$this->data['page']['tickets_count']['linkedin'] = $this->TicketsModel->count_all(['source' => 'linkedin']);
 		$this->data['page']['tickets_count']['youtube'] = $this->TicketsModel->count_all(['source' => 'youtube']);
 		$this->data['page']['tickets_count']['new'] = $this->TicketsModel->count_all(['status' => 'new']);
+		$this->data['page']['tickets_count']['positive'] = $this->TicketsModel->count_all(['sentiment' => 'positive']);
+		$this->data['page']['tickets_count']['negative'] = $this->TicketsModel->count_all(['sentiment' => 'negative']);
+		$this->data['page']['tickets_count']['neutral'] = $this->TicketsModel->count_all(['sentiment' => 'neutral']);
+		
 		$this->data['page']['list_factors']['wards'] = $this->WardModel->get(['name']);
 		$this->data['page']['list_factors']['departments'] = $this->DepartmentModel->get(['name']);
+		
 
 		$this->load->admin_dashboard('dashboard/basic/index', $this->data);
 	}
