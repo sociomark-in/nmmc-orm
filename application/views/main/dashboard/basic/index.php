@@ -524,10 +524,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($page['list_factors']['departments'] as $key => $department) : ?>
+                    <?php foreach ($page['list_factors']['complaints'] as $key => $complaints) : ?>
                       <tr>
-                        <td><?= $department['name'] ?></td>
-                        <td><?= $department['name'] ?></td>
+                        <td><?= $complaints['name'] ?></td>
+                        <td><?= $complaints['name'] ?></td>
                       </tr>
                     <?php endforeach ?>
                   </tbody>
@@ -565,7 +565,7 @@
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row d-none">
   <div class="col-xl-12 col-lg-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -587,7 +587,7 @@
           <div class="tab-pane fade show active" id="departmentData-tab-pane" role="tabpanel" aria-labelledby="departmentData-tab" tabindex="0">
             <div class="row">
               <div class="col-12">
-                <table id="deptDataTable" class="table table-striped">
+                <table id="departmentDataTable" class="table table-striped">
                   <thead>
                     <tr>
                       <th>Department Name</th>
@@ -604,7 +604,7 @@
                   </tbody>
                 </table>
                 <script>
-                  let table = new DataTable('#deptDataTable', {
+                  let table = new DataTable('#departmentDataTable', {
                     dom: 'Bfrtip',
                     pageLength: 5,
                     buttons: ['excel']

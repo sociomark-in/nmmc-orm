@@ -48,7 +48,7 @@ class Dashboard extends RBAController
 		
 		$this->data['page']['list_factors']['wards'] = $this->WardModel->get(['name']);
 		$this->data['page']['list_factors']['departments'] = $this->DepartmentModel->get(['name']);
-		
+		$this->data['page']['list_factors']['complaints'] = $this->DepartmentModel->get_complaint(['name']);
 
 		$this->load->admin_dashboard('dashboard/basic/index', $this->data);
 	}
