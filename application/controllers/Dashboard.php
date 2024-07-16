@@ -16,6 +16,20 @@ class Dashboard extends RBAController
 	}
 	public function index()
 	{
+		/* Tickets By Wards & Department */
+		$all_wards = $this->WardModel->get();
+		$all_dept = $this->DepartmentModel->get();
+		$ward_count = [];
+		$dept_count = [];
+		foreach ($all_wards as $key => $ward) {
+			$ward_count[$key]['ward'] = $ward;
+			$ward_count[$key]['count'] = $this->TicketsModel->count_all(['ward_id' => $ward['id']]);
+		}
+		foreach ($all_dept as $key => $dept) {
+			$dept_count[$key]['dept'] = $dept;
+			$dept_count[$key]['count'] = $this->TicketsModel->count_all(['department_id' => $dept['id']]);
+		}
+		/* Tickets By Wards & Department */
 		$rows = json_decode($this->TicketsModel->get_all([
 			"source",
 			"department_id",
@@ -31,6 +45,8 @@ class Dashboard extends RBAController
 			$rows[$i]['ward_id'] = $this->WardModel->get(['name'], ['id' => $rows[$i]['ward_id']])[0]['name'];
 			$rows[$i]['department_id'] = $this->DepartmentModel->get(['name'], ['id' => $rows[$i]['department_id']])[0]['name'];
 		}
+
+
 		$this->data['page']['tickets_all'] = $rows;
 		$this->data['page']['tickets_count']['all'] = count($rows);
 		$this->data['page']['tickets_count']['resolved'] = $this->TicketsModel->count_all(['status' => 'resolved']);
@@ -46,6 +62,8 @@ class Dashboard extends RBAController
 		$this->data['page']['tickets_count']['negative'] = $this->TicketsModel->count_all(['sentiment' => 'negative']);
 		$this->data['page']['tickets_count']['neutral'] = $this->TicketsModel->count_all(['sentiment' => 'neutral']);
 		
+		$this->data['page']['tickets_count']['wardwise'] = $ward_count;
+		$this->data['page']['tickets_count']['departmentwise'] = $dept_count;
 		$this->data['page']['list_factors']['wards'] = $this->WardModel->get(['name']);
 		$this->data['page']['list_factors']['departments'] = $this->DepartmentModel->get(['name']);
 		$this->data['page']['list_factors']['complaints'] = $this->DepartmentModel->get_complaint(['name']);
