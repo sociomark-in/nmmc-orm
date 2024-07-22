@@ -66,11 +66,11 @@
 									<div class="col-xl-3 col-lg-4 col-6">
 										<label for="inputTitle" class="form-label">Complaint Source</label>
 										<select name="source" class="js-example-basic-single form-select" data-width="100%">
-											<?php for ($i = 0; $i < count($this->data['page']['source']); $i++) { ?>
-												<?php if ($page['ticket']['source'] == $this->data['page']['source'][$i]['slug']) : ?>
-													<option value="<?= $this->data['page']['source'][$i]['name'] ?>" selected><?= $this->data['page']['source'][$i]['name'] ?></option>
+											<?php for ($i = 0; $i < count($page['source']); $i++) { ?>
+												<?php if ($page['ticket']['source'] == $page['source'][$i]['slug']) : ?>
+													<option value="<?= $page['source'][$i]['name'] ?>" selected><?= $page['source'][$i]['name'] ?></option>
 												<?php else : ?>
-													<option value="<?= $this->data['page']['source'][$i]['name'] ?>"><?= $this->data['page']['source'][$i]['name'] ?></option>
+													<option value="<?= $page['source'][$i]['name'] ?>"><?= $page['source'][$i]['name'] ?></option>
 												<?php endif ?>
 											<?php } ?>
 										</select>
@@ -107,11 +107,11 @@
 							<div class="mb-3">
 								<label for="inputTitle" class="form-label">Ward</label>
 								<select name="ward_id" class="js-example-basic-single form-select" data-width="100%">
-									<?php for ($i = 0; $i < count($this->data['page']['ward']); $i++) { ?>
-										<?php if ($page['ticket']['ward_id'] == $this->data['page']['ward'][$i]['id']) : ?>
-											<option value="<?= $this->data['page']['ward'][$i]['id'] ?>" selected><?= $this->data['page']['ward'][$i]['name'] ?></option>
+									<?php for ($i = 0; $i < count($page['ward']); $i++) { ?>
+										<?php if ($page['ticket']['ward_id'] == $page['ward'][$i]['id']) : ?>
+											<option value="<?= $page['ward'][$i]['id'] ?>" selected><?= $page['ward'][$i]['name'] ?></option>
 										<?php else : ?>
-											<option value="<?= $this->data['page']['ward'][$i]['id'] ?>"><?= $this->data['page']['ward'][$i]['name'] ?></option>
+											<option value="<?= $page['ward'][$i]['id'] ?>"><?= $page['ward'][$i]['name'] ?></option>
 										<?php endif ?>
 									<?php } ?>
 								</select>
@@ -119,11 +119,11 @@
 							<div class="mb-3">
 								<label for="inputTitle" class="form-label">Department</label>
 								<select name="department_id" class="js-example-basic-single form-select" data-width="100%">
-									<?php for ($i = 0; $i < count($this->data['page']['department']); $i++) { ?>
-										<?php if ($page['ticket']['department_id'] == $this->data['page']['department'][$i]['id']) : ?>
-											<option value="<?= $this->data['page']['department'][$i]['id'] ?>" selected><?= $this->data['page']['department'][$i]['name'] ?></option>
+									<?php for ($i = 0; $i < count($page['department']); $i++) { ?>
+										<?php if ($page['ticket']['department_id'] == $page['department'][$i]['id']) : ?>
+											<option value="<?= $page['department'][$i]['id'] ?>" selected><?= $page['department'][$i]['name'] ?></option>
 										<?php else : ?>
-											<option value="<?= $this->data['page']['department'][$i]['id'] ?>"><?= $this->data['page']['department'][$i]['name'] ?></option>
+											<option value="<?= $page['department'][$i]['id'] ?>"><?= $page['department'][$i]['name'] ?></option>
 										<?php endif ?>
 									<?php } ?>
 								</select>
@@ -132,11 +132,11 @@
 								<label for="inputTitle" class="form-label">Type of Complaint</label>
 								<select name="type_of_complaint" class="js-example-basic-single form-select" data-width="100%">
 									<option value="complaint" selected>Select Complaint</option>
-									<?php for ($i = 0; $i < count($this->data['page']['complaint']); $i++) { ?>
-										<?php if ($page['ticket']['complaint'] == $this->data['page']['complaint'][$i]['name']) : ?>
-											<option value="<?= $this->data['page']['complaint'][$i]['id'] ?>" selected><?= $this->data['page']['complaint'][$i]['name'] ?></option>
+									<?php for ($i = 0; $i < count($page['complaint']); $i++) { ?>
+										<?php if ($page['ticket']['type_of_complaint'] == $page['complaint'][$i]['name']) : ?>
+											<option value="<?= $page['complaint'][$i]['id'] ?>" selected><?= $page['complaint'][$i]['name'] ?></option>
 										<?php else : ?>
-											<option value="<?= $this->data['page']['complaint'][$i]['id'] ?>"><?= $this->data['page']['complaint'][$i]['name'] ?></option>
+											<option value="<?= $page['complaint'][$i]['id'] ?>"><?= $page['complaint'][$i]['name'] ?></option>
 										<?php endif ?>
 									<?php } ?>
 								</select>
@@ -155,11 +155,11 @@
 							<div class="mb-3">
 								<label for="inputTitle" class="form-label">Status</label>
 								<select name="status" class="js-example-basic-single form-select" data-width="100%">
-									<?php for ($i = 0; $i < count($this->data['page']['status']); $i++) { ?>
-										<?php if ($page['ticket']['status'] == $this->data['page']['status'][$i]['slug']) : ?>
-											<option value="<?= $this->data['page']['status'][$i]['name'] ?>" selected><?= $this->data['page']['status'][$i]['name'] ?></option>
+									<?php for ($i = 0; $i < count($page['status']); $i++) { ?>
+										<?php if ($page['ticket']['status'] == $page['status'][$i]['slug']) : ?>
+											<option value="<?= $page['status'][$i]['name'] ?>" selected><?= $page['status'][$i]['name'] ?></option>
 										<?php else : ?>
-											<option value="<?= $this->data['page']['status'][$i]['name'] ?>"><?= $this->data['page']['status'][$i]['name'] ?></option>
+											<option value="<?= $page['status'][$i]['name'] ?>"><?= $page['status'][$i]['name'] ?></option>
 										<?php endif ?>
 									<?php } ?>
 								</select>
@@ -167,8 +167,8 @@
 							<div class="mb-3">
 								<label for="inputTitle" class="form-label">Sentiment Analysis</label>
 								<select name="sentiment" class="js-example-basic-single form-select" data-width="100%">
-									<?php for ($i = 0; $i < count($this->data['page']['sentiment']); $i++) { ?>
-										<option value="<?= $this->data['page']['sentiment'][$i]['name'] ?>"><?= $this->data['page']['sentiment'][$i]['name'] ?></option>
+									<?php for ($i = 0; $i < count($page['sentiment']); $i++) { ?>
+										<option value="<?= $page['sentiment'][$i]['name'] ?>"><?= $page['sentiment'][$i]['name'] ?></option>
 									<?php } ?>
 								</select>
 							</div>

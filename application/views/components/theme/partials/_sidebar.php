@@ -74,6 +74,23 @@
 						<span class="link-title">Departments</span>
 					</a>
 				</li>
+				<li class="nav-item <?= link_is_active("departments") ?>">
+					<a class="nav-link" data-bs-toggle="collapse" href="#department" role="button" aria-expanded="false" aria-controls="department">
+					<i class="link-icon" data-feather="map-pin"></i>
+						<span class="link-title">Departments</span>
+						<i class="link-arrow" data-feather="chevron-down"></i>
+					</a>
+					<div class="collapse" id="department">
+						<ul class="nav sub-menu">
+							<li class="nav-item <?= link_is_active("departments") ?>">
+								<a href="<?= base_url('departments') ?>" class="nav-link">Departments</a>
+							</li>
+							<li class="nav-item <?= link_is_active("complaints/all-tickets/new") ?>">
+								<a href="<?= base_url('complaints/tickets/new') ?>" class="nav-link">Add Department</a>
+							</li>
+						</ul>
+					</div>
+				</li>
 				<li class="nav-item <?= link_is_active("wards") ?>">
 					<a href="<?= base_url('wards') ?>" class="nav-link">
 						<i class="link-icon" data-feather="map-pin"></i>

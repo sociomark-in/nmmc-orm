@@ -94,6 +94,11 @@ $route['complaints/tickets/comments'] = 'ComplaintsController/comments';
 $route['complaints/ticket/(:any)/comments'] = 'ComplaintsController/ticket_comments/$1';
 
 $route['departments'] = "org/DepartmentsController";
+$route['departments/new'] = "org/DepartmentsController/home";
+$route['departments/add'] = "org/DepartmentsController/api_department_add";
+$route['departments/edit/(:any)'] = "org/DepartmentsController/api_department_edit/$1";
+$route['departments/update'] = "org/DepartmentsController/api_department_update";
+
 $route['wards'] = "org/WardsController";
 $route['ward/(:any)'] = "org/WardsController/single/$1";
 
