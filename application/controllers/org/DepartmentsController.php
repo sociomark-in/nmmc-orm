@@ -13,12 +13,12 @@ class DepartmentsController extends RBAController
     }
     public function index()
     {
-        $this->data['page']['departments']['list'] = json_decode($this->DepartmentModel->get(['name', 'slug','id']),true);
+        $this->data['page']['departments']['list'] = $this->DepartmentModel->get(['name', 'slug','id']);
         $this->load->admin_dashboard('wards/departments/index', $this->data);
     }
     public function home()
     {
-        $this->data['page']['departments']['list'] = json_decode($this->DepartmentModel->get(['name', 'slug','id']),true);
+        $this->data['page']['departments']['list'] = $this->DepartmentModel->get(['name', 'slug','id']);
         $this->data['department_list'] = $this->data['page']['departments']['list'];
         $this->load->admin_dashboard('wards/departments/new', $this->data);
     }
@@ -36,34 +36,28 @@ class DepartmentsController extends RBAController
             redirect('departments/new');
         }
     }
-    public function string_filter($string)
-    {
-
-        $string = preg_replace('/[^A-Za-z0-9\-\']/', '', str_replace(' ', '-', strtolower($string)));
-
-        return $string;
-    }
     public function api_department_edit($slug)
 	{
 		$this->load->model('complaints/DepartmentModel');
 		$this->data['page']['slug'] = $slug;
-        $this->data['page']['departments']['list'] = json_decode($this->DepartmentModel->get(['name', 'slug','id']),true);
+        $this->data['page']['departments']['list'] = $this->DepartmentModel->get(['name', 'slug','id']);
         $this->data['department_list'] = $this->data['page']['departments']['list'];
-        $this->data['page']['department'] = json_decode($this->DepartmentModel->get(null, ['id' => $slug]), true)[0];
+        $this->data['page']['department'] = $this->DepartmentModel->get(null, ['id' => $slug])[0];
+        // print_r( $this->data['page']['department']);exit;
 		$this->load->admin_dashboard('wards/departments/edit', $this->data);
 	}
     public function api_department_update()
 	{
 		$form_data = $this->input->post();
-        $slug = $this->string_filter($this->input->post('name'));
-		$data = [
-			"name" => $form_data,
-			"slug" => $slug,
-		];
-        // print_r($data);exit;
+        $form_data['slug'] = slugify($form_data['name']);
+        $data = [
+            'name' => $form_data['name'],
+            'slug' => $form_data['slug']
+        ];
+        // print_r($form_data);exit;
 		if ($this->DepartmentModel->update(['id' => $form_data['department_id']], $data))
 			// redirect($this->input->get_request_header('Referer'));
-			redirect('wards/departments/new');
+			redirect('departments/new');
 		die;
 	}
 

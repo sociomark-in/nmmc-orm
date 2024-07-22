@@ -23,8 +23,9 @@ class DepartmentModel extends CI_Model
         if (!is_null($where)) {
             $this->db->where($where);
         }
-        $result = $this->db->get($this->table['tags'])->result_array();
-        return json_encode($result);
+    
+        $this->db->order_by('name',"ASC");
+        return $this->db->get($this->table['tags'])->result_array();
     }
     public function get_sentiment($select = null, $where = null)
     {

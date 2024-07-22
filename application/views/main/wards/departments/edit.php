@@ -6,10 +6,10 @@
 
     </div>
     <?= form_open("departments/update", ['id' => ""]) ?>
-    <input type="hidden" name="department_id" value="<?= $page['slug'] ?>">
+    <input type="hidden" name="department_id" value="<?= $page['department']['slug'] ?>">
     <div class="row">
         <div class="col-xl-6 col-lg-8 col-12 grid-margin">
-            <div class="row">
+            <div class="row">   
                 <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
