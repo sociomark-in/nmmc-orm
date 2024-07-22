@@ -204,9 +204,9 @@
 										<td><?= $ticket['message'] ?></td>
 										<td><a href="<?= $ticket['source_link'] ?>"><?= $ticket['source'] ?></a></td>
 										<!-- <td><span class="badge bg-danger"><?= $ticket['status'] ?></span></td> -->
-										<?php if ($ticket['status'] == "unresolved") { ?>
+										<?php if ($ticket['status'] == "unresolved" ?? "Unresolved") { ?>
 											<td><span class="badge bg-danger"><?= $ticket['status'] ?></span></td>
-										<?php } elseif ($ticket['status'] == "resolved") { ?>
+										<?php } elseif ($ticket['status'] == "resolved" ?? "Resolved") { ?>
 											<td><span class="badge bg-success"><?= $ticket['status'] ?></span></td>
 										<?php } else { ?>
 											<td><span class="badge bg-warning"><?= $ticket['status'] ?></span></td>
@@ -218,7 +218,8 @@
 						<script>
 							let table = new DataTable('#leadsDataTable', {
 								dom: 'Bfrtip',
-								buttons: ['copy', 'excel', 'pdf', 'print']
+								buttons: ['copy', 'excel', 'pdf', 'print'],
+								order:[[0,'desc']]
 							});
 						</script>
 					</div>

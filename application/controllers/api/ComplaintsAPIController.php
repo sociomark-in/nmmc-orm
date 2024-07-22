@@ -71,7 +71,7 @@ final class ComplaintsAPIController extends RBAController
 		$form_data = $this->input->post();
 		$data = $form_data;
 		if ($this->TicketsModel->insert($data)) {
-			redirect($this->input->get_request_header('Referer'));
+			redirect('complaints/all-tickets');
 		}
 	}
 	public function api_complaints_update()
@@ -90,7 +90,8 @@ final class ComplaintsAPIController extends RBAController
 			"status" => $form_data['status'],
 		];
 		if ($this->TicketsModel->update(['id' => $form_data['ticket_id']], $data))
-			redirect($this->input->get_request_header('Referer'));
+			// redirect($this->input->get_request_header('Referer'));
+			redirect('complaints/all-tickets');
 		die;
 	}
 

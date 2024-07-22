@@ -50,7 +50,7 @@ class TicketsModel extends CI_Model
 		if (!is_null($columns)) {
 			$this->db->select($columns);
 		}
-		$this->db->order_by('created_at', 'DESC');
+		$this->db->order_by('id','DESC');
 		$result = $this->db->get($this->table['tickets'])->result_array();
 
 		return json_encode($result);

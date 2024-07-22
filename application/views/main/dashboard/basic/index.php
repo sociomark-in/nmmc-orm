@@ -237,11 +237,12 @@
                   <button class="nav-link p-2 py-1 active" id="wardData-tab" data-bs-toggle="tab" data-bs-target="#wardData-tab-pane" type="button" role="tab" aria-controls="wardData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1" id="wardChart-tab" data-bs-toggle="tab" data-bs-target="#wardChart-tab-pane" type="button" role="tab" aria-controls="wardChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                  <button class="nav-link p-2 py-1" id="wardChart-tab" data-bs-toggle="tab" disabled data-bs-target="#wardChart-tab-pane" type="button" role="tab" aria-controls="wardChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
                 </li>
             </div>
           </div>
           <div class="">
+            
             <div class="row">
               <div class="col-12">
                 <div class="tab-content" id="wardTabOptionContent">
@@ -256,10 +257,13 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach ($page['list_factors']['wards'] as $key => $ward) : ?>
+                            <?php 
+                            foreach ($this->data['page']['tickets_count']['wardwise'] as $key => $ward) : ?>
                               <tr>
-                                <td><?= $ward['name'] ?></td>
-                                <td><?= $ward['name'] ?></td>
+                                <td>
+                                  <a href="<?= base_url('ward/' . $ward['ward']['slug']) ?>"><?=$ward['ward']['name'] ?></a>
+                                </td>
+                                <td><?= $ward['count'] ?></td>
                               </tr>
                             <?php endforeach ?>
                           </tbody>
@@ -419,7 +423,7 @@
                   <button class="nav-link p-2 py-1 active" id="segmentData-tab" data-bs-toggle="tab" data-bs-target="#segmentData-tab-pane" type="button" role="tab" aria-controls="segmentData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1" id="segmentChart-tab" data-bs-toggle="tab" data-bs-target="#segmentChart-tab-pane" type="button" role="tab" aria-controls="segmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                  <button class="nav-link p-2 py-1" id="segmentChart-tab" disabled data-bs-toggle="tab" data-bs-target="#segmentChart-tab-pane" type="button" role="tab" aria-controls="segmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
                 </li>
             </div>
           </div>
@@ -508,7 +512,7 @@
                 <button class="nav-link p-2 py-1 active" id="complaintData-tab" data-bs-toggle="tab" data-bs-target="#complaintData-tab-pane" type="button" role="tab" aria-controls="complaintData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link p-2 py-1" id="complaintChart-tab" data-bs-toggle="tab" data-bs-target="#complaintChart-tab-pane" type="button" role="tab" aria-controls="complaintChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                <button class="nav-link p-2 py-1" id="complaintChart-tab" data-bs-toggle="tab" disabled data-bs-target="#complaintChart-tab-pane" type="button" role="tab" aria-controls="complaintChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
               </li>
           </div>
         </div>
@@ -524,10 +528,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($page['list_factors']['complaints'] as $key => $complaints) : ?>
+                    <?php foreach ($this->data['page']['tickets_count']['complaintwise'] as $key => $complaints) : ?>
                       <tr>
-                        <td><?= $complaints['name'] ?></td>
-                        <td><?= $complaints['name'] ?></td>
+                        <td><?= $complaints['complaint']['name'] ?></td>
+                        <td><?= $complaints['count'] ?></td>
                       </tr>
                     <?php endforeach ?>
                   </tbody>
@@ -565,7 +569,7 @@
     </div>
   </div>
 </div>
-<div class="row d-none">
+<div class="row">
   <div class="col-xl-12 col-lg-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -579,7 +583,7 @@
                 <button class="nav-link p-2 py-1 active" id="departmentData-tab" data-bs-toggle="tab" data-bs-target="#departmentData-tab-pane" type="button" role="tab" aria-controls="departmentData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link p-2 py-1" id="departmentChart-tab" data-bs-toggle="tab" data-bs-target="#departmentChart-tab-pane" type="button" role="tab" aria-controls="departmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                <button class="nav-link p-2 py-1" id="departmentChart-tab" disabled ="tab" data-bs-target="#departmentChart-tab-pane" type="button" role="tab" aria-controls="departmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
               </li>
           </div>
         </div>
@@ -595,16 +599,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($page['list_factors']['departments'] as $key => $department) : ?>
+                    <?php foreach ($this->data['page']['tickets_count']['departmentwise'] as $key => $department) : ?>
                       <tr>
-                        <td><?= $department['name'] ?></td>
-                        <td><?= $department['name'] ?></td>
+                        <td><?= $department['dept']['name'] ?></td>
+                        <td><?= $department['count'] ?></td>
                       </tr>
                     <?php endforeach ?>
                   </tbody>
                 </table>
                 <script>
-                  let table = new DataTable('#departmentDataTable', {
+                  new DataTable('#departmentDataTable', {
                     dom: 'Bfrtip',
                     pageLength: 5,
                     buttons: ['excel']
