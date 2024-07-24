@@ -5,8 +5,8 @@
         </div>
 
     </div>
-    <?= form_open("departments/update", ['id' => ""]) ?>
-    <input type="hidden" name="department_id" value="<?= $page['department']['slug'] ?>">
+    <?= form_open("api/v2/department/edit", ['id' => ""]) ?>
+    <input type="hidden" name="department_id" value="<?= $page['department']['id'] ?>">
     <div class="row">
         <div class="col-xl-6 col-lg-8 col-12 grid-margin">
             <div class="row">   

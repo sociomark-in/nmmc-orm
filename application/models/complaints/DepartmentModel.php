@@ -6,7 +6,7 @@ class DepartmentModel extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        $this->table['tags'] = "app_application_departments"; 
+        $this->table['department'] = "app_application_departments"; 
         $this->table['source'] = "app_application_source"; 
         $this->table['status'] = "app_application_status"; 
         $this->table['sentiment'] = "app_sentiment_analysis"; 
@@ -25,7 +25,7 @@ class DepartmentModel extends CI_Model
         }
     
         $this->db->order_by('name',"ASC");
-        return $this->db->get($this->table['tags'])->result_array();
+        return $this->db->get($this->table['department'])->result_array();
     }
     public function get_sentiment($select = null, $where = null)
     {
@@ -77,7 +77,7 @@ class DepartmentModel extends CI_Model
     }
     public function insert($data)
     {
-        if ($this->db->insert($this->table['tags'], $data)) {
+        if ($this->db->insert($this->table['department'], $data)) {
             return true;
         } else {
             return false;
@@ -86,8 +86,15 @@ class DepartmentModel extends CI_Model
 
     public function update($where, $data)
     {
-        if (!is_null($where) && !is_null($data)) {
-            return $this->db->update($this->table['tags'], $data, $where);
+        if (!is_null($where)) {
+            $this->db->where($where);
+        }
+        if (!is_null($data)) {
+            if($this->db->update($this->table['department'], $data)){
+                return true;
+            }else {
+                return false;
+            }
         }
     }
 
@@ -95,7 +102,7 @@ class DepartmentModel extends CI_Model
     {
 
         $this->db->where($where);
-        if ($this->db->delete($this->table['tags'])) {
+        if ($this->db->delete($this->table['department'])) {
             return true;
         } else{
             return false;

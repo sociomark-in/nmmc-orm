@@ -85,8 +85,8 @@
 							<li class="nav-item <?= link_is_active("departments") ?>">
 								<a href="<?= base_url('departments') ?>" class="nav-link">Departments</a>
 							</li>
-							<li class="nav-item <?= link_is_active("complaints/all-tickets/new") ?>">
-								<a href="<?= base_url('complaints/tickets/new') ?>" class="nav-link">Add Department</a>
+							<li class="nav-item <?= link_is_active("department/new") ?>">
+								<a href="<?= base_url('department/new') ?>" class="nav-link">Add Department</a>
 							</li>
 						</ul>
 					</div>

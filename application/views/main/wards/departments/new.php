@@ -5,7 +5,7 @@
         </div>
 
     </div>
-    <?= form_open("departments/add", ['id' => ""]) ?>
+    <?= form_open("api/v2/departments/add", ['id' => ""]) ?>
     <div class="row">
         <div class="col-xl-6 col-lg-8 col-12 grid-margin">
             <div class="row">

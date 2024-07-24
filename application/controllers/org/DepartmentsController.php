@@ -22,21 +22,8 @@ class DepartmentsController extends RBAController
         $this->data['department_list'] = $this->data['page']['departments']['list'];
         $this->load->admin_dashboard('wards/departments/new', $this->data);
     }
-    public function api_department_add()
-    {
-        $form_data = $this->input->post();
-        $form_data['slug'] = slugify($form_data['name']);
-        // $slug = $this->string_filter($this->input->post('name'));
-        // $data = array(
-        //     'name' => $form_data,
-        //     'slug' => $slug,
-        // );
-        // print_r($data);
-        if ($this->DepartmentModel->insert($form_data)) {
-            redirect('departments/new');
-        }
-    }
-    public function api_department_edit($slug)
+    
+    public function edit($slug)
 	{
 		$this->load->model('complaints/DepartmentModel');
 		$this->data['page']['slug'] = $slug;

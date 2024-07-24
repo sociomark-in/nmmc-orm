@@ -73,7 +73,9 @@ $route["api/v2/complaints/tag/add"] = "api/ComplaintsAPIController/api_tag_inser
 $route["api/v2/complaints/tag/edit"] = "api/ComplaintsAPIController/api_tag_update";
 $route["api/v2/complaints/tag/delete"] = "api/ComplaintsAPIController/api_tag_delete";
 
-$route["api/v2/department/get"] = "org/DepartmentsController/api_dept_get_single";
+$route["api/v2/department/get"] = "api/DepartmentsAPIController/api_dept_get_single";
+$route['api/v2/department/edit'] = "api/DepartmentsAPIController/api_department_edit";
+$route['api/v2/departments/add'] = "org/DepartmentsController/api_department_add";
 
 
 $route['register'] = 'dashboard/register';
@@ -94,10 +96,8 @@ $route['complaints/tickets/comments'] = 'ComplaintsController/comments';
 $route['complaints/ticket/(:any)/comments'] = 'ComplaintsController/ticket_comments/$1';
 
 $route['departments'] = "org/DepartmentsController";
-$route['departments/new'] = "org/DepartmentsController/home";
-$route['departments/add'] = "org/DepartmentsController/api_department_add";
-$route['departments/edit/(:any)'] = "org/DepartmentsController/api_department_edit/$1";
-$route['departments/update'] = "org/DepartmentsController/api_department_update";
+$route['department/new'] = "org/DepartmentsController/home";
+$route['departments/edit/(:any)'] = "org/DepartmentsController/edit/$1";
 
 $route['wards'] = "org/WardsController";
 $route['ward/(:any)'] = "org/WardsController/single/$1";

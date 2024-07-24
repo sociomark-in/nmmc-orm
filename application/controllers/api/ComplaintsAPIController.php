@@ -1,6 +1,6 @@
 <?php
 require_once APPPATH . "controllers/base/RBAController.php";
-final class ComplaintsAPIController extends RBAController
+class ComplaintsAPIController extends RBAController
 {
 	public $data;
 
