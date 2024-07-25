@@ -76,7 +76,7 @@
 				</li>
 				<li class="nav-item <?= link_is_active("departments") ?>">
 					<a class="nav-link" data-bs-toggle="collapse" href="#department" role="button" aria-expanded="false" aria-controls="department">
-					<i class="link-icon" data-feather="map-pin"></i>
+						<i class="link-icon" data-feather="map-pin"></i>
 						<span class="link-title">Departments</span>
 						<i class="link-arrow" data-feather="chevron-down"></i>
 					</a>
@@ -92,10 +92,35 @@
 					</div>
 				</li>
 				<li class="nav-item <?= link_is_active("wards") ?>">
-					<a href="<?= base_url('wards') ?>" class="nav-link">
+					<a class="nav-link" data-bs-toggle="collapse" href="#ward" role="button" aria-expanded="false" aria-controls="ward">
 						<i class="link-icon" data-feather="map-pin"></i>
 						<span class="link-title">Wards</span>
+						<i class="link-arrow" data-feather="chevron-down"></i>
 					</a>
+					<div class="collapse" id="ward">
+						<ul class="nav sub-menu">
+							<li class="nav-item <?= link_is_active("wards") ?>">
+								<a href="<?= base_url('wards') ?>" class="nav-link">Wards</a>
+							</li>
+							<li class="nav-item <?= link_is_active("department/new") ?>">
+								<a href="<?= base_url('ward/new') ?>" class="nav-link">Add Wards</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item <?= link_is_active("complaint") ?>">
+					<a class="nav-link" data-bs-toggle="collapse" href="#complaint" role="button" aria-expanded="false" aria-controls="complaint">
+						<i class="link-icon" data-feather="map-pin"></i>
+						<span class="link-title">Complaint</span>
+						<i class="link-arrow" data-feather="chevron-down"></i>
+					</a>
+					<div class="collapse" id="complaint">
+						<ul class="nav sub-menu">
+							<li class="nav-item <?= link_is_active("complaint/new") ?>">
+								<a href="<?= base_url('complaint/new') ?>" class="nav-link">Add Complaint</a>
+							</li>
+						</ul>
+					</div>
 				</li>
 
 				<!-- Access Level: admin -->

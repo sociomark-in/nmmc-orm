@@ -6,7 +6,7 @@ class WardModel extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        $this->table['categories'] = "app_application_wards";
+        $this->table['complaint'] = "app_application_complaint";
     }
 
     public function get($select = null, $where = null)
@@ -29,13 +29,6 @@ class WardModel extends CI_Model
             return false;
         }
     }
-
-    // public function update($where, $data)
-    // {
-    //     if (!is_null($where) && !is_null($data)) {
-    //         return $this->db->update($this->table['categories'], $data, $where);
-    //     }
-    // }
     public function update($where, $data)
     {
         if (!is_null($where)) {

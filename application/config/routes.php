@@ -77,6 +77,17 @@ $route["api/v2/department/get"] = "api/DepartmentsAPIController/api_dept_get_sin
 $route['api/v2/department/edit'] = "api/DepartmentsAPIController/api_department_edit";
 $route['api/v2/departments/add'] = "org/DepartmentsController/api_department_add";
 
+// $route["api/v2/ward/get"] = "api/WardsAPIController/api_dept_get_single";
+$route['api/v2/ward/edit'] = "api/WardsAPIController/api_ward_edit";
+$route['ward/new'] = "org/WardsController/home";
+$route['api/v2/ward/add'] = "api/WardsAPIController/api_ward_add";
+$route['wards/edit/(:any)'] = "org/WardsController/edit/$1";
+
+// complaints add edit routes
+$route['api/v2/complaint/edit'] = "api/ComplaintsController/api_complaint_edit";
+$route['complaint/new'] = "org/ComplaintsController/new";
+$route['api/v2/complaint/add'] = "api/ComplaintsController/api_complaint_add";
+$route['complaint/edit/(:any)'] = "org/ComplaintsController/edit/$1";
 
 $route['register'] = 'dashboard/register';
 

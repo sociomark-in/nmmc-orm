@@ -18,6 +18,7 @@ class ComplaintsController extends RBAController
 		$this->load->model('data/AuthorsModel');
 		$this->load->model('complaints/WardModel');
 		$this->load->model('complaints/DepartmentModel');
+		$this->load->model('complaints/ComplaintModel');
 	}
 
 	public function home()
@@ -56,6 +57,23 @@ class ComplaintsController extends RBAController
 	{
 		$output = json_encode($this->TicketsModel->count_status(['status as ' . 'name', 'COUNT(*) as '  . 'data', "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]));
 	}
+
+	public function new()
+    {
+        $this->data['page']['complaint']['list'] = $this->ComplaintModel->get(['name', 'slug', 'id']);
+        $this->data['complaint_list'] = $this->data['page']['complaint']['list'];
+        $this->load->admin_dashboard('complaint/new', $this->data);
+    }
+    // public function edit($slug)
+	// {
+	// 	$this->load->model('complaints/ComplaintModel');
+	// 	$this->data['page']['slug'] = $slug;
+    //     $this->data['page']['complaint']['list'] = $this->ComplaintModel->get(['name', 'slug','id']);
+    //     $this->data['complaint_list'] = $this->data['page']['complaint']['list'];
+    //     $this->data['page']['complaint'] = $this->ComplaintModel->get(null, ['id' => $slug])[0];
+    //     // print_r( $this->data['page']['department']);exit;
+	// 	$this->load->admin_dashboard('complaint/edit', $this->data);
+	// }
 
 
 	public function new_ticket()
