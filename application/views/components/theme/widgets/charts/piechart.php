@@ -6,28 +6,30 @@
     if ($('#<?= $id ?>').length) {
         var options = pieChartOptions;
         options.chart.height = "<?= $height ?>"
-        <?php if (isset($data['labels'])) : ?>
-            options.labels = <?= json_encode($data['labels']) ?>;
-        <?php endif ?>
 
-        <?php if (isset($data['static'])) : ?>
-            options.series = <?= json_encode($data['static'][0]) ?>;
+        <?php if (isset($source['static'])) : //STATIC DATABASE  ?>
+            <?php if (isset($source['static']['labels'])) : ?>
+                options.labels = <?= json_encode($source['static']['labels']) ?>;
+            <?php endif ?>
+            options.series = <?= json_encode($source['static']['data']) ?>;
             var chart<?= $id ?> = new ApexCharts(document.querySelector("#<?= $id ?>"), options);
             chart<?= $id ?>.render();
         <?php else : ?>
             $.ajax({
-                url: "<?= base_url($data['source']) ?>",
+                url: "<?= base_url($source['url']) ?>",
                 method: "POST",
                 data: {
                     output: ['name', 'data']
                 },
-                success: function(data) {
-                    options.series = [14, 65, 23, 53];
+                success: function(response) {
+                    console.log(response.output[0].data);
+                    options.series = response.output[0].data.series;
+                    options.labels = response.output[0].data.labels;
                     var chart<?= $id ?> = new ApexCharts(document.querySelector("#<?= $id ?>"), options);
                     chart<?= $id ?>.render();
                 }
             })
         <?php endif ?>
-
+        // console.log(options);
     }
 </script>

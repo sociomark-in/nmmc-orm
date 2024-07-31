@@ -24,42 +24,86 @@ class ComplaintsAPIController extends RBAController
 		$final['data'] = [];
 		$final['months'] = [];
 		$final['duration'] = [];
-		if ($get_data['by'] == 'status') {
-			if ($get_data['months'] == 12) {
-				$output = $this->TicketsModel->count_status(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]);
-			} else {
-				$output = $this->TicketsModel->count_status(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"]);
-			}
-
-			$c = $output;
-
-
-			// Loop through the original array
-			foreach ($c as $item) {
-				$name = $item["name"];
-				$data = $item["data"];
-				$month = $item["month"]; // You can remove this if not needed in the new structure
-
-				// Check if the name already exists in the new array
-				if (isset($newArray[$name])) {
-					// If it exists, append the data to its existing data array
-					$newArray[$name]["data"][] = $data;
+		switch ($get_data['type']) {
+			case 'pie':
+				$final['data'] = [
+					'labels' => [],
+					'series' => [],
+				];
+				break;
+				
+				default:
+				$final['data'] = [];
+				break;
+		}
+		switch ($get_data['by']) {
+			case 'status':
+				# code...
+				if ($get_data['months'] == 12) {
+					$output = $this->TicketsModel->count_(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]);
 				} else {
-					// If it doesn't exist, create a new entry with name and data array
-					$newArray[$name] = [
-						"name" => $name,
-						"data" => [$data],
-					];
+					$output = $this->TicketsModel->count_(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"]);
 				}
-				array_push($final['duration'], $month);
-			}
-			$final['duration'] = array_unique($final['duration']);
-			foreach ($newArray as $key => $value) {
-				array_push($final['data'], $value);
-			}
-			foreach ($final['duration'] as $key => $m) {
-				array_push($final['months'], $m);
-			}
+
+				$c = $output;
+
+
+				// Loop through the original array
+				foreach ($c as $item) {
+					$name = $item["name"];
+					$data = $item["data"];
+					$month = $item["month"]; // You can remove this if not needed in the new structure
+
+					// Check if the name already exists in the new array
+					if (isset($newArray[$name])) {
+						// If it exists, append the data to its existing data array
+						$newArray[$name]["data"][] = $data;
+					} else {
+						// If it doesn't exist, create a new entry with name and data array
+						$newArray[$name] = [
+							"name" => $name,
+							"data" => [$data],
+						];
+					}
+					array_push($final['duration'], $month);
+				}
+				$final['duration'] = array_unique($final['duration']);
+				foreach ($newArray as $key => $value) {
+					array_push($final['data'], $value);
+				}
+				foreach ($final['duration'] as $key => $m) {
+					array_push($final['months'], $m);
+				}
+				break;
+
+			case 'ward':
+				switch ($get_data['type']) {
+					case 'pie':
+						$labels = [];
+						$series = [];
+						foreach ($this->WardModel->get(['name']) as $key => $label) {
+							array_push($labels, $label['name']);
+						}
+						foreach ($this->TicketsModel->count_(['COUNT(*) as `count`'],['ward_id']) as $key => $sequence) {
+							array_push($series, (int)$sequence['count']);
+						}
+						$final['data'] = [
+							'labels' => $labels,
+							'series' => $series,
+						];
+						break;
+						
+						default:
+						$final['data'] = [];
+						break;
+				}			
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+		if ($get_data['by'] == 'status') {
 		}
 		return $this->output
 			->set_content_type('application/json')

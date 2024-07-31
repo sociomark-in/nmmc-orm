@@ -11,15 +11,15 @@ class TicketsModel extends CI_Model
 		$this->table['tickets'] = 'app_complaint_tickets';
 	}
 
-	public function count_status($columns = null, $where = null)
+	public function count_($columns = null, $group_by = null)
 	{
 		if (!is_null($columns)) {
 			$this->db->select($columns);
 		}
-		if (!is_null($where)) {
-			$this->db->where($where);
+		if (!is_null($group_by)) {
+			// $this->db->where($where);
+			$this->db->group_by($group_by);
 		}
-		$this->db->group_by(["DATE_FORMAT(created_at, '%Y-%m')", "status"]);
 
 		return $this->db->get($this->table['tickets'])->result_array();
 	}

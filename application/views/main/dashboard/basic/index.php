@@ -202,13 +202,13 @@
                         $data = [
                           'height' => 300,
                           'id' => "apexSourcePie",
-                          'data' => [
-                            'source' => "api/v2/tickets/count?by=status&months=12",
-                            'labels' => ['Facebook', 'Instagram', 'Twitter', 'YouTube', 'LinkedIn'],
+                          'source' => [
+                            'url' => "api/v2/tickets/count?by=source&months=12&type=pie",
                             'static' => [
-                              [
+                              'labels' => ['Facebook', 'Instagram', 'Twitter', 'YouTube', 'LinkedIn'],
+                              'data' => [
                                 $page['tickets_count']['facebook'], $page['tickets_count']['instagram'], $page['tickets_count']['twitter'], $page['tickets_count']['youtube'], $page['tickets_count']['linkedin'],
-                              ]
+                              ],
                             ]
                           ],
                         ];
@@ -237,12 +237,12 @@
                   <button class="nav-link p-2 py-1 active" id="wardData-tab" data-bs-toggle="tab" data-bs-target="#wardData-tab-pane" type="button" role="tab" aria-controls="wardData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1" id="wardChart-tab" data-bs-toggle="tab" disabled data-bs-target="#wardChart-tab-pane" type="button" role="tab" aria-controls="wardChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                  <button class="nav-link p-2 py-1" id="wardChart-tab" data-bs-toggle="tab" data-bs-target="#wardChart-tab-pane" type="button" role="tab" aria-controls="wardChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
                 </li>
             </div>
           </div>
           <div class="">
-            
+
             <div class="row">
               <div class="col-12">
                 <div class="tab-content" id="wardTabOptionContent">
@@ -257,11 +257,11 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <?php 
+                            <?php
                             foreach ($this->data['page']['tickets_count']['wardwise'] as $key => $ward) : ?>
                               <tr>
                                 <td>
-                                  <a href="<?= base_url('ward/' . $ward['ward']['slug']) ?>"><?=$ward['ward']['name'] ?></a>
+                                  <a href="<?= base_url('ward/' . $ward['ward']['slug']) ?>"><?= $ward['ward']['name'] ?></a>
                                 </td>
                                 <td><?= $ward['count'] ?></td>
                               </tr>
@@ -286,14 +286,8 @@
                         $data = [
                           'height' => 300,
                           'id' => "apexWardPie",
-                          'data' => [
-                            'source' => "api/v2/tickets/count?by=status&months=12",
-                            'labels' => ['Facebook', 'Instagram', 'Twitter', 'YouTube', 'LinkedIn'],
-                            'static' => [
-                              [
-                                $page['tickets_count']['facebook'], $page['tickets_count']['instagram'], $page['tickets_count']['twitter'], $page['tickets_count']['youtube'], $page['tickets_count']['linkedin'],
-                              ]
-                            ]
+                          'source' => [
+                            'url' => "api/v2/tickets/count?by=ward&months=12&type=pie",
                           ],
                         ];
                         $this->load->view('components/theme/widgets/charts/piechart', $data); ?>
@@ -583,7 +577,7 @@
                 <button class="nav-link p-2 py-1 active" id="departmentData-tab" data-bs-toggle="tab" data-bs-target="#departmentData-tab-pane" type="button" role="tab" aria-controls="departmentData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link p-2 py-1" id="departmentChart-tab" disabled ="tab" data-bs-target="#departmentChart-tab-pane" type="button" role="tab" aria-controls="departmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                <button class="nav-link p-2 py-1" id="departmentChart-tab" disabled="tab" data-bs-target="#departmentChart-tab-pane" type="button" role="tab" aria-controls="departmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
               </li>
           </div>
         </div>
