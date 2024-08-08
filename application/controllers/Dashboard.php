@@ -19,7 +19,7 @@ class Dashboard extends RBAController
 	{
 		/* Tickets By Wards & Department */
 		$all_wards = $this->WardModel->get();
-		$all_dept = $this->DepartmentModel->get();
+		$all_dept = json_decode($this->DepartmentModel->get(), true);
 		$all_complaint = json_decode($this->ComplaintTypeModel->get(), true);
 		$ward_count = [];
 		$dept_count = [];
@@ -50,7 +50,7 @@ class Dashboard extends RBAController
 		]), true);
 		for ($i = 0; $i < count($rows); $i++) {
 			$rows[$i]['ward_id'] = $this->WardModel->get(['name'], ['id' => $rows[$i]['ward_id']])[0]['name'];
-			$rows[$i]['department_id'] = $this->DepartmentModel->get(['name'], ['id' => $rows[$i]['department_id']])[0]['name'];
+			$rows[$i]['department_id'] = json_decode($this->DepartmentModel->get(['name'], ['id' => $rows[$i]['department_id']]), true)[0]['name'];
 		}
 
 
@@ -73,7 +73,7 @@ class Dashboard extends RBAController
 		$this->data['page']['tickets_count']['departmentwise'] = $dept_count;
 		$this->data['page']['tickets_count']['complaintwise'] = $complaint_count;
 		$this->data['page']['list_factors']['wards'] = $this->WardModel->get(['name']);
-		$this->data['page']['list_factors']['departments'] = $this->DepartmentModel->get(['name']);
+		$this->data['page']['list_factors']['departments'] = json_decode($this->DepartmentModel->get(['name']), true);
 		$this->data['page']['list_factors']['complaints'] = $this->DepartmentModel->get_complaint(['name']);
 
 		$this->load->admin_dashboard('dashboard/basic/index', $this->data);

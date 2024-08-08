@@ -84,7 +84,7 @@ if ($(".apexchart.bar-chart").length) {
     },
     plotOptions: {
       bar: {
-        borderRadius: 10,
+        borderRadius: 2,
         dataLabels: {
           position: "top", // top, center, bottom
         },
@@ -140,6 +140,7 @@ if ($(".apexchart.bar-chart").length) {
         enabled: true,
       },
     },
+
     yaxis: {
       axisBorder: {
         show: false,
@@ -154,6 +155,7 @@ if ($(".apexchart.bar-chart").length) {
         },
       },
     },
+    
     title: {
       text: "Monthly Inflation in Argentina, 2002",
       floating: true,

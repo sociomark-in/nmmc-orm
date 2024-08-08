@@ -13,12 +13,12 @@ class DepartmentsController extends RBAController
     }
     public function index()
     {
-        $this->data['page']['departments']['list'] = $this->DepartmentModel->get(['name', 'slug','id']);
+        $this->data['page']['departments']['list'] = json_decode($this->DepartmentModel->get(['name', 'slug','id']), true);
         $this->load->admin_dashboard('wards/departments/index', $this->data);
     }
     public function home()
     {
-        $this->data['page']['departments']['list'] = $this->DepartmentModel->get(['name', 'slug','id']);
+        $this->data['page']['departments']['list'] = json_decode($this->DepartmentModel->get(['name', 'slug','id']), true);
         $this->data['department_list'] = $this->data['page']['departments']['list'];
         $this->load->admin_dashboard('wards/departments/new', $this->data);
     }
@@ -27,9 +27,9 @@ class DepartmentsController extends RBAController
 	{
 		$this->load->model('complaints/DepartmentModel');
 		$this->data['page']['slug'] = $slug;
-        $this->data['page']['departments']['list'] = $this->DepartmentModel->get(['name', 'slug','id']);
+        $this->data['page']['departments']['list'] = json_decode($this->DepartmentModel->get(['name', 'slug','id']), true);
         $this->data['department_list'] = $this->data['page']['departments']['list'];
-        $this->data['page']['department'] = $this->DepartmentModel->get(null, ['id' => $slug])[0];
+        $this->data['page']['department'] = json_decode($this->DepartmentModel->get(null, ['id' => $slug]), true)[0];
         // print_r( $this->data['page']['department']);exit;
 		$this->load->admin_dashboard('wards/departments/edit', $this->data);
 	}
@@ -52,21 +52,20 @@ class DepartmentsController extends RBAController
     {
         $ward = $this->WardModel->get(null, ['slug' => $slug])[0];
         $id = $ward['id'];
-        $departments = $this->DepartmentModel->get();
+        $departments = json_decode($this->DepartmentModel->get(), true);
         $complaints['count'] = $this->TicketsModel->count_group_by(['department_id as ' . 'department', 'COUNT(*) as '  . 'count'], ['ward_id' => $id], 'department_id');
         $complaints['processed'] = $complaints['count'];
+        $complaint['department'] = json_decode($this->DepartmentModel->get(null, ['id' => $complaint['department']]), true)[0];
+        $complaints['data'] = json_decode($this->TicketsModel->get(null, ['ward_id' => $id]), true);
+        $complaint['ward'] = $ward;
         for ($i = 0; $i < count($complaints['processed']); $i++) {
             $complaint = $complaints['processed'][$i];
-            $complaint['department'] = $this->DepartmentModel->get(null, ['id' => $complaint['department']])[0];
             $complaints['processed'][$i] = $complaint;
         }
 
-        $complaints['data'] = json_decode($this->TicketsModel->get(null, ['ward_id' => $id]), true);
 
         for ($i = 0; $i < count($complaints['data']); $i++) {
             $complaint = $complaints['data'][$i];
-            $complaint['department'] = $this->DepartmentModel->get(null, ['id' => $complaint['department_id']])[0];
-            $complaint['ward'] = $ward;
             $complaints['data'][$i] = $complaint;
         }
 

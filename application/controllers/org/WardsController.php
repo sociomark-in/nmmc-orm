@@ -37,12 +37,12 @@ class WardsController extends RBAController
     {
         $ward = $this->WardModel->get(null, ['slug' => $slug])[0];
         $id = $ward['id'];
-        $departments = $this->DepartmentModel->get();
+        $departments = json_decode($this->DepartmentModel->get(), true);
         $complaints['count'] = $this->TicketsModel->count_group_by(['department_id as ' . 'department', 'COUNT(*) as '  . 'count'], ['ward_id' => $id], 'department_id');
         $complaints['processed'] = $complaints['count'];
         for ($i = 0; $i < count($complaints['processed']); $i++) {
             $complaint = $complaints['processed'][$i];
-            $complaint['department'] = $this->DepartmentModel->get(null, ['id' => $complaint['department']])[0];
+            $complaint['department'] = json_decode($this->DepartmentModel->get(null, ['id' => $complaint['department']]), true)[0];
             $complaints['processed'][$i] = $complaint;
         }
 
@@ -50,7 +50,7 @@ class WardsController extends RBAController
 
         for ($i = 0; $i < count($complaints['data']); $i++) {
             $complaint = $complaints['data'][$i];
-            $complaint['department'] = $this->DepartmentModel->get(null, ['id' => $complaint['department_id']])[0];
+            $complaint['department'] = json_decode($this->DepartmentModel->get(null, ['id' => $complaint['department_id']]), true)[0];
             $complaint['ward'] = $ward;
             $complaints['data'][$i] = $complaint;
         }

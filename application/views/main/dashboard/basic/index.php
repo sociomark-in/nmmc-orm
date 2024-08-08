@@ -386,6 +386,7 @@
     </div>
 
   </div>
+  </div>
   <div class="row">
     <div class="col-xl-12 col-lg-6 grid-margin stretch-card">
       <div class="card">
@@ -479,10 +480,10 @@
                   $data = [
                     'id' => "apexDepartmentChart",
                     'source' => [
-                      'url' => "api/v2/tickets/count?by=status&months=12&type=bar",
+                      'url' => "api/v2/tickets/count?by=department&months=12&type=bar",
                     ],
                     'events' => ['dataPointSelection' => [
-                      'url' => "api/v2/department/get",
+                      'url' => "api/v2/department/get?columns[]=slug",
                       'redirect' => "department/(:any)"
                     ]]
                   ];

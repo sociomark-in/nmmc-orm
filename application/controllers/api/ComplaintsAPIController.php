@@ -31,49 +31,58 @@ class ComplaintsAPIController extends RBAController
 					'series' => [],
 				];
 				break;
-				
-				default:
+
+			default:
 				$final['data'] = [];
 				break;
 		}
 		switch ($get_data['by']) {
 			case 'status':
+				switch ($get_data['type']) {
+					case 'bar':
+
+						break;
+
+					default:
+						if ($get_data['months'] == 12) {
+							$output = $this->TicketsModel->count_(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]);
+						} else {
+							$output = $this->TicketsModel->count_(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"]);
+						}
+
+						$c = $output;
+
+
+						// Loop through the original array
+						foreach ($c as $item) {
+							$name = $item["name"];
+							$data = $item["data"];
+							$month = $item["month"]; // You can remove this if not needed in the new structure
+
+							// Check if the name already exists in the new array
+							if (isset($newArray[$name])) {
+								// If it exists, append the data to its existing data array
+								$newArray[$name]["data"][] = $data;
+							} else {
+								// If it doesn't exist, create a new entry with name and data array
+								$newArray[$name] = [
+									"name" => $name,
+									"data" => [$data],
+								];
+							}
+							array_push($final['duration'], $month);
+						}
+						$final['duration'] = array_unique($final['duration']);
+						foreach ($newArray as $key => $value) {
+							array_push($final['data'], $value);
+						}
+						foreach ($final['duration'] as $key => $m) {
+							array_push($final['months'], $m);
+						}
+						break;
+				}
 				# code...
-				if ($get_data['months'] == 12) {
-					$output = $this->TicketsModel->count_(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"], ["DATE_FORMAT(created_at, '%Y-%m') >= 2023-01"]);
-				} else {
-					$output = $this->TicketsModel->count_(['status as ' . $post_data['output'][0], 'COUNT(*) as '  . $post_data['output'][1], "DATE_FORMAT(created_at, '%Y-%m') AS month"]);
-				}
 
-				$c = $output;
-
-
-				// Loop through the original array
-				foreach ($c as $item) {
-					$name = $item["name"];
-					$data = $item["data"];
-					$month = $item["month"]; // You can remove this if not needed in the new structure
-
-					// Check if the name already exists in the new array
-					if (isset($newArray[$name])) {
-						// If it exists, append the data to its existing data array
-						$newArray[$name]["data"][] = $data;
-					} else {
-						// If it doesn't exist, create a new entry with name and data array
-						$newArray[$name] = [
-							"name" => $name,
-							"data" => [$data],
-						];
-					}
-					array_push($final['duration'], $month);
-				}
-				$final['duration'] = array_unique($final['duration']);
-				foreach ($newArray as $key => $value) {
-					array_push($final['data'], $value);
-				}
-				foreach ($final['duration'] as $key => $m) {
-					array_push($final['months'], $m);
-				}
 				break;
 
 			case 'ward':
@@ -84,7 +93,7 @@ class ComplaintsAPIController extends RBAController
 						foreach ($this->WardModel->get(['name']) as $key => $label) {
 							array_push($labels, $label['name']);
 						}
-						foreach ($this->TicketsModel->count_(['COUNT(*) as `count`'],['ward_id']) as $key => $sequence) {
+						foreach ($this->TicketsModel->count_(['COUNT(*) as `count`'], ['ward_id']) as $key => $sequence) {
 							array_push($series, (int)$sequence['count']);
 						}
 						$final['data'] = [
@@ -92,23 +101,23 @@ class ComplaintsAPIController extends RBAController
 							'series' => $series,
 						];
 						break;
-						
-						default:
+
+					default:
 						$final['data'] = [];
 						break;
-				}			
+				}
 				break;
-			
+
 			case 'sentiment':
 				switch ($get_data['type']) {
 					case 'pie':
 						$series = [];
 						// $labels = [];
 						// foreach ($this->WardModel->get(['name']) as $key => $label) {
-							// 	array_push($labels, $label['name']);
-							// }
-							$labels = ['Positive','Negative', 'Neutral'];
-						foreach ($this->TicketsModel->count_(['COUNT(*) as `count`'],['sentiment']) as $key => $sequence) {
+						// 	array_push($labels, $label['name']);
+						// }
+						$labels = ['Positive', 'Negative', 'Neutral'];
+						foreach ($this->TicketsModel->count_(['COUNT(*) as `count`'], ['sentiment']) as $key => $sequence) {
 							array_push($series, (int)$sequence['count']);
 						}
 						$final['data'] = [
@@ -116,13 +125,15 @@ class ComplaintsAPIController extends RBAController
 							'series' => $series,
 						];
 						break;
-						
-						default:
+
+					default:
 						$final['data'] = [];
 						break;
-				}			
+				}
 				break;
-			
+			case 'department':
+				# code...
+				break;
 			default:
 				# code...
 				break;
@@ -150,14 +161,14 @@ class ComplaintsAPIController extends RBAController
 			"source" => $form_data['source'],
 			"department_id" => $form_data['department_id'],
 			"ward_id" => $form_data['ward_id'],
-			"type_of_complaint" => json_decode($this->ComplaintTypeModel->get(['name'], ['id' => $form_data['type_of_complaint']]),true)[0]['name'],
+			"type_of_complaint" => json_decode($this->ComplaintTypeModel->get(['name'], ['id' => $form_data['type_of_complaint']]), true)[0]['name'],
 			"message" => $form_data['message'],
 			"source_link" => $form_data['source_link'],
 			"sentiment" => $form_data['sentiment'],
 			"comments" => $form_data['comment'],
 			"status" => $form_data['status'],
 		];
-// 		print_r($data);exit;
+		// 		print_r($data);exit;
 		if ($this->TicketsModel->update(['id' => $form_data['ticket_id']], $data))
 			// redirect($this->input->get_request_header('Referer'));
 			redirect('complaints/all-tickets');
@@ -172,9 +183,7 @@ class ComplaintsAPIController extends RBAController
 		return $this->output->set_content_type('application/json')->set_output(json_encode(['status' => 'active', 'data' => $result]));
 	}
 	/* Get Single Category */
-	public function api_category_get_single()
-	{
-	}
+	public function api_category_get_single() {}
 	public function api_category_insert()
 	{
 		$form_data = $this->input->post();
@@ -229,10 +238,6 @@ class ComplaintsAPIController extends RBAController
 		$result = $this->TagModel->get(null, ['id' => $data['id']])[0];
 		return $this->output->set_content_type('application/json')->set_output(json_encode(['status' => 'active', 'data' => $result]));
 	}
-	public function api_tag_edit()
-	{
-	}
-	public function api_tag_delete()
-	{
-	}
+	public function api_tag_edit() {}
+	public function api_tag_delete() {}
 }

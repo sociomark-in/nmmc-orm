@@ -16,9 +16,14 @@ class DepartmentsAPIController extends RBAController
     }
 
     public function api_department_get_single(){
+        $select = $this->input->get('columns');
+        $where = ['name' => $this->input->post('department')];
+
+        $department = json_decode($this->DepartmentModel->get($select, $where), true);
+
         $this->output
         ->set_content_type('application/json')
-        ->set_output(json_encode(array('slug' => $this->input->post('department'))));
+        ->set_output(json_encode(array('slug' => $department['slug'])));
     }
     public function api_department_add()
     {
