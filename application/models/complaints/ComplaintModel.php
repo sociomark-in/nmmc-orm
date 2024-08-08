@@ -1,6 +1,6 @@
 <?php
 
-class WardModel extends CI_Model
+class ComplaintModel extends CI_Model
 {
     public $table;
     public function __construct()

@@ -84,12 +84,13 @@
 						</div>
 					</div>
 				</div>
+				<!--full-editor-->
 				<div class="col-12 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body">
 							<div class="mb-3">
 								<label for="inputPostContent" class="form-label">Message</label>
-								<textarea name="message" class="form-control full-editor" id="inputPostContent" rows="10"><?= $page['ticket']['message'] ?></textarea>
+								<textarea name="message" class="form-control" id="inputPostContent" rows="10"><?= $page['ticket']['message'] ?></textarea>
 							</div>
 						</div>
 					</div>

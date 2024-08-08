@@ -73,7 +73,7 @@ $route["api/v2/complaints/tag/add"] = "api/ComplaintsAPIController/api_tag_inser
 $route["api/v2/complaints/tag/edit"] = "api/ComplaintsAPIController/api_tag_update";
 $route["api/v2/complaints/tag/delete"] = "api/ComplaintsAPIController/api_tag_delete";
 
-$route["api/v2/department/get"] = "api/DepartmentsAPIController/api_dept_get_single";
+$route["api/v2/department/get"] = "api/DepartmentsAPIController/api_department_get_single";
 $route['api/v2/department/edit'] = "api/DepartmentsAPIController/api_department_edit";
 $route['api/v2/departments/add'] = "org/DepartmentsController/api_department_add";
 
@@ -112,6 +112,9 @@ $route['departments/edit/(:any)'] = "org/DepartmentsController/edit/$1";
 
 $route['wards'] = "org/WardsController";
 $route['ward/(:any)'] = "org/WardsController/single/$1";
+
+$route['complaints/all-types'] = 'ComplaintsTypeController/home';
+$route['complaints/types/new'] = 'ComplaintsTypeController/new';
 
 $route['profile'] = "org/ProfileController";
 

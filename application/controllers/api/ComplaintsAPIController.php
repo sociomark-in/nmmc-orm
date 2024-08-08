@@ -99,6 +99,30 @@ class ComplaintsAPIController extends RBAController
 				}			
 				break;
 			
+			case 'sentiment':
+				switch ($get_data['type']) {
+					case 'pie':
+						$series = [];
+						// $labels = [];
+						// foreach ($this->WardModel->get(['name']) as $key => $label) {
+							// 	array_push($labels, $label['name']);
+							// }
+							$labels = ['Positive','Negative', 'Neutral'];
+						foreach ($this->TicketsModel->count_(['COUNT(*) as `count`'],['sentiment']) as $key => $sequence) {
+							array_push($series, (int)$sequence['count']);
+						}
+						$final['data'] = [
+							'labels' => $labels,
+							'series' => $series,
+						];
+						break;
+						
+						default:
+						$final['data'] = [];
+						break;
+				}			
+				break;
+			
 			default:
 				# code...
 				break;
@@ -126,13 +150,14 @@ class ComplaintsAPIController extends RBAController
 			"source" => $form_data['source'],
 			"department_id" => $form_data['department_id'],
 			"ward_id" => $form_data['ward_id'],
-			"type_of_complaint" => $this->ComplaintTypeModel->get(['name'], ['id' => $form_data['type_of_complaint']])[0]['name'],
+			"type_of_complaint" => json_decode($this->ComplaintTypeModel->get(['name'], ['id' => $form_data['type_of_complaint']]),true)[0]['name'],
 			"message" => $form_data['message'],
 			"source_link" => $form_data['source_link'],
 			"sentiment" => $form_data['sentiment'],
 			"comments" => $form_data['comment'],
 			"status" => $form_data['status'],
 		];
+// 		print_r($data);exit;
 		if ($this->TicketsModel->update(['id' => $form_data['ticket_id']], $data))
 			// redirect($this->input->get_request_header('Referer'));
 			redirect('complaints/all-tickets');

@@ -15,6 +15,11 @@ class DepartmentsAPIController extends RBAController
         $this->data['session'] = $this->session->get_userdata($this->APP_ID . "_appuser");
     }
 
+    public function api_department_get_single(){
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode(array('slug' => $this->input->post('department'))));
+    }
     public function api_department_add()
     {
         $form_data = $this->input->post();

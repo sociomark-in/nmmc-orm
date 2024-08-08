@@ -30,12 +30,13 @@ for ($i=1; $i <= 32; $i++) {
         }
 
         $.ajax({
-            url: "<?= base_url($data['source']) ?>",
+            url: "<?= base_url($source) ?>",
             method: "POST",
             data: {
                 output: ['name', 'data']
             },
             success: function(data) {
+                console.log(data);
                 options.xaxis = {
                     categories: <?= json_encode($xaxis) ?>,
                 };

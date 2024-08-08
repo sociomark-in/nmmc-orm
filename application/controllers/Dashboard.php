@@ -20,7 +20,7 @@ class Dashboard extends RBAController
 		/* Tickets By Wards & Department */
 		$all_wards = $this->WardModel->get();
 		$all_dept = $this->DepartmentModel->get();
-		$all_complaint = $this->ComplaintTypeModel->get();
+		$all_complaint = json_decode($this->ComplaintTypeModel->get(), true);
 		$ward_count = [];
 		$dept_count = [];
 		$complaint_count = [];

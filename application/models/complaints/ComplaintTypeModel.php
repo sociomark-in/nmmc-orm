@@ -19,7 +19,7 @@ class ComplaintTypeModel extends CI_Model
             $this->db->where($where);
         }
 
-        return $this->db->get($this->table['complaint'])->result_array();
+        return json_encode($this->db->get($this->table['complaint'])->result_array());
     }
     public function insert($data)
     {

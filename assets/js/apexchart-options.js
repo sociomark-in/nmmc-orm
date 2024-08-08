@@ -56,10 +56,15 @@ if ($(".apexchart.pie-chart").length) {
       enabled: true,
       offsetX: 50,
       offsetY: 50,
-      textAnchor: 'middle',
-      formatter: function(val, opts) {
-        return opts.w.config.labels[opts.seriesIndex] + ": " + parseFloat(val).toFixed(2) + "%";
-      }
+      textAnchor: "middle",
+      formatter: function (val, opts) {
+        return (
+          opts.w.config.labels[opts.seriesIndex] +
+          ": " +
+          parseFloat(val).toFixed(2) +
+          "%"
+        );
+      },
     },
   };
 }
@@ -67,61 +72,101 @@ const pieChartOptions = options;
 
 if ($(".apexchart.bar-chart").length) {
   var options = {
+    series: [
+      {
+        name: "Inflation",
+        data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+      },
+    ],
     chart: {
+      height: 350,
       type: "bar",
-      height: "320",
-      parentHeightOffset: 0,
-      foreColor: colors.bodyColor,
-      background: colors.cardBg,
-      toolbar: {
-        show: false,
-      },
-    },
-    theme: {
-      mode: "light",
-    },
-    tooltip: {
-      theme: "light",
-    },
-    colors: [colors.primary],
-    grid: {
-      padding: {
-        bottom: -4,
-      },
-      borderColor: colors.gridBorder,
-      xaxis: {
-        lines: {
-          show: true,
-        },
-      },
-    },
-    xaxis: {
-      axisBorder: {
-        color: colors.gridBorder,
-      },
-      axisTicks: {
-        color: colors.gridBorder,
-      },
-    },
-    legend: {
-      show: true,
-      position: "top",
-      horizontalAlign: "center",
-      fontFamily: fontFamily,
-      itemMargin: {
-        horizontal: 8,
-        vertical: 0,
-      },
-    },
-    stroke: {
-      width: 0,
     },
     plotOptions: {
       bar: {
-        borderRadius: 4,
+        borderRadius: 10,
+        dataLabels: {
+          position: "top", // top, center, bottom
+        },
+      },
+    },
+    dataLabels: {
+      enabled: true,
+      formatter: function (val) {
+        return val + "%";
+      },
+      offsetY: -20,
+      style: {
+        fontSize: "12px",
+        colors: ["#304758"],
+      },
+    },
+
+    xaxis: {
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ],
+      position: "top",
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+      crosshairs: {
+        fill: {
+          type: "gradient",
+          gradient: {
+            colorFrom: "#D8E3F0",
+            colorTo: "#BED1E6",
+            stops: [0, 100],
+            opacityFrom: 0.4,
+            opacityTo: 0.5,
+          },
+        },
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+    yaxis: {
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+      labels: {
+        show: false,
+        formatter: function (val) {
+          return val + "%";
+        },
+      },
+    },
+    title: {
+      text: "Monthly Inflation in Argentina, 2002",
+      floating: true,
+      offsetY: 330,
+      align: "center",
+      style: {
+        color: "#444",
       },
     },
   };
+
+  var chart = new ApexCharts(document.querySelector("#chart"), options);
+  chart.render();
 }
 const barChartOptions = options;
 

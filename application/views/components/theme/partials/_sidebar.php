@@ -23,6 +23,12 @@
 					<span class="link-title">All Complaints</span>
 				</a>
 			</li>
+			<li class="nav-item <?= link_is_active("complaints/all-types") ?>">
+				<a href="<?= base_url('complaints/all-types') ?>" class="nav-link">
+					<i class="link-icon" data-feather="map-pin"></i>
+					<span class="link-title">Complaint Types</span>
+				</a>
+			</li>
 
 			<?php if ($session['appuser']['role']['id'] == 1) : ?>
 				<!-- Tickets -->
@@ -69,12 +75,6 @@
 				<li class="nav-item nav-category">Organization Management</li>
 				<!-- Access Level: jury -->
 				<li class="nav-item <?= link_is_active("departments") ?>">
-					<a href="<?= base_url('departments') ?>" class="nav-link">
-						<i class="link-icon" data-feather="map-pin"></i>
-						<span class="link-title">Departments</span>
-					</a>
-				</li>
-				<li class="nav-item <?= link_is_active("departments") ?>">
 					<a class="nav-link" data-bs-toggle="collapse" href="#department" role="button" aria-expanded="false" aria-controls="department">
 						<i class="link-icon" data-feather="map-pin"></i>
 						<span class="link-title">Departments</span>
@@ -104,20 +104,6 @@
 							</li>
 							<li class="nav-item <?= link_is_active("department/new") ?>">
 								<a href="<?= base_url('ward/new') ?>" class="nav-link">Add Wards</a>
-							</li>
-						</ul>
-					</div>
-				</li>
-				<li class="nav-item <?= link_is_active("complaint") ?>">
-					<a class="nav-link" data-bs-toggle="collapse" href="#complaint" role="button" aria-expanded="false" aria-controls="complaint">
-						<i class="link-icon" data-feather="map-pin"></i>
-						<span class="link-title">Complaint</span>
-						<i class="link-arrow" data-feather="chevron-down"></i>
-					</a>
-					<div class="collapse" id="complaint">
-						<ul class="nav sub-menu">
-							<li class="nav-item <?= link_is_active("complaint/new") ?>">
-								<a href="<?= base_url('complaint/new') ?>" class="nav-link">Add Complaint</a>
 							</li>
 						</ul>
 					</div>

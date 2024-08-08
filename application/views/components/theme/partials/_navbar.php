@@ -68,12 +68,12 @@
 					}
 				</style>
 			</li>
-			<li class="nav-item">XXX.XXX.XXX.XXX</li>
-			<li class="nav-item">
-				<button id="startTour" class="btn nav-link">
-					<i data-feather="help-circle"></i>
-				</button>
-			</li>
+			<!--<li class="nav-item">XXX.XXX.XXX.XXX</li>-->
+			<!--<li class="nav-item">-->
+			<!--	<button id="startTour" class="btn nav-link">-->
+			<!--		<i data-feather="help-circle"></i>-->
+			<!--	</button>-->
+			<!--</li>-->
 			<!-- <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="flag-icon flag-icon-us mt-1" title="us"></i> <span class="ms-1 me-1 d-none d-md-inline-block">English</span>

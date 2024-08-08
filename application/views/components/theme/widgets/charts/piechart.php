@@ -22,7 +22,6 @@
                     output: ['name', 'data']
                 },
                 success: function(response) {
-                    console.log(response.output[0].data);
                     options.series = response.output[0].data.series;
                     options.labels = response.output[0].data.labels;
                     var chart<?= $id ?> = new ApexCharts(document.querySelector("#<?= $id ?>"), options);
