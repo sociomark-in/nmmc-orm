@@ -14,6 +14,17 @@ class WardsAPIController extends RBAController
         $this->load->model('complaints/ComplaintTypeModel');
         $this->data['session'] = $this->session->get_userdata($this->APP_ID . "_appuser");
     }
+
+    public function api_ward_get_single(){
+        $select = $this->input->get('columns');
+        $where = ['name' => $this->input->post('department')];
+
+        $department = json_decode($this->WardModel->get($select, $where), true);
+
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode(array('slug' => $department['slug'])));
+    }
     
     public function api_ward_add()
     {

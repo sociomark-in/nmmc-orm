@@ -246,7 +246,6 @@
             </div>
           </div>
           <div class="">
-
             <div class="row">
               <div class="col-12">
                 <div class="tab-content" id="wardTabOptionContent">
@@ -287,14 +286,30 @@
                     <div class="row">
                       <div class="col-12">
                         <?php
+                        // $data = [
+                        //   'height' => 300,
+                        //   'id' => "apexWardPie",
+                        //   'source' => [
+                        //     'url' => "api/v2/tickets/count?by=ward&months=12&type=pie",
+                        //   ],
+                        // ];
+                        // $this->load->view('components/theme/widgets/charts/piechart', $data); 
+                        ?>
+                      </div>
+                      <div class="col-12">
+                        <?php
                         $data = [
-                          'height' => 300,
-                          'id' => "apexWardPie",
+                          'id' => "apexWardChart",
                           'source' => [
-                            'url' => "api/v2/tickets/count?by=ward&months=12&type=pie",
+                            'url' => "api/v2/tickets/count?by=ward&months=12&type=bar",
                           ],
+                          'events' => ['dataPointSelection' => [
+                            'url' => "api/v2/ward/get?columns[]=slug",
+                            'redirect' => "ward/(:any)"
+                          ]]
                         ];
-                        $this->load->view('components/theme/widgets/charts/piechart', $data); ?>
+                        $this->load->view('components/theme/widgets/charts/barchart', $data); 
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -386,115 +401,84 @@
     </div>
 
   </div>
-  </div>
-  <div class="row">
-    <div class="col-xl-12 col-lg-6 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-baseline mb-2">
-            <div class="">
-              <h6 class="card-title mb-0">All Complaints</h6>
-            </div>
+</div>
+<div class="row">
+  <div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-baseline mb-2">
+          <div class="">
+            <h6 class="card-title mb-0">All Complaints</h6>
           </div>
-          <div class="row">
-            <div class="col-12">
-              <table id="complaintDataTable" class="table table-striped">
-                <thead>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <table id="complaintDataTable" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Complaint Name</th>
+                  <th>Complaint Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($this->data['page']['tickets_count']['complaintwise'] as $key => $complaints) : ?>
                   <tr>
-                    <th>Complaint Name</th>
-                    <th>Complaint Count</th>
+                    <td><?= $complaints['complaint']['name'] ?></td>
+                    <td><?= $complaints['count'] ?></td>
                   </tr>
-                </thead>
-                <tbody>
-                  <?php foreach ($this->data['page']['tickets_count']['complaintwise'] as $key => $complaints) : ?>
-                    <tr>
-                      <td><?= $complaints['complaint']['name'] ?></td>
-                      <td><?= $complaints['count'] ?></td>
-                    </tr>
-                  <?php endforeach ?>
-                </tbody>
-              </table>
-              <script>
-                let table = new DataTable('#complaintDataTable', {
-                  dom: 'Bfrtip',
-                  pageLength: 5,
-                  buttons: ['excel']
-                });
-              </script>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-12 col-lg-6 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-baseline mb-2">
-            <div class="">
-              <h6 class="card-title mb-0">All Departments</h6>
-            </div>
-            <div class="">
-              <ul class="nav nav-pills g-1" id="departmentTabOption" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1 active" id="departmentData-tab" data-bs-toggle="tab" data-bs-target="#departmentData-tab-pane" type="button" role="tab" aria-controls="departmentData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1" id="departmentChart-tab" data-bs-toggle="tab" data-bs-target="#departmentChart-tab-pane" type="button" role="tab" aria-controls="departmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
-                </li>
-            </div>
-          </div>
-          <div class="tab-content" id="departmentTabOptionContent">
-            <div class="tab-pane fade show active" id="departmentData-tab-pane" role="tabpanel" aria-labelledby="departmentData-tab" tabindex="0">
-              <div class="row">
-                <div class="col-12">
-                  <table id="departmentDataTable" class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Department Name</th>
-                        <th>Count</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php foreach ($this->data['page']['tickets_count']['departmentwise'] as $key => $department) : ?>
-                        <tr>
-                          <td><?= $department['dept']['name'] ?></td>
-                          <td><?= $department['count'] ?></td>
-                        </tr>
-                      <?php endforeach ?>
-                    </tbody>
-                  </table>
-                  <script>
-                    new DataTable('#departmentDataTable', {
-                      dom: 'Bfrtip',
-                      pageLength: 5,
-                      buttons: ['excel']
-                    });
-                  </script>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="departmentChart-tab-pane" role="tabpanel" aria-labelledby="departmentChart-tab" tabindex="0">
-              <div class="row">
-                <div class="col-12">
-                  <?php
-                  $data = [
-                    'id' => "apexDepartmentChart",
-                    'source' => [
-                      'url' => "api/v2/tickets/count?by=department&months=12&type=bar",
-                    ],
-                    'events' => ['dataPointSelection' => [
-                      'url' => "api/v2/department/get?columns[]=slug",
-                      'redirect' => "department/(:any)"
-                    ]]
-                  ];
-                  $this->load->view('components/theme/widgets/charts/barchart', $data); ?>
-                </div>
-              </div>
-            </div>
+                <?php endforeach ?>
+              </tbody>
+            </table>
+            <script>
+              let table = new DataTable('#complaintDataTable', {
+                dom: 'Bfrtip',
+                pageLength: 5,
+                buttons: ['excel']
+              });
+            </script>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- row -->
+  <div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-baseline mb-2">
+          <div class="">
+            <h6 class="card-title mb-0">All Departments</h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <table id="departmentDataTable" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Department Name</th>
+                  <th>Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($this->data['page']['tickets_count']['departmentwise'] as $key => $department) : ?>
+                  <tr>
+                    <td><?= $department['dept']['name'] ?></td>
+                    <td><?= $department['count'] ?></td>
+                  </tr>
+                <?php endforeach ?>
+              </tbody>
+            </table>
+            <script>
+              new DataTable('#departmentDataTable', {
+                dom: 'Bfrtip',
+                pageLength: 5,
+                buttons: ['excel']
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- row -->
 </div>

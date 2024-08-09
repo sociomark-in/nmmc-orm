@@ -24,6 +24,7 @@ class ComplaintsAPIController extends RBAController
 		$final['data'] = [];
 		$final['months'] = [];
 		$final['duration'] = [];
+		
 		switch ($get_data['type']) {
 			case 'pie':
 				$final['data'] = [
@@ -88,6 +89,20 @@ class ComplaintsAPIController extends RBAController
 			case 'ward':
 				switch ($get_data['type']) {
 					case 'pie':
+						$labels = [];
+						$series = [];
+						foreach ($this->WardModel->get(['name']) as $key => $label) {
+							array_push($labels, $label['name']);
+						}
+						foreach ($this->TicketsModel->count_(['COUNT(*) as `count`'], ['ward_id']) as $key => $sequence) {
+							array_push($series, (int)$sequence['count']);
+						}
+						$final['data'] = [
+							'labels' => $labels,
+							'series' => $series,
+						];
+						break;
+					case 'bar':
 						$labels = [];
 						$series = [];
 						foreach ($this->WardModel->get(['name']) as $key => $label) {

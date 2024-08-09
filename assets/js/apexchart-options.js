@@ -156,15 +156,15 @@ if ($(".apexchart.bar-chart").length) {
       },
     },
     
-    title: {
-      text: "Monthly Inflation in Argentina, 2002",
-      floating: true,
-      offsetY: 330,
-      align: "center",
-      style: {
-        color: "#444",
-      },
-    },
+    // title: {
+    //   text: "Monthly Inflation in Argentina, 2002",
+    //   floating: true,
+    //   offsetY: 330,
+    //   align: "center",
+    //   style: {
+    //     color: "#444",
+    //   },
+    // },
   };
 
   var chart = new ApexCharts(document.querySelector("#chart"), options);

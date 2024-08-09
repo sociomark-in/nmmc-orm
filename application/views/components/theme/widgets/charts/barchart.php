@@ -1,7 +1,7 @@
 <div id="<?= $id ?>" class="apexchart bar-chart"></div>
 <?php 
 $xaxis = [];
-for ($i=1; $i <= 32; $i++) { 
+for ($i=1; $i <= 8; $i++) { 
     array_push($xaxis, "Department " . $i);
 }
 ?>
@@ -30,19 +30,20 @@ for ($i=1; $i <= 32; $i++) {
         }
 
         $.ajax({
-            url: "<?= base_url($source) ?>",
+            url: "<?= base_url($source['url']) ?>",
             method: "POST",
             data: {
                 output: ['name', 'data']
             },
-            success: function(data) {
-                console.log(data);
+            success: function(response) {
+                console.log(response.output[0]);
                 options.xaxis = {
-                    categories: <?= json_encode($xaxis) ?>,
+                    categories: response.output[0].data.labels,
+                    // categories: <?= json_encode($xaxis) ?>,
                 };
                 options.series = [{
-                    name: "Type of Complaints",
-                    data: [30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 49, 60, 70, 91, 125, 30, 40, 45, 50, 78],
+                    name: "Complaints",
+                    data: response.output[0].data.series,
                 }, ];
                 var chart<?= $id ?> = new ApexCharts(document.querySelector("#<?= $id ?>"), options);
                 chart<?= $id ?>.render();
