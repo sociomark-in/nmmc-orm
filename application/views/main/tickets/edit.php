@@ -190,6 +190,7 @@
 	</div>
 	<?= form_close() ?>
 </div>
+
 <script>
 	$('.dropify').dropify({
 		error: {

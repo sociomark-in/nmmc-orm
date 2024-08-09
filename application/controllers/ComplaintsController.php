@@ -97,13 +97,14 @@ class ComplaintsController extends RBAController
 		$this->load->model('complaints/TicketsModel');
 		$this->load->model('complaints/WardModel');
 		$this->data['page']['ticket'] = json_decode($this->TicketsModel->get(null, ['id' => $slug]), true)[0];
-		$this->data['page']['department'] = json_decode($this->DepartmentModel->get());
+		$this->data['page']['department'] = json_decode($this->DepartmentModel->get(), true);
 		$this->data['page']['source'] = $this->DepartmentModel->get_source();
 		$this->data['page']['status'] = $this->DepartmentModel->get_status();
 		$this->data['page']['sentiment'] = $this->DepartmentModel->get_sentiment();
 		$this->data['page']['complaint'] = $this->DepartmentModel->get_complaint();
 		$this->data['page']['ward'] = $this->WardModel->get();
 		$this->data['page']['slug'] = $slug;
+		
 		$this->load->admin_dashboard('tickets/edit', $this->data);
 	}
 
