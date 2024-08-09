@@ -39,7 +39,7 @@ class ComplaintsController extends RBAController
 		// print_r($rows);
 		for ($i = 0; $i < count($rows); $i++) {
 			$rows[$i]['ward_id'] = $this->WardModel->get(['name'], ['id' => $rows[$i]['ward_id']])[0]['name'];
-			$rows[$i]['department_id'] = $this->DepartmentModel->get(['name'], ['id' => $rows[$i]['department_id']])[0]['name'];
+			$rows[$i]['department_id'] = json_decode($this->DepartmentModel->get(['name'], ['id' => $rows[$i]['department_id']]), true)[0]['name'];
 		}
 		$this->data['tickets_all'] = $rows;
 		$this->data['page']['tickets_count']['all'] = count($rows);
