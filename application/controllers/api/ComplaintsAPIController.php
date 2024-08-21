@@ -108,7 +108,7 @@ class ComplaintsAPIController extends RBAController
 						foreach ($this->WardModel->get(['name']) as $key => $label) {
 							array_push($labels, $label['name']);
 						}
-						foreach ($this->TicketsModel->count_(['COUNT(*) as `count`'], ['ward_id']) as $key => $sequence) {
+						foreach ($this->db->query("SELECT COALESCE(COUNT(`app_complaint_tickets`.`id`), 0) AS 'count' FROM `app_application_wards` LEFT JOIN `app_complaint_tickets` ON `app_application_wards`.`id` = `app_complaint_tickets`.`ward_id` GROUP BY `app_application_wards`.`name`;")->result_array() as $key => $sequence) {
 							array_push($series, (int)$sequence['count']);
 						}
 						$final['data'] = [
@@ -131,7 +131,7 @@ class ComplaintsAPIController extends RBAController
 						// foreach ($this->WardModel->get(['name']) as $key => $label) {
 						// 	array_push($labels, $label['name']);
 						// }
-						$labels = ['Positive', 'Negative', 'Neutral'];
+						$labels = ['Negative', 'Neutral', 'Positive'];
 						foreach ($this->TicketsModel->count_(['COUNT(*) as `count`'], ['sentiment']) as $key => $sequence) {
 							array_push($series, (int)$sequence['count']);
 						}

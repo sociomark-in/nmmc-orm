@@ -197,16 +197,16 @@
 								<?php foreach ($tickets_all as $key => $ticket) : ?>
 									<tr>
 										<td><?= date("Y-m-d h:i:s", strtotime($ticket['created_at'])) ?></td>
-										<td><a href="<?= base_url('complaints/ticket/' . $ticket['id'] . '/edit') ?>">Complaint Name</a></td>
+										<td><a href="<?= base_url('complaints/ticket/' . $ticket['id'] . '/edit') ?>"><?= $ticket['name'] ?></a></td>
 										<td><?= $ticket['department_id'] ?></td>
 										<td><?= $ticket['ward_id'] ?></td>
 										<td><?= $ticket['type_of_complaint'] ?></td>
 										<td><?= $ticket['message'] ?></td>
 										<td><a href="<?= $ticket['source_link'] ?>"><?= $ticket['source'] ?></a></td>
 										<!-- <td><span class="badge bg-danger"><?= $ticket['status'] ?></span></td> -->
-										<?php if ($ticket['status'] == "unresolved" ?? "Unresolved") { ?>
+										<?php if ($ticket['status'] == "Unresolved") { ?>
 											<td><span class="badge bg-danger"><?= $ticket['status'] ?></span></td>
-										<?php } elseif ($ticket['status'] == "resolved" ?? "Resolved") { ?>
+										<?php } elseif ($ticket['status'] == "Resolved") { ?>
 											<td><span class="badge bg-success"><?= $ticket['status'] ?></span></td>
 										<?php } else { ?>
 											<td><span class="badge bg-warning"><?= $ticket['status'] ?></span></td>
