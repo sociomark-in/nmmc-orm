@@ -141,7 +141,7 @@
                   <button class="nav-link p-2 py-1" id="sourceChart-tab" data-bs-toggle="tab" data-bs-target="#sourceChart-tab-pane" type="button" role="tab" aria-controls="sourceChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1 btnExport" type="button"  data-table-export="sourcedataTable" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
+                  <button class="nav-link p-2 py-1 btnExport" type="button" data-export-source="#sourceDataTable" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
                 </li>
             </div>
           </div>
@@ -152,7 +152,7 @@
                   <div class="tab-pane fade show active" id="sourceData-tab-pane" role="tabpanel" aria-labelledby="sourceData-tab" tabindex="0">
                     <div class="row">
                       <div class="col-12">
-                        <table id="sourcedataTable" class="table w-100">
+                        <table id="sourceDataTable" class="table w-100">
                           <thead>
                             <tr>
                               <th>Source</th>
@@ -183,7 +183,7 @@
                           </tbody>
                         </table>
                         <script>
-                          new DataTable('#sourcedataTable', {
+                          new DataTable('#sourceDataTable', {
                             // dom: 'ftip',
                             dom: 'Bfrtip',
                             pageLength: 5,
@@ -240,7 +240,7 @@
                   <button class="nav-link p-2 py-1" id="sentimentChart-tab" data-bs-toggle="tab" data-bs-target="#sentimentChart-tab-pane" type="button" role="tab" aria-controls="sentimentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1 btnExport" type="button"  data-table-export="sentimentDataTable" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
+                  <button class="nav-link p-2 py-1 btnExport" type="button" data-export-source="#sentimentDataTable" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
                 </li>
             </div>
           </div>
@@ -326,7 +326,7 @@
                   <button class="nav-link p-2 py-1" id="wardChart-tab" data-bs-toggle="tab" data-bs-target="#wardChart-tab-pane" type="button" role="tab" aria-controls="wardChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1 btnExport" type="button" data-table-export="wardsDataTable" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
+                  <button class="nav-link p-2 py-1 btnExport" type="button" data-export-source="#wardsDataTable" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
                 </li>
             </div>
           </div>
@@ -423,7 +423,7 @@
                   <button class="nav-link p-2 py-1" id="departmentChart-tab" data-bs-toggle="tab" data-bs-target="#departmentChart-tab-pane" type="button" role="tab" aria-controls="departmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1 btnExport" type="button" id="" data-table-export="departmentTabOptionContent" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
+                  <button class="nav-link p-2 py-1 btnExport" type="button" id="" data-export-source="#departmentDataTable" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
                 </li>
             </div>
           </div>
@@ -520,59 +520,24 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-6 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="d-flex justify-content-between align-items-baseline mb-2">
-          <div class="">
-            <h6 class="card-title mb-0">All Departments</h6>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <table id="departmentDataTable" class="table table-striped w-100">
-              <thead>
-                <tr>
-                  <th>Department Name</th>
-                  <th>Count</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php foreach ($this->data['page']['tickets_count']['departmentwise'] as $key => $department) : ?>
-                  <tr>
-                    <td><?= $department['dept']['name'] ?></td>
-                    <td><?= $department['count'] ?></td>
-                  </tr>
-                <?php endforeach ?>
-              </tbody>
-            </table>
-            <script>
-              new DataTable('#departmentDataTable', {
-                dom: 'Bfrtip',
-                pageLength: 5,
-                buttons: ['excel']
-              });
-            </script>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 <!-- row -->
 <!-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> -->
 <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
 <script>
   $(document).ready(function() {
-    $("#btnExport").click(function() {
-      let table = document.getElementsByTagName("table");
-      TableToExcel.convert(table[0], {
-        name: `NMMC.xlsx`,
-        sheet: {
-          name: 'NMMC'
-        }
+    console.log(document.querySelector("#sourceDataTable"));
+    $(".btnExport").each((index, elem) => {
+      $(elem).on('click', () => {
+        console.log($($(elem).attr('data-export-source')));
+        // TableToExcel.convert($($(elem).attr('data-export-source')), {
+        //   name: `NMMC.xlsx`,
+        //   sheet: {
+        //     name: 'NMMC'
+        //   }
+        // });
       });
     });
-  });
+  })
 </script>
 </div>
