@@ -76,6 +76,13 @@
 										</select>
 									</div>
 									<div class="col">
+										<label for="date" class="form-label">Complaint Date</label>
+										<input id="created_at" class="form-control" name="created_at" type="date">
+										<label id="created-error" class="error" for="created_at"></label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
 										<label for="url" class="form-label">Complaint Link</label>
 										<input id="source_link" class="form-control" name="source_link" value="<?= $page['ticket']['source_link'] ?>" type="text">
 									</div>

@@ -182,7 +182,8 @@ class ComplaintsAPIController extends RBAController
 			"sentiment" => $form_data['sentiment'],
 			"comments" => $form_data['comment'],
 			"status" => $form_data['status'],
-		];
+			"created_at" => $form_data['created_at'],
+		];	
 		// 		print_r($data);exit;
 		if ($this->TicketsModel->update(['id' => $form_data['ticket_id']], $data))
 			// redirect($this->input->get_request_header('Referer'));

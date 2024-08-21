@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/') ?>froala-custom.min.css">
 
 <style>
-	.error{
+	.error {
 		color: red;
 	}
 </style>
@@ -41,7 +41,7 @@
 <link rel="stylesheet" href="<?= base_url("assets/css/") ?>dropify-custom.min.css">
 <link rel="stylesheet" href="<?= base_url("assets/css/") ?>select2-custom.min.css">
 <div class="page-content">
-	<?= form_open("api/v2/complaints/add",['id' => "complaintform"]) ?>
+	<?= form_open("api/v2/complaints/add", ['id' => "complaintform"]) ?>
 	<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
 		<div class="d-flex gap-2">
 			<div class="nav-item">
@@ -78,6 +78,13 @@
 										</select>
 										<label id="complaint-error" class="error" for="source"></label>
 									</div>
+									<div class="col">
+										<label for="date" class="form-label">Complaint Date</label>
+										<input id="created_at" class="form-control" name="created_at" type="date">
+										<label id="created-error" class="error" for="created_at"></label>
+									</div>
+								</div>
+								<div class="row">
 									<div class="col">
 										<label for="url" class="form-label">Complaint Link</label>
 										<input id="source_link" class="form-control" name="source_link" type="text">
@@ -151,7 +158,7 @@
 							<div class="mb-3">
 								<label for="inputTitle" class="form-label">Status</label>
 								<select name="status" class="js-example-basic-single form-select" data-width="100%">
-								<option value="status" selected>Select Status</option>
+									<option value="status" selected>Select Status</option>
 									<?php for ($i = 0; $i < count($this->data['page']['status']); $i++) { ?>
 										<option value="<?= $this->data['page']['status'][$i]['slug'] ?>"><?= $this->data['page']['status'][$i]['name'] ?></option>
 									<?php } ?>
@@ -160,7 +167,7 @@
 							<div class="mb-3">
 								<label for="inputTitle" class="form-label">Sentiment Analysis</label>
 								<select name="sentiment" class="js-example-basic-single form-select" data-width="100%">
-								<option value="sentiment" selected>Select Sentiment Analysis</option>
+									<option value="sentiment" selected>Select Sentiment Analysis</option>
 									<?php for ($i = 0; $i < count($this->data['page']['sentiment']); $i++) { ?>
 										<option value="<?= $this->data['page']['sentiment'][$i]['name'] ?>"><?= $this->data['page']['sentiment'][$i]['name'] ?></option>
 									<?php } ?>
@@ -188,41 +195,41 @@
 	<?= form_close() ?>
 </div>
 <script type="text/javascript">
-          $('#complaintform').validate({
-                  rules: {
-                    name: 'required',
-                    source_link: 'required',
-                    source: 'required',
-                    comments: 'required',
-                    email: {
-                      required: true,
-                      email: true,
-                    },
-                    phone: {
-                      required: true,
-                      minlength: 10,
-                      maxlength: 10,
-                    },
-                     message: {
-                      required: true,
-                    }
-                  },
-                  messages: {
-                    name: 'This Name field is required',
-                    source: 'This Source field is required',
-                    source_link: 'This Complaint Source link field is required',
-                    email: 'Enter a valid email',
-                    message: 'This Message field is required',
-                    comments: 'This Comment field is required',
-                    phone: {
-                      minlength: 'Number must be at least 10 digit'
-                    }
-                  },
-                  submitHandler: function(form) {
-                    form.submit();
-                  }
-                });
-      </script>
+	$('#complaintform').validate({
+		rules: {
+			name: 'required',
+			source_link: 'required',
+			source: 'required',
+			comments: 'required',
+			email: {
+				required: true,
+				email: true,
+			},
+			phone: {
+				required: true,
+				minlength: 10,
+				maxlength: 10,
+			},
+			message: {
+				required: true,
+			}
+		},
+		messages: {
+			name: 'This Name field is required',
+			source: 'This Source field is required',
+			source_link: 'This Complaint Source link field is required',
+			email: 'Enter a valid email',
+			message: 'This Message field is required',
+			comments: 'This Comment field is required',
+			phone: {
+				minlength: 'Number must be at least 10 digit'
+			}
+		},
+		submitHandler: function(form) {
+			form.submit();
+		}
+	});
+</script>
 <script>
 	$('.dropify').dropify({
 		error: {
