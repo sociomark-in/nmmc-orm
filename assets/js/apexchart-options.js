@@ -22,7 +22,7 @@ const slugify = (str) =>
 
 var fontFamily = "'Roboto', Helvetica, sans-serif";
 
-// Apex Pie chart end
+// Apex Pie chart
 if ($(".apexchart.pie-chart").length) {
   var options = {
     chart: {
@@ -54,13 +54,13 @@ if ($(".apexchart.pie-chart").length) {
     },
     dataLabels: {
       enabled: true,
-      offsetX: 50,
-      offsetY: 50,
+      offsetX: 80,
+      offsetY: 80,
       textAnchor: "middle",
       formatter: function (val, opts) {
         return (
-          opts.w.config.labels[opts.seriesIndex] +
-          ": " +
+        //   opts.w.config.labels[opts.seriesIndex] +
+        //   ": " +
           parseFloat(val).toFixed(2) +
           "%"
         );
@@ -69,6 +69,7 @@ if ($(".apexchart.pie-chart").length) {
   };
 }
 const pieChartOptions = options;
+// Apex Pie chart
 
 if ($(".apexchart.bar-chart").length) {
   var options = {
@@ -93,7 +94,7 @@ if ($(".apexchart.bar-chart").length) {
     dataLabels: {
       enabled: true,
       formatter: function (val) {
-        return val + "%";
+        return val;
       },
       offsetY: -20,
       style: {

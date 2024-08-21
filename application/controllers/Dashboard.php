@@ -17,41 +17,86 @@ class Dashboard extends RBAController
 	}
 	public function index()
 	{
-		/* Tickets By Wards & Department */
-		$all_wards = $this->WardModel->get();
-		$all_dept = json_decode($this->DepartmentModel->get(), true);
-		$all_complaint = json_decode($this->ComplaintTypeModel->get(), true);
 		$ward_count = [];
 		$dept_count = [];
 		$complaint_count = [];
-		foreach ($all_wards as $key => $ward) {
-			$ward_count[$key]['ward'] = $ward;
-			$ward_count[$key]['count'] = $this->TicketsModel->count_all(['ward_id' => $ward['id']]);
-		}
-		foreach ($all_dept as $key => $dept) {
-			$dept_count[$key]['dept'] = $dept;
-			$dept_count[$key]['count'] = $this->TicketsModel->count_all(['department_id' => $dept['id']]);
-		}
-		foreach ($all_complaint as $key => $complaint) {
-			$complaint_count[$key]['complaint'] = $complaint;
-			$complaint_count[$key]['count'] = $this->TicketsModel->count_all(['type_of_complaint' => $complaint['name']]);
-		}
 		/* Tickets By Wards & Department */
-		$rows = json_decode($this->TicketsModel->get_all([
-			"source",
-			"department_id",
-			"ward_id",
-			"type_of_complaint",
-			"message",
-			"source_link",
-			"status",
-			"created_at",
-			"updated_at",
-		]), true);
-		for ($i = 0; $i < count($rows); $i++) {
-			$rows[$i]['ward_id'] = $this->WardModel->get(['name'], ['id' => $rows[$i]['ward_id']])[0]['name'];
-			$rows[$i]['department_id'] = json_decode($this->DepartmentModel->get(['name'], ['id' => $rows[$i]['department_id']]), true)[0]['name'];
+		if ($this->input->get("from")) {
+			$to_date = $this->input->get("to");
+			$from_date = $this->input->get("from");
+
+			$all_wards = $this->WardModel->get(null, ['created_at > ' . date_format(date_create_from_format('Ymd', $from_date), "Y-m-d H:i:s")]);
+			$all_dept = json_decode($this->DepartmentModel->get(null, ['created_at > ' . date_format(date_create_from_format('Ymd', $from_date), "Y-m-d H:i:s")]), true);
+			$all_complaint = json_decode($this->ComplaintTypeModel->get(null, ['created_at > ' . date_format(date_create_from_format('Ymd', $from_date), "Y-m-d H:i:s")]), true);
+
+			foreach ($all_wards as $key => $ward) {
+				$ward_count[$key]['ward'] = $ward;
+				$ward_count[$key]['count'] = $this->TicketsModel->count_all(['ward_id' => $ward['id']],  ['created_at > ' . date_format(date_create_from_format('Ymd', $from_date), "Y-m-d H:i:s")]);
+			}
+			foreach ($all_dept as $key => $dept) {
+				$dept_count[$key]['dept'] = $dept;
+				$dept_count[$key]['count'] = $this->TicketsModel->count_all(['department_id' => $dept['id']],  ['created_at > ' . date_format(date_create_from_format('Ymd', $from_date), "Y-m-d H:i:s")]);
+			}
+			foreach ($all_complaint as $key => $complaint) {
+				$complaint_count[$key]['complaint'] = $complaint;
+				$complaint_count[$key]['count'] = $this->TicketsModel->count_all(['type_of_complaint' => $complaint['name']],  ['created_at > ' . date_format(date_create_from_format('Ymd', $from_date), "Y-m-d H:i:s")]);
+			}
+			/* Tickets By Wards & Department */
+	
+			$rows = json_decode($this->TicketsModel->get_all([
+				"source",
+				"department_id",
+				"ward_id",
+				"type_of_complaint",
+				"message",
+				"source_link",
+				"status",
+				"created_at",
+				"updated_at",
+			]), true);
+			for ($i = 0; $i < count($rows); $i++) {
+				$rows[$i]['ward_id'] = $this->WardModel->get(['name'], ['id' => $rows[$i]['ward_id']])[0]['name'];
+				$rows[$i]['department_id'] = json_decode($this->DepartmentModel->get(['name'], ['id' => $rows[$i]['department_id']]), true)[0]['name'];
+			}
+		} else {
+			$all_wards = $this->WardModel->get();
+			$all_dept = json_decode($this->DepartmentModel->get(), true);
+			$all_complaint = json_decode($this->ComplaintTypeModel->get(), true);
+
+			foreach ($all_wards as $key => $ward) {
+				$ward_count[$key]['ward'] = $ward;
+				$ward_count[$key]['count'] = $this->TicketsModel->count_all(['ward_id' => $ward['id']]);
+			}
+			foreach ($all_dept as $key => $dept) {
+				$dept_count[$key]['dept'] = $dept;
+				$dept_count[$key]['count'] = $this->TicketsModel->count_all(['department_id' => $dept['id']]);
+			}
+			foreach ($all_complaint as $key => $complaint) {
+				$complaint_count[$key]['complaint'] = $complaint;
+				$complaint_count[$key]['count'] = $this->TicketsModel->count_all(['type_of_complaint' => $complaint['name']]);
+			}
+			/* Tickets By Wards & Department */
+	
+			$rows = json_decode($this->TicketsModel->get_all([
+				"source",
+				"department_id",
+				"ward_id",
+				"type_of_complaint",
+				"message",
+				"source_link",
+				"status",
+				"created_at",
+				"updated_at",
+			]), true);
+			for ($i = 0; $i < count($rows); $i++) {
+				$rows[$i]['ward_id'] = $this->WardModel->get(['name'], ['id' => $rows[$i]['ward_id']])[0]['name'];
+				$rows[$i]['department_id'] = json_decode($this->DepartmentModel->get(['name'], ['id' => $rows[$i]['department_id']]), true)[0]['name'];
+			}
 		}
+
+		
+
+
 
 
 		$this->data['page']['tickets_all'] = $rows;
@@ -68,7 +113,7 @@ class Dashboard extends RBAController
 		$this->data['page']['tickets_count']['positive'] = $this->TicketsModel->count_all(['sentiment' => 'positive']);
 		$this->data['page']['tickets_count']['negative'] = $this->TicketsModel->count_all(['sentiment' => 'negative']);
 		$this->data['page']['tickets_count']['neutral'] = $this->TicketsModel->count_all(['sentiment' => 'neutral']);
-		
+
 		$this->data['page']['tickets_count']['wardwise'] = $ward_count;
 		$this->data['page']['tickets_count']['departmentwise'] = $dept_count;
 		$this->data['page']['tickets_count']['complaintwise'] = $complaint_count;

@@ -25,6 +25,7 @@ class ComplaintsController extends RBAController
 	{
 		$rows = json_decode($this->TicketsModel->get_all([
 			"id",
+			"name",
 			"source",
 			"department_id",
 			"ward_id",

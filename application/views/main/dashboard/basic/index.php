@@ -11,6 +11,21 @@
     <div>
       <h4 class="mb-3 mb-md-0">Welcome to the NMMC ORM</h4>
     </div>
+    <form action="<?= base_url() ?>" method="get">
+      <div class="d-flex gap-3 align-items-center">
+        <input type="hidden" name="to" value="<?= date('Ymd') ?>">
+        <select name="from" id="" class="form-select">
+          <option value="">All Data</option>
+          <option value="<?= date('Ymd', strtotime("-1 week")) ?>">Past Week</option>
+          <option value="<?= date('Ymd', strtotime("-15 day")) ?>">Past 15 days.</option>
+          <option value="<?= date('Ymd', strtotime("-1 month")) ?>">Past Month</option>
+          <option value="<?= date('Ymd', strtotime("-3 month")) ?>">Past 3 Months</option>
+          <option value="<?= date('Ymd', strtotime("-6 month")) ?>">Past 6 Months</option>
+          <option value="<?= date('Ymd', strtotime("-1 year")) ?>">Past Year</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Filter Results</button>
+      </div>
+    </form>
   </div>
 
   <div class="row">
@@ -43,7 +58,7 @@
               <div class="d-flex justify-content-between align-items-baseline">
                 <h6 class="card-title mb-0">All</h6>
                 <div>
-                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>">View All<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
+                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>"><i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
                 </div>
               </div>
               <div class="row">
@@ -65,7 +80,7 @@
               <div class="d-flex justify-content-between align-items-baseline">
                 <h6 class="card-title mb-0">Unresolved</h6>
                 <div>
-                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>">View All<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
+                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>"><i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
                 </div>
               </div>
               <div class="row">
@@ -87,7 +102,7 @@
               <div class="d-flex justify-content-between align-items-baseline">
                 <h6 class="card-title mb-0">Resolved</h6>
                 <div>
-                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>">View All<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
+                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>"><i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
                 </div>
               </div>
               <div class="row">
@@ -109,7 +124,7 @@
               <div class="d-flex justify-content-between align-items-baseline">
                 <h6 class="card-title mb-0">Work In Progress</h6>
                 <div>
-                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>">View All<i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
+                  <a class="btn p-0 btn-icon-text text-dark" href="<?= base_url("complaints/all-tickets") ?>"><i data-feather="arrow-right" class="icon-sm mb-1 btn-icon-append"></i></a>
                 </div>
               </div>
               <div class="row">
@@ -135,7 +150,7 @@
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-baseline mb-2">
             <div class="">
-              <h6 class="card-title mb-0">Complaints (By Source)</h6>
+              <h6 class="card-title mb-0">All Sources</h6>
             </div>
             <div class="">
               <ul class="nav nav-pills g-1" id="sourceTabOption" role="tablist">
@@ -154,7 +169,7 @@
                   <div class="tab-pane fade show active" id="sourceData-tab-pane" role="tabpanel" aria-labelledby="sourceData-tab" tabindex="0">
                     <div class="row">
                       <div class="col-12">
-                        <table id="sourcedataTable" class="table">
+                        <table id="sourcedataTable" class="table w-100">
                           <thead>
                             <tr>
                               <th>Source</th>
@@ -252,7 +267,7 @@
                   <div class="tab-pane fade show active" id="wardData-tab-pane" role="tabpanel" aria-labelledby="wardData-tab" tabindex="0">
                     <div class="row">
                       <div class="col-12">
-                        <table id="wardsDataTable" class="table table-striped">
+                        <table id="wardsDataTable" class="table w-100 table-striped">
                           <thead>
                             <tr>
                               <th>Ward Name</th>
@@ -343,7 +358,7 @@
                   <div class="tab-pane fade show active" id="sentimentData-tab-pane" role="tabpanel" aria-labelledby="sentimentData-tab" tabindex="0">
                     <div class="row">
                       <div class="col-12">
-                        <table id="sentimentDataTable" class="table table-striped">
+                        <table id="sentimentDataTable" class="table table-striped w-100">
                           <thead>
                             <tr>
                               <th>Source</th>
@@ -479,7 +494,7 @@
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-baseline mb-2">
           <div class="">
-            <h6 class="card-title mb-0">All Complaints</h6>
+            <h6 class="card-title mb-0">All Type of Complaints</h6>
           </div>
         </div>
         <div class="row">
