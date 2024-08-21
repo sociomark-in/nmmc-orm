@@ -125,7 +125,7 @@
   </div>
   <!-- row -->
   <div class="row">
-    <div class="col-xl-3 col-lg-6 grid-margin stretch-card">
+    <div class="col-xl-6 col-lg-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-baseline mb-2">
@@ -139,6 +139,9 @@
                 </li>
                 <li class="nav-item" role="presentation">
                   <button class="nav-link p-2 py-1" id="sourceChart-tab" data-bs-toggle="tab" data-bs-target="#sourceChart-tab-pane" type="button" role="tab" aria-controls="sourceChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1 btnExport" type="button"  data-table-export="sourcedataTable" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
                 </li>
             </div>
           </div>
@@ -223,7 +226,91 @@
       </div>
     </div>
 
-    <div class="col-xl-6 col-lg-6 grid-margin stretch-card">
+    <div class="col-xl-6 col-lg-5 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-baseline">
+            <h6 class="card-title mb-0">Sentiment Analysis</h6>
+            <div class="">
+              <ul class="nav nav-pills g-1" id="sentimentTabOption" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1 active" id="sentimentData-tab" data-bs-toggle="tab" data-bs-target="#sentimentData-tab-pane" type="button" role="tab" aria-controls="sentimentData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1" id="sentimentChart-tab" data-bs-toggle="tab" data-bs-target="#sentimentChart-tab-pane" type="button" role="tab" aria-controls="sentimentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1 btnExport" type="button"  data-table-export="sentimentDataTable" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
+                </li>
+            </div>
+          </div>
+          <div class="">
+            <div class="row">
+              <div class="col-12">
+                <div class="tab-content" id="sentimentTabOptionContent">
+                  <div class="tab-pane fade show active" id="sentimentData-tab-pane" role="tabpanel" aria-labelledby="sentimentData-tab" tabindex="0">
+                    <div class="row">
+                      <div class="col-12">
+                        <table id="sentimentDataTable" class="table table-striped w-100">
+                          <thead>
+                            <tr>
+                              <th>Source</th>
+                              <th>Counts</th>
+                            </tr>
+                      </div>
+                      <tbody>
+                        <tr>
+                          <td>Positive</td>
+                          <td><?= $page['tickets_count']['positive'] ?></td>
+                        </tr>
+                        <tr>
+                          <td>Negative</td>
+                          <td><?= $page['tickets_count']['negative'] ??= 0 ?></td>
+                        </tr>
+                        <tr>
+                          <td>Neutral</td>
+                          <td><?= $page['tickets_count']['neutral'] ??= 0 ?></td>
+                        </tr>
+                      </tbody>
+                      </table>
+                      <script>
+                        new DataTable('#segmentDataTable', {
+                          // dom: 'ftip',
+                          dom: 'Bfrtip',
+                          pageLength: 5,
+                          buttons: ['excel']
+                        });
+                      </script>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="sentimentChart-tab-pane" role="tabpanel" aria-labelledby="sentimentChart-tab" tabindex="0">
+                  <div class="row">
+                    <div class="col-12">
+                      <?php
+                      $data = [
+                        'height' => 300,
+                        'id' => "apexSentimentPie",
+                        'source' => [
+                          'url' => "api/v2/tickets/count?by=sentiment&months=12&type=pie",
+                        ],
+                      ];
+                      $this->load->view('components/theme/widgets/charts/piechart', $data); ?>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-baseline mb-2">
@@ -237,6 +324,9 @@
                 </li>
                 <li class="nav-item" role="presentation">
                   <button class="nav-link p-2 py-1" id="wardChart-tab" data-bs-toggle="tab" data-bs-target="#wardChart-tab-pane" type="button" role="tab" aria-controls="wardChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1 btnExport" type="button" data-table-export="wardsDataTable" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
                 </li>
             </div>
           </div>
@@ -315,90 +405,84 @@
         </div>
       </div>
     </div>
-
-    <div class="col-xl-3 col-lg-5 grid-margin stretch-card">
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-lg-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <div class="d-flex justify-content-between align-items-baseline">
-            <h6 class="card-title mb-0">Sentiment Analysis</h6>
+          <div class="d-flex justify-content-between align-items-baseline mb-2">
             <div class="">
-              <ul class="nav nav-pills g-1" id="sentimentTabOption" role="tablist">
+              <h6 class="card-title mb-0">All Departments</h6>
+            </div>
+            <div class="">
+              <ul class="nav nav-pills g-1" id="departmentTabOption" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1 active" id="sentimentData-tab" data-bs-toggle="tab" data-bs-target="#sentimentData-tab-pane" type="button" role="tab" aria-controls="sentimentData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
+                  <button class="nav-link p-2 py-1 active" id="departmentData-tab" data-bs-toggle="tab" data-bs-target="#departmentData-tab-pane" type="button" role="tab" aria-controls="departmentData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1" id="sentimentChart-tab" data-bs-toggle="tab" data-bs-target="#sentimentChart-tab-pane" type="button" role="tab" aria-controls="sentimentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                  <button class="nav-link p-2 py-1" id="departmentChart-tab" data-bs-toggle="tab" data-bs-target="#departmentChart-tab-pane" type="button" role="tab" aria-controls="departmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link p-2 py-1 btnExport" type="button" id="" data-table-export="departmentTabOptionContent" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="link-icon p-1" data-feather="download"></i></button>
                 </li>
             </div>
           </div>
-          <div class="">
-            <div class="row">
-              <div class="col-12">
-                <div class="tab-content" id="sentimentTabOptionContent">
-                  <div class="tab-pane fade show active" id="sentimentData-tab-pane" role="tabpanel" aria-labelledby="sentimentData-tab" tabindex="0">
-                    <div class="row">
-                      <div class="col-12">
-                        <table id="sentimentDataTable" class="table table-striped w-100">
-                          <thead>
-                            <tr>
-                              <th>Source</th>
-                              <th>Counts</th>
-                            </tr>
-                      </div>
-                      <tbody>
+          <div class="tab-content" id="departmentTabOptionContent">
+            <div class="tab-pane fade show active" id="departmentData-tab-pane" role="tabpanel" aria-labelledby="departmentData-tab" tabindex="0">
+              <div class="row">
+                <div class="col-12">
+                  <table id="departmentDataTable" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Department Name</th>
+                        <th>Count</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($this->data['page']['tickets_count']['departmentwise'] as $key => $department) : ?>
                         <tr>
-                          <td>Positive</td>
-                          <td><?= $page['tickets_count']['positive'] ?></td>
+                          <td><?= $department['dept']['name'] ?></td>
+                          <td><?= $department['count'] ?></td>
                         </tr>
-                        <tr>
-                          <td>Negative</td>
-                          <td><?= $page['tickets_count']['negative'] ??= 0 ?></td>
-                        </tr>
-                        <tr>
-                          <td>Neutral</td>
-                          <td><?= $page['tickets_count']['neutral'] ??= 0 ?></td>
-                        </tr>
-                      </tbody>
-                      </table>
-                      <script>
-                        new DataTable('#segmentDataTable', {
-                          // dom: 'ftip',
-                          dom: 'Bfrtip',
-                          pageLength: 5,
-                          buttons: ['excel']
-                        });
-                      </script>
-                    </div>
-                  </div>
+                      <?php endforeach ?>
+                    </tbody>
+                  </table>
+                  <script>
+                    new DataTable('#departmentDataTable', {
+                      dom: 'Bfrtip',
+                      pageLength: 5,
+                      buttons: ['excel']
+                    });
+                  </script>
                 </div>
-                <div class="tab-pane fade" id="sentimentChart-tab-pane" role="tabpanel" aria-labelledby="sentimentChart-tab" tabindex="0">
-                  <div class="row">
-                    <div class="col-12">
-                      <?php
-                      $data = [
-                        'height' => 300,
-                        'id' => "apexSentimentPie",
-                        'source' => [
-                          'url' => "api/v2/tickets/count?by=sentiment&months=12&type=pie",
-                        ],
-                      ];
-                      $this->load->view('components/theme/widgets/charts/piechart', $data); ?>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="departmentChart-tab-pane" role="tabpanel" aria-labelledby="departmentChart-tab" tabindex="0">
+              <div class="row">
+                <div class="col-12">
+                  <?php
+                  $data = [
+                    'id' => "apexDepartmentChart",
+                    'data' => [
+                      'source' => "api/v2/tickets/count?by=status&months=12",
+                    ],
+                    'events' => ['dataPointSelection' => [
+                      'url' => "api/v2/department/get",
+                      'redirect' => "department/(:any)"
+                    ]]
+                  ];
+                  $this->load->view('components/theme/widgets/charts/barchart', $data); ?>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-6 grid-margin stretch-card">
+  <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-baseline mb-2">
@@ -476,4 +560,19 @@
   </div>
 </div>
 <!-- row -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#btnExport").click(function() {
+      let table = document.getElementsByTagName("table");
+      TableToExcel.convert(table[0], {
+        name: `NMMC.xlsx`,
+        sheet: {
+          name: 'NMMC'
+        }
+      });
+    });
+  });
+</script>
 </div>
