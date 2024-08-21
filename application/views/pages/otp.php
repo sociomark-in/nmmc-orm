@@ -15,10 +15,10 @@
                                     <img src="<?php echo base_url('assets/nmmc logo.png')?>">
                                 </a>
                                 <h5 class="text-muted fw-normal mb-4">Welcome back! .</h5>
-                                <?= form_open('api/v2/auth/login') ?>
+                                <?= form_open('api/v2/auth/verify') ?>
                                     <div class="mb-3">
                                         <label for="userEmail" class="form-label">Enter OTP</label>
-                                        <input type="email" class="form-control" id="userEmail" name="useremail" placeholder="Email">
+                                        <input type="text" maxlength="6" class="form-control" id="userEmail" name="otp" placeholder="Enter OTP">
                                     </div>
                                     <div>
                                         <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">Verify OTP</button>

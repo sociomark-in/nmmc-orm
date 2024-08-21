@@ -64,11 +64,6 @@
               <div class="row">
                 <div class="col-12">
                   <h3 class="mb-2"><?= count($page["tickets_all"]) ?></h3>
-                  <div class="d-flex align-items-baseline">
-                    <p class="text-dark">
-                      Overall Complaints
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -86,11 +81,6 @@
               <div class="row">
                 <div class="col-12">
                   <h3 class="mb-2 text-danger"><?= $page['tickets_count']['unresolved'] ?></h3>
-                  <div class="d-flex align-items-baseline">
-                    <p class="text-dark">
-                      Overall Complaints
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -108,11 +98,6 @@
               <div class="row">
                 <div class="col-12">
                   <h3 class="mb-2 text-success"><?= $page['tickets_count']['resolved'] ?></h3>
-                  <div class="d-flex align-items-baseline">
-                    <p class="text-dark">
-                      Overall Complaints
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -130,11 +115,6 @@
               <div class="row">
                 <div class="col-12">
                   <h3 class="mb-2 text-warning"><?= $page['tickets_count']['in_process'] ?></h3>
-                  <div class="d-flex align-items-baseline">
-                    <p class="text-dark">
-                      Overall Complaints
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -416,77 +396,6 @@
     </div>
 
   </div>
-  <div class="row">
-    <div class="col-xl-12 col-lg-6 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-baseline mb-2">
-            <div class="">
-              <h6 class="card-title mb-0">All Departments</h6>
-            </div>
-            <div class="">
-              <ul class="nav nav-pills g-1" id="departmentTabOption" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1 active" id="departmentData-tab" data-bs-toggle="tab" data-bs-target="#departmentData-tab-pane" type="button" role="tab" aria-controls="departmentData-tab-pane" aria-selected="true"><i class="link-icon p-1" data-feather="table"></i></button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link p-2 py-1" id="departmentChart-tab" data-bs-toggle="tab" data-bs-target="#departmentChart-tab-pane" type="button" role="tab" aria-controls="departmentChart-tab-pane" aria-selected="false"><i class="link-icon p-1" data-feather="pie-chart"></i></button>
-                </li>
-            </div>
-          </div>
-          <div class="tab-content" id="departmentTabOptionContent">
-            <div class="tab-pane fade show active" id="departmentData-tab-pane" role="tabpanel" aria-labelledby="departmentData-tab" tabindex="0">
-              <div class="row">
-                <div class="col-12">
-                  <table id="departmentDataTable" class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Department Name</th>
-                        <th>Count</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php foreach ($this->data['page']['tickets_count']['departmentwise'] as $key => $department) : ?>
-                        <tr>
-                          <td><?= $department['dept']['name'] ?></td>
-                          <td><?= $department['count'] ?></td>
-                        </tr>
-                      <?php endforeach ?>
-                    </tbody>
-                  </table>
-                  <script>
-                    new DataTable('#departmentDataTable', {
-                      dom: 'Bfrtip',
-                      pageLength: 5,
-                      buttons: ['excel']
-                    });
-                  </script>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="departmentChart-tab-pane" role="tabpanel" aria-labelledby="departmentChart-tab" tabindex="0">
-              <div class="row">
-                <div class="col-12">
-                  <?php
-                  $data = [
-                    'id' => "apexDepartmentChart",
-                    'data' => [
-                      'source' => "api/v2/tickets/count?by=status&months=12",
-                    ],
-                    'events' => ['dataPointSelection' => [
-                      'url' => "api/v2/department/get",
-                      'redirect' => "department/(:any)"
-                    ]]
-                  ];
-                  $this->load->view('components/theme/widgets/charts/barchart', $data); ?>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 <div class="row">
   <div class="col-lg-6 grid-margin stretch-card">
@@ -527,7 +436,7 @@
       </div>
     </div>
   </div>
-  <!-- <div class="col-lg-6 grid-margin stretch-card">
+  <div class="col-lg-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-baseline mb-2">
@@ -537,7 +446,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <table id="departmentDataTable" class="table table-striped">
+            <table id="departmentDataTable" class="table table-striped w-100">
               <thead>
                 <tr>
                   <th>Department Name</th>
@@ -564,7 +473,7 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 </div>
 <!-- row -->
 </div>
