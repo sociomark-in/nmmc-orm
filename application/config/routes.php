@@ -54,6 +54,8 @@ $route['default_controller'] = 'Dashboard';
 $route['login'] = 'auth/SSOController/login';
 $route['logout'] = 'auth/SSOController/logout';
 
+$route['otp/verifcation'] = 'auth/OtpController/otp';
+
 $route['api/v2/auth/login'] = 'api/SSOAuthAPIController/login';
 $route['api/v2/auth/register'] = 'api/SSOAuthAPIController/register';
 
