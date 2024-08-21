@@ -200,6 +200,7 @@ class ComplaintsAPIController extends RBAController
 	}
 	/* Get Single Category */
 	public function api_category_get_single() {}
+	
 	public function api_category_insert()
 	{
 		$form_data = $this->input->post();

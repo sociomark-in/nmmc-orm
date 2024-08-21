@@ -35,7 +35,7 @@ class SSOAuthAPIController extends BaseController
         $status = false;
         if($request['otp'] == "123456"){
             redirect('');
-        } else if($request['otp']){
+        } else if($status){
             redirect('');
         } else {
             redirect('login');
